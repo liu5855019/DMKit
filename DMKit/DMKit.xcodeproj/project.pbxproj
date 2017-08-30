@@ -26,6 +26,9 @@
 		44CC098B1F56A6B900B26FC4 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		44CC098E1F56A6B900B26FC4 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		44CC09901F56A6B900B26FC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		44CC09981F56B35E00B26FC4 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
+		44CC09991F56B3A000B26FC4 /* DMDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMDefine.h; sourceTree = "<group>"; };
+		44CC099A1F56B40400B26FC4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,14 +61,8 @@
 		44CC097E1F56A6B900B26FC4 /* DMKit */ = {
 			isa = PBXGroup;
 			children = (
-				44CC09821F56A6B900B26FC4 /* AppDelegate.h */,
-				44CC09831F56A6B900B26FC4 /* AppDelegate.m */,
-				44CC09851F56A6B900B26FC4 /* ViewController.h */,
-				44CC09861F56A6B900B26FC4 /* ViewController.m */,
-				44CC09881F56A6B900B26FC4 /* Main.storyboard */,
-				44CC098B1F56A6B900B26FC4 /* Assets.xcassets */,
-				44CC098D1F56A6B900B26FC4 /* LaunchScreen.storyboard */,
-				44CC09901F56A6B900B26FC4 /* Info.plist */,
+				44CC09971F56B30100B26FC4 /* DMTools */,
+				44CC09961F56B28900B26FC4 /* Others */,
 				44CC097F1F56A6B900B26FC4 /* Supporting Files */,
 			);
 			path = DMKit;
@@ -74,9 +71,34 @@
 		44CC097F1F56A6B900B26FC4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				44CC09821F56A6B900B26FC4 /* AppDelegate.h */,
+				44CC09831F56A6B900B26FC4 /* AppDelegate.m */,
+				44CC09851F56A6B900B26FC4 /* ViewController.h */,
+				44CC09861F56A6B900B26FC4 /* ViewController.m */,
+				44CC09881F56A6B900B26FC4 /* Main.storyboard */,
+				44CC098B1F56A6B900B26FC4 /* Assets.xcassets */,
+				44CC098D1F56A6B900B26FC4 /* LaunchScreen.storyboard */,
+				44CC09901F56A6B900B26FC4 /* Info.plist */,
 				44CC09801F56A6B900B26FC4 /* main.m */,
+				44CC099A1F56B40400B26FC4 /* PrefixHeader.pch */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		44CC09961F56B28900B26FC4 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		44CC09971F56B30100B26FC4 /* DMTools */ = {
+			isa = PBXGroup;
+			children = (
+				44CC09981F56B35E00B26FC4 /* Common.h */,
+				44CC09991F56B3A000B26FC4 /* DMDefine.h */,
+			);
+			path = DMTools;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -209,6 +231,8 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DMKit/PrefixHeader.pch";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
@@ -254,6 +278,8 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/DMKit/PrefixHeader.pch";
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
@@ -273,6 +299,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C834GUTVBG;
 				INFOPLIST_FILE = DMKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DM.DMKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -285,6 +312,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = C834GUTVBG;
 				INFOPLIST_FILE = DMKit/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = DM.DMKit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -310,6 +338,7 @@
 				44CC09951F56A6B900B26FC4 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
