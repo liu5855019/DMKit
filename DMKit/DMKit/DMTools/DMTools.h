@@ -36,6 +36,7 @@
 
 /** 在window上显示toast */
 + (void)showToastAtWindow:(NSString *)content;
+
 /** 在window上显示toast */
 + (void)showToastAtWindow:(NSString *)content duration:(NSTimeInterval)time position:(id)obj;
 
@@ -52,6 +53,15 @@
 
 /** 判断是否为英文 */
 + (BOOL)isEnglish;
+
+/** dict or array >>>>> json */
++ (NSString *)getJsonFromDictOrArray:(id)theData;
+
+/** jsonStr >>>>>>> dict or array */
++ (id) getDictOrArrayFromJsonStr:(NSString *)json;
+
+/** 根据起始数字 终点数字 和 持续时间 返回 每秒60次的播放数组 */
++ (NSArray *)getNumsWithFrom:(CGFloat)from To:(CGFloat)to Time:(CGFloat)time;
 
 
 #pragma mark - << NSUserDefults >>
@@ -156,15 +166,60 @@
 + (BOOL) checkCarNumber:(NSString *) CarNumber;
 
 
+#pragma mark - <<AFNetWorking>>
 
 
+//Ajax--post提交
+/** 重用afn的post */
++ (void)postWithUrl:(NSString *)url
+               para:(id)para
+            success:(void (^)(id responseObject))success
+            failure:(void(^)(NSError *error))failure;
+
+/** 直接获取info 用于特定项目(项目中主要返回值内容全都跟在message里,并且是json型字符串) */
++ (void)postWithUrl:(NSString *)url
+               para:(id)para
+               info:(void (^)(id info))infomation
+            failure:(void(^)(NSError *error))failure;
+
+//Form表单提交, 模仿afn用法
++ (void)postFormWithUrl:(NSString *)url
+                   para:(id)para
+                success:(void (^)(id responseObject))success
+                failure:(void(^)(NSError *error))failure;
+
+/** 直接获取message 用于特定项目*/
++ (void)postFormWithUrl:(NSString *)url
+                   para:(id)para
+                   info:(void (^)(id info))infomation
+                failure:(void(^)(NSError *error))failure;
 
 
+/** 重用afn的get */
++ (void)getWithUrl:(NSString *)url
+              para:(id)para
+           success:(void (^)(id responseObject))success
+           failure:(void(^)(NSError *error))failure;
+/** 直接获取message 用于特定项目 */
++ (void)getWithUrl:(NSString *)url
+              para:(id)para
+              info:(void (^)(id info))infomation
+           failure:(void(^)(NSError *error))failure;
 
 
-
-
-
+/**
+ *  请求SOAP，返回NSData
+ *
+ *  @param url      请求地址
+ *  @param soapBody soap的XML中方法和参数段
+ *  @param success  成功block
+ *  @param failure  失败block
+ */
++ (void)SOAPData:(NSString *)url
+        funcName:(NSString *)funcName
+        soapBody:(NSString *)soapBody
+         success:(void (^)(id responseObject))success
+         failure:(void(^)(NSError *error))failure;
 
 
 
