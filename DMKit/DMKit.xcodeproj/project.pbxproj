@@ -75,6 +75,7 @@
 		44CC098A1F56A6B900B26FC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CC09881F56A6B900B26FC4 /* Main.storyboard */; };
 		44CC098C1F56A6B900B26FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44CC098B1F56A6B900B26FC4 /* Assets.xcassets */; };
 		44CC098F1F56A6B900B26FC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CC098D1F56A6B900B26FC4 /* LaunchScreen.storyboard */; };
+		44FFFB0D1F5E325D00CFE63F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FFFB0C1F5E325D00CFE63F /* UserInfo.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -221,6 +222,8 @@
 		44CC09981F56B35E00B26FC4 /* Common.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Common.h; sourceTree = "<group>"; };
 		44CC09991F56B3A000B26FC4 /* DMDefine.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMDefine.h; sourceTree = "<group>"; };
 		44CC099A1F56B40400B26FC4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		44FFFB0B1F5E325D00CFE63F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
+		44FFFB0C1F5E325D00CFE63F /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -532,6 +535,8 @@
 				44CC09991F56B3A000B26FC4 /* DMDefine.h */,
 				442E5C511F579D5500D1D8A6 /* DMTools.h */,
 				442E5C521F579D5500D1D8A6 /* DMTools.m */,
+				44FFFB0B1F5E325D00CFE63F /* UserInfo.h */,
+				44FFFB0C1F5E325D00CFE63F /* UserInfo.m */,
 			);
 			path = DMTools;
 			sourceTree = "<group>";
@@ -665,6 +670,7 @@
 				442E5BEB1F579AB200D1D8A6 /* MJRefreshAutoFooter.m in Sources */,
 				442E5BFA1F579AB200D1D8A6 /* MJRefreshConst.m in Sources */,
 				442E5BEE1F579AB200D1D8A6 /* MJRefreshFooter.m in Sources */,
+				44FFFB0D1F5E325D00CFE63F /* UserInfo.m in Sources */,
 				442E5C241F579AC400D1D8A6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				44CC09811F56A6B900B26FC4 /* main.m in Sources */,
 				442E5BF71F579AB200D1D8A6 /* MJRefreshNormalHeader.m in Sources */,
