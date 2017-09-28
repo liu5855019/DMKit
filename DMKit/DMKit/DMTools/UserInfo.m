@@ -7,7 +7,6 @@
 //
 
 #import "UserInfo.h"
-#import "Common.h"
 
 #define kUserInfo @"Userinfo"
 static NSString * const kTourist = @"tourist";              ///<游客token
@@ -21,6 +20,7 @@ static NSString * const kTourist = @"tourist";              ///<游客token
 
 
 @implementation UserInfo
+
 +(instancetype) shareUser{
     static UserInfo *userInfo;
     if (userInfo) {
@@ -59,7 +59,6 @@ static NSString * const kTourist = @"tourist";              ///<游客token
 
 -(void)clearDatas
 {
-
     self.token = @"";
     self.phoneNum = nil;
     self.userID = 0;
