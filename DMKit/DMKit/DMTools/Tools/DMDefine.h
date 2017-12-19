@@ -33,7 +33,7 @@
 #define kLineH (1.0f / [UIScreen mainScreen].scale)
 
 //按比例设置view大小/字体大小等    这里要配合UserInfo单利使用
-#define kScale(value) ((value) * [UserInfo shareUser].screenScale)
+#define kScale(value) ((value) * [UserInfo shareUser].screenScaleH)
 #define kScaleW(value) ((value) * [UserInfo shareUser].screenScaleW)
 
 #define kGetX(v)            (v).frame.origin.x
@@ -50,7 +50,12 @@
 #define kGetMaxX(v)            CGRectGetMaxX((v).frame) //横坐标加上控件的宽度
 #define kGetMaxY(v)            CGRectGetMaxY((v).frame) //纵坐标加上控件的高度
 
-#define kGetTextSize(text, font) [text length] > 0 ? [text sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero     //获取字体size
+#define kGetTextSize(text, font) [text length] ? [text sizeWithAttributes:@{NSFontAttributeName:font}] : CGSizeZero     //获取字体size
+
+
+#define kFont(font)            [UIFont systemFontOfSize:font]
+
+
 
 
 #pragma mark - << 判断当前的iPhone设备/系统版本 >>
@@ -67,6 +72,30 @@
 #define kAppBuild [[NSBundle mainBundle] objectForInfoDictionaryKey:(NSString *)kCFBundleVersionKey]
 //获得app Version 号
 #define kAppVerison [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleShortVersionString"]
+
+
+#define IS_DEVICE_X         (([[UIApplication sharedApplication] statusBarFrame].size.height == 44 )? (YES):(NO))
+#define kSTATUS_HEIGHT      [[UIApplication sharedApplication] statusBarFrame].size.height  //64   x== 88
+#define kNAV_HEIGHT         (kSTATUS_HEIGHT + 44)
+#define kTABBAR_HEIGHT      ((IS_DEVICE_X) ? (34 + 49):(49)) // x== 83
+
+//底部高度
+#define kBOTTOM_HEIGHT      ((IS_DEVICE_X) ? 34:0)
+
+
+
+//屏幕高度（安全区域）(从顶部 0 开始)
+#define kSAFE_FROMTOP_SCREEN_HEIGHT     ((IS_DEVICE_X == YES) ? (kScreenH - 34):(kScreenH))
+//底部安全高度
+#define kSAFE_BOTTOM_HEIGHT      ((IS_DEVICE_X == YES) ? 34:0)
+//除去导航栏 中间安全区域高度
+#define kSAFE_SCREEN_HEIGHT      ((IS_DEVICE_X == YES) ? (kScreenH - 34 - 88):(kScreenH - 64))
+
+
+//适配顶部 ios11 automaticallyAdjustsScrollViewInsets 失效问题
+#define AdjustsScrollViewInsetNever(controller,view) if(@available(iOS 11.0, *)) {view.contentInsetAdjustmentBehavior = UIScrollViewContentInsetAdjustmentNever;} else if([controller isKindOfClass:[UIViewController class]]) {controller.automaticallyAdjustsScrollViewInsets = false;}
+
+
 
 
 #pragma mark - << Color >>

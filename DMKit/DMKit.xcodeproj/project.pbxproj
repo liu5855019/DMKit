@@ -76,6 +76,13 @@
 		44CC098C1F56A6B900B26FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44CC098B1F56A6B900B26FC4 /* Assets.xcassets */; };
 		44CC098F1F56A6B900B26FC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CC098D1F56A6B900B26FC4 /* LaunchScreen.storyboard */; };
 		44FFFB0D1F5E325D00CFE63F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FFFB0C1F5E325D00CFE63F /* UserInfo.m */; };
+		6485BA001FE9591300EFB5A8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485B9FF1FE9591300EFB5A8 /* BaseViewController.m */; };
+		6485BA031FE9593100EFB5A8 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485BA021FE9593100EFB5A8 /* BaseNavigationController.m */; };
+		6485BA061FE95AEB00EFB5A8 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485BA051FE95AEB00EFB5A8 /* RootVC.m */; };
+		64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */; };
+		64E6BA061FE94D0100CAAFCF /* UIViewController+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */; };
+		64E6BA071FE94D0100CAAFCF /* UINavigationBar+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA021FE94D0100CAAFCF /* UINavigationBar+DMTools.m */; };
+		64E6BA081FE94D0100CAAFCF /* NSArray+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA041FE94D0100CAAFCF /* NSArray+DMTools.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -224,6 +231,20 @@
 		44CC099A1F56B40400B26FC4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		44FFFB0B1F5E325D00CFE63F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		44FFFB0C1F5E325D00CFE63F /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		6485B9FE1FE9591300EFB5A8 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
+		6485B9FF1FE9591300EFB5A8 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
+		6485BA011FE9593000EFB5A8 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
+		6485BA021FE9593100EFB5A8 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
+		6485BA041FE95AEB00EFB5A8 /* RootVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
+		6485BA051FE95AEB00EFB5A8 /* RootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		64E6B9FA1FE930AE00CAAFCF /* DMSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSegmentView.h; sourceTree = "<group>"; };
+		64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSegmentView.m; sourceTree = "<group>"; };
+		64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DMTools.m"; sourceTree = "<group>"; };
+		64E6BA011FE94D0100CAAFCF /* NSArray+DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSArray+DMTools.h"; sourceTree = "<group>"; };
+		64E6BA021FE94D0100CAAFCF /* UINavigationBar+DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UINavigationBar+DMTools.m"; sourceTree = "<group>"; };
+		64E6BA031FE94D0100CAAFCF /* UINavigationBar+DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+DMTools.h"; sourceTree = "<group>"; };
+		64E6BA041FE94D0100CAAFCF /* NSArray+DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DMTools.m"; sourceTree = "<group>"; };
+		64E6BA051FE94D0100CAAFCF /* UIViewController+DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DMTools.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -490,6 +511,7 @@
 		44CC097E1F56A6B900B26FC4 /* DMKit */ = {
 			isa = PBXGroup;
 			children = (
+				6485B9FC1FE9587F00EFB5A8 /* Demo */,
 				44CC09971F56B30100B26FC4 /* DMTools */,
 				44CC09961F56B28900B26FC4 /* Others */,
 				44CC097F1F56A6B900B26FC4 /* Supporting Files */,
@@ -531,6 +553,37 @@
 		44CC09971F56B30100B26FC4 /* DMTools */ = {
 			isa = PBXGroup;
 			children = (
+				6485BA071FE95C1B00EFB5A8 /* Tools */,
+				6485B9FD1FE958C400EFB5A8 /* DMBase */,
+				64E6B9FF1FE94D0100CAAFCF /* DMCategory */,
+				64E6B9F91FE9306600CAAFCF /* DMViews */,
+			);
+			path = DMTools;
+			sourceTree = "<group>";
+		};
+		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
+			isa = PBXGroup;
+			children = (
+				6485BA041FE95AEB00EFB5A8 /* RootVC.h */,
+				6485BA051FE95AEB00EFB5A8 /* RootVC.m */,
+			);
+			path = Demo;
+			sourceTree = "<group>";
+		};
+		6485B9FD1FE958C400EFB5A8 /* DMBase */ = {
+			isa = PBXGroup;
+			children = (
+				6485BA011FE9593000EFB5A8 /* BaseNavigationController.h */,
+				6485BA021FE9593100EFB5A8 /* BaseNavigationController.m */,
+				6485B9FE1FE9591300EFB5A8 /* BaseViewController.h */,
+				6485B9FF1FE9591300EFB5A8 /* BaseViewController.m */,
+			);
+			path = DMBase;
+			sourceTree = "<group>";
+		};
+		6485BA071FE95C1B00EFB5A8 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
 				44CC09981F56B35E00B26FC4 /* Common.h */,
 				44CC09991F56B3A000B26FC4 /* DMDefine.h */,
 				442E5C511F579D5500D1D8A6 /* DMTools.h */,
@@ -538,7 +591,29 @@
 				44FFFB0B1F5E325D00CFE63F /* UserInfo.h */,
 				44FFFB0C1F5E325D00CFE63F /* UserInfo.m */,
 			);
-			path = DMTools;
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		64E6B9F91FE9306600CAAFCF /* DMViews */ = {
+			isa = PBXGroup;
+			children = (
+				64E6B9FA1FE930AE00CAAFCF /* DMSegmentView.h */,
+				64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */,
+			);
+			path = DMViews;
+			sourceTree = "<group>";
+		};
+		64E6B9FF1FE94D0100CAAFCF /* DMCategory */ = {
+			isa = PBXGroup;
+			children = (
+				64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */,
+				64E6BA051FE94D0100CAAFCF /* UIViewController+DMTools.h */,
+				64E6BA021FE94D0100CAAFCF /* UINavigationBar+DMTools.m */,
+				64E6BA031FE94D0100CAAFCF /* UINavigationBar+DMTools.h */,
+				64E6BA011FE94D0100CAAFCF /* NSArray+DMTools.h */,
+				64E6BA041FE94D0100CAAFCF /* NSArray+DMTools.m */,
+			);
+			path = DMCategory;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -637,9 +712,13 @@
 				442E5C371F579AD500D1D8A6 /* FMDatabaseQueue.m in Sources */,
 				442E5C221F579AC400D1D8A6 /* MASViewConstraint.m in Sources */,
 				442E5BFE1F579AB200D1D8A6 /* UIView+MJExtension.m in Sources */,
+				64E6BA071FE94D0100CAAFCF /* UINavigationBar+DMTools.m in Sources */,
 				442E5C021F579ABD00D1D8A6 /* MBProgressHUD.m in Sources */,
 				442E5BF31F579AB200D1D8A6 /* MJRefreshBackGifFooter.m in Sources */,
+				64E6BA081FE94D0100CAAFCF /* NSArray+DMTools.m in Sources */,
+				6485BA031FE9593100EFB5A8 /* BaseNavigationController.m in Sources */,
 				442E5C1E1F579AC400D1D8A6 /* MASConstraint.m in Sources */,
+				6485BA061FE95AEB00EFB5A8 /* RootVC.m in Sources */,
 				442E5BAD1F579AA900D1D8A6 /* NSData+ImageContentType.m in Sources */,
 				442E5C381F579AD500D1D8A6 /* FMResultSet.m in Sources */,
 				442E5C351F579AD500D1D8A6 /* FMDatabaseAdditions.m in Sources */,
@@ -654,8 +733,10 @@
 				442E5BB81F579AA900D1D8A6 /* UIImage+WebP.m in Sources */,
 				442E5C481F579AE400D1D8A6 /* AFHTTPSessionManager.m in Sources */,
 				442E5BF01F579AB200D1D8A6 /* MJRefreshAutoGifFooter.m in Sources */,
+				6485BA001FE9591300EFB5A8 /* BaseViewController.m in Sources */,
 				442E5BBA1F579AA900D1D8A6 /* UIImageView+WebCache.m in Sources */,
 				442E5BB01F579AA900D1D8A6 /* SDWebImageDecoder.m in Sources */,
+				64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */,
 				44CC09871F56A6B900B26FC4 /* ViewController.m in Sources */,
 				442E5C261F579AC400D1D8A6 /* ViewController+MASAdditions.m in Sources */,
 				442E5C4D1F579AE400D1D8A6 /* AFURLSessionManager.m in Sources */,
@@ -665,6 +746,7 @@
 				442E5BFC1F579AB200D1D8A6 /* UIScrollView+MJExtension.m in Sources */,
 				442E5BFD1F579AB200D1D8A6 /* UIScrollView+MJRefresh.m in Sources */,
 				442E5BF11F579AB200D1D8A6 /* MJRefreshAutoNormalFooter.m in Sources */,
+				64E6BA061FE94D0100CAAFCF /* UIViewController+DMTools.m in Sources */,
 				442E5BAF1F579AA900D1D8A6 /* SDWebImageCompat.m in Sources */,
 				44CC09841F56A6B900B26FC4 /* AppDelegate.m in Sources */,
 				442E5BEB1F579AB200D1D8A6 /* MJRefreshAutoFooter.m in Sources */,

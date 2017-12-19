@@ -141,7 +141,7 @@ static NSString * const kTourist = @"tourist";              ///<游客token
 
 #pragma mark - Screen
 
--(CGFloat)screenScale
+-(CGFloat)screenScaleH
 {
     if (_scale == 0) {
         _scale = kScreenH / 667.0f;

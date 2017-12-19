@@ -1,18 +1,18 @@
 //
-//  ViewController.m
+//  RootVC.m
 //  DMKit
 //
-//  Created by 西安旺豆电子信息有限公司 on 17/8/30.
+//  Created by 呆木 on 2017/12/19.
 //  Copyright © 2017年 呆木出品. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "RootVC.h"
 
-@interface ViewController ()
+@interface RootVC ()
 
 @end
 
-@implementation ViewController
+@implementation RootVC
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -27,9 +27,8 @@
     
     [self.view addSubview:lab];
     
-    
-    
 }
+
 
 
 - (void)didReceiveMemoryWarning {
