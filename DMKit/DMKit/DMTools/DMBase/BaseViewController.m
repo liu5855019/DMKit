@@ -29,8 +29,8 @@
         _mainTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenW *0.4, 30)];
         _mainTitleLabel.textAlignment =NSTextAlignmentCenter;
         [_mainTitleLabel setText:@""];
-        _mainTitleLabel.textColor = [UIColor whiteColor];
-        _mainTitleLabel.font = [UIFont boldSystemFontOfSize:20];
+        _mainTitleLabel.textColor = [UIColor blackColor];
+        _mainTitleLabel.font = [UIFont boldSystemFontOfSize:kScaleW(21)];
         self.navigationItem.titleView = _mainTitleLabel;
     }
     return _mainTitleLabel;
