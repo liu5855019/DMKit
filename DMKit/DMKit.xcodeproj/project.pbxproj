@@ -79,6 +79,8 @@
 		6485BA001FE9591300EFB5A8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485B9FF1FE9591300EFB5A8 /* BaseViewController.m */; };
 		6485BA031FE9593100EFB5A8 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485BA021FE9593100EFB5A8 /* BaseNavigationController.m */; };
 		6485BA061FE95AEB00EFB5A8 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485BA051FE95AEB00EFB5A8 /* RootVC.m */; };
+		64B8CDF21FF154A9003AA245 /* DMWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B8CDF11FF154A9003AA245 /* DMWebView.m */; };
+		64B8CDF51FF15733003AA245 /* LocationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B8CDF31FF15733003AA245 /* LocationTool.m */; };
 		64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */; };
 		64E6BA061FE94D0100CAAFCF /* UIViewController+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */; };
 		64E6BA071FE94D0100CAAFCF /* UINavigationBar+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA021FE94D0100CAAFCF /* UINavigationBar+DMTools.m */; };
@@ -237,6 +239,10 @@
 		6485BA021FE9593100EFB5A8 /* BaseNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseNavigationController.m; sourceTree = "<group>"; };
 		6485BA041FE95AEB00EFB5A8 /* RootVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootVC.h; sourceTree = "<group>"; };
 		6485BA051FE95AEB00EFB5A8 /* RootVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootVC.m; sourceTree = "<group>"; };
+		64B8CDF01FF154A9003AA245 /* DMWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMWebView.h; sourceTree = "<group>"; };
+		64B8CDF11FF154A9003AA245 /* DMWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMWebView.m; sourceTree = "<group>"; };
+		64B8CDF31FF15733003AA245 /* LocationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTool.m; sourceTree = "<group>"; };
+		64B8CDF41FF15733003AA245 /* LocationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTool.h; sourceTree = "<group>"; };
 		64E6B9FA1FE930AE00CAAFCF /* DMSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSegmentView.h; sourceTree = "<group>"; };
 		64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSegmentView.m; sourceTree = "<group>"; };
 		64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DMTools.m"; sourceTree = "<group>"; };
@@ -590,6 +596,8 @@
 				442E5C521F579D5500D1D8A6 /* DMTools.m */,
 				44FFFB0B1F5E325D00CFE63F /* UserInfo.h */,
 				44FFFB0C1F5E325D00CFE63F /* UserInfo.m */,
+				64B8CDF41FF15733003AA245 /* LocationTool.h */,
+				64B8CDF31FF15733003AA245 /* LocationTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -597,6 +605,8 @@
 		64E6B9F91FE9306600CAAFCF /* DMViews */ = {
 			isa = PBXGroup;
 			children = (
+				64B8CDF01FF154A9003AA245 /* DMWebView.h */,
+				64B8CDF11FF154A9003AA245 /* DMWebView.m */,
 				64E6B9FA1FE930AE00CAAFCF /* DMSegmentView.h */,
 				64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */,
 			);
@@ -693,6 +703,7 @@
 				442E5C231F579AC400D1D8A6 /* NSArray+MASAdditions.m in Sources */,
 				442E5C491F579AE400D1D8A6 /* AFNetworkReachabilityManager.m in Sources */,
 				442E5BF61F579AB200D1D8A6 /* MJRefreshGifHeader.m in Sources */,
+				64B8CDF21FF154A9003AA245 /* DMWebView.m in Sources */,
 				442E5BFB1F579AB200D1D8A6 /* NSBundle+MJRefresh.m in Sources */,
 				442E5B891F579AA100D1D8A6 /* UIView+Toast.m in Sources */,
 				442E5BB31F579AA900D1D8A6 /* SDWebImageManager.m in Sources */,
@@ -729,6 +740,7 @@
 				442E5C4B1F579AE400D1D8A6 /* AFURLRequestSerialization.m in Sources */,
 				442E5BB11F579AA900D1D8A6 /* SDWebImageDownloader.m in Sources */,
 				442E5BED1F579AB200D1D8A6 /* MJRefreshComponent.m in Sources */,
+				64B8CDF51FF15733003AA245 /* LocationTool.m in Sources */,
 				442E5BEF1F579AB200D1D8A6 /* MJRefreshHeader.m in Sources */,
 				442E5BB81F579AA900D1D8A6 /* UIImage+WebP.m in Sources */,
 				442E5C481F579AE400D1D8A6 /* AFHTTPSessionManager.m in Sources */,

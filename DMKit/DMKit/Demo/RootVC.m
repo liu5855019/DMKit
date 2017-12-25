@@ -10,6 +10,8 @@
 
 @interface RootVC ()
 
+@property (nonatomic , strong) UITableView *tabV;
+
 @end
 
 @implementation RootVC
@@ -17,19 +19,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-//    UILabel *lab = [UILabel new];
-//    lab.frame = CGRectMake(0, 0, kScreenW,50);
-//    lab.textColor = kGetColorRGB(0, 0, 0);
-//    lab.font = [UIFont systemFontOfSize:41];
-//    lab.text = @"DMKit";
-//    lab.center = self.view.center;
-//    lab.textAlignment = NSTextAlignmentCenter;
-//
-//    [self.view addSubview:lab];
-    
     self.mainTitleLabel.text = @"DMKit";
+    
+    
 
 }
+
+#pragma mark - TabView
+
+
 
 
 

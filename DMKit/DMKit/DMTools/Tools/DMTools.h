@@ -15,8 +15,7 @@
 /** 弹出对话框,只有确定按钮 */
 + (void)showAlertWithTitle:(NSString *)title
                 andContent:(NSString *)content
-                  andBlock:(void (^)())todo
-              atController:(__weak UIViewController *)vc;
+                  andBlock:(void (^)())todo;
 
 /** 弹出对话框,带确定和取消按钮,可定制确定取消的标题 */
 + (void)showAlertWithTitle:(NSString *)title
@@ -24,15 +23,13 @@
               andSureBlock:(void(^)())sureTodo
             andCancelBlock:(void(^)())cancelTodo
               andSureTitle:(NSString *)sureTitle
-            andCancelTitle:(NSString *)cancelTitle
-              atController:(__weak UIViewController *)vc;
+            andCancelTitle:(NSString *)cancelTitle;
 
 /** 弹出sheet,根据数组弹出不同个数的action,外带取消按钮 */
 +(void)showSheetWithTitle:(NSString *)title
                andContent:(NSString *)content
           andActionTitles:(NSArray <NSString*> *)titles
-                 andBlock:(void (^)(int index))clickBlock
-                     atVC:(__weak UIViewController *)vc;
+                 andBlock:(void (^)(int index))clickBlock;
 
 /** 在window上显示toast */
 + (void)showToastAtWindow:(NSString *)content;

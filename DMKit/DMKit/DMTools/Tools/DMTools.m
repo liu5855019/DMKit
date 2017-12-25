@@ -20,7 +20,6 @@
 + (void)showAlertWithTitle:(NSString *)title
                 andContent:(NSString *)content
                   andBlock:(void (^)())todo
-              atController:(__weak UIViewController *)vc
 {
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleAlert];
     
@@ -32,7 +31,7 @@
     
     [controller addAction:action];
     
-    [vc presentViewController:controller animated:YES completion:nil];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:controller animated:YES completion:nil];
 }
 
 /** 弹出对话框,带确定和取消按钮,可定制确定取消的标题 */
@@ -42,7 +41,6 @@
             andCancelBlock:(void(^)())cancelTodo
               andSureTitle:(NSString *)sureTitle
             andCancelTitle:(NSString *)cancelTitle
-              atController:(__weak UIViewController *)vc
 {
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleAlert];
     sureTitle = sureTitle.length ? sureTitle : kLocStr(@"确定");
@@ -72,7 +70,7 @@
     [controller addAction:cancelAction];
     [controller addAction:sureAction];
     
-    [vc presentViewController:controller animated:YES completion:nil];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:controller animated:YES completion:nil];
 }
 
 /** 弹出sheet,根据数组弹出不同个数的action,外带取消按钮 */
@@ -100,7 +98,7 @@
     
     [alertController addAction:action];
     
-    [vc presentViewController:alertController animated:YES completion:nil];
+    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
 }
 
 /** 在window上显示toast */
