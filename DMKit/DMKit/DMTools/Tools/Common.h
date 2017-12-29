@@ -24,6 +24,8 @@
 #import "UIViewController+DMTools.h"
 #import "UINavigationBar+DMTools.h"
 #import "NSArray+DMTools.h"
+#import "NSString+DMTools.h"
+#import "UIView+DMTools.h"
 
 //第三方
 #import "AFNetworking.h"

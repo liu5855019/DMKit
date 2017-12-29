@@ -78,7 +78,6 @@
                andContent:(NSString *)content
           andActionTitles:(NSArray <NSString*> *)titles
                  andBlock:(void (^)(int index))clickBlock
-                     atVC:(__weak UIViewController *)vc
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleActionSheet];
     int i = 0;
