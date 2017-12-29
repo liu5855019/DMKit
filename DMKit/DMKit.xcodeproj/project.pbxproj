@@ -69,6 +69,7 @@
 		442E5C4D1F579AE400D1D8A6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C471F579AE400D1D8A6 /* AFURLSessionManager.m */; };
 		442E5C501F579B1B00D1D8A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 442E5C4F1F579B1B00D1D8A6 /* libsqlite3.tbd */; };
 		442E5C531F579D5500D1D8A6 /* DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C521F579D5500D1D8A6 /* DMTools.m */; };
+		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
 		44CC09811F56A6B900B26FC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09801F56A6B900B26FC4 /* main.m */; };
 		44CC09841F56A6B900B26FC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09831F56A6B900B26FC4 /* AppDelegate.m */; };
 		44CC09871F56A6B900B26FC4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09861F56A6B900B26FC4 /* ViewController.m */; };
@@ -218,6 +219,8 @@
 		442E5C4F1F579B1B00D1D8A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		442E5C511F579D5500D1D8A6 /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
 		442E5C521F579D5500D1D8A6 /* DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTools.m; sourceTree = "<group>"; };
+		447E71B41FF4C731001D5A60 /* DMSegmentViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMSegmentViewVC.h; sourceTree = "<group>"; };
+		447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMSegmentViewVC.m; sourceTree = "<group>"; };
 		44CC097C1F56A6B900B26FC4 /* DMKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44CC09801F56A6B900B26FC4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		44CC09821F56A6B900B26FC4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -497,6 +500,15 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */ = {
+			isa = PBXGroup;
+			children = (
+				447E71B41FF4C731001D5A60 /* DMSegmentViewVC.h */,
+				447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */,
+			);
+			path = DMSegmentViewVC;
+			sourceTree = "<group>";
+		};
 		44CC09731F56A6B900B26FC4 = {
 			isa = PBXGroup;
 			children = (
@@ -570,6 +582,7 @@
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */,
 				6485BA041FE95AEB00EFB5A8 /* RootVC.h */,
 				6485BA051FE95AEB00EFB5A8 /* RootVC.m */,
 			);
@@ -731,6 +744,7 @@
 				442E5C1E1F579AC400D1D8A6 /* MASConstraint.m in Sources */,
 				6485BA061FE95AEB00EFB5A8 /* RootVC.m in Sources */,
 				442E5BAD1F579AA900D1D8A6 /* NSData+ImageContentType.m in Sources */,
+				447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */,
 				442E5C381F579AD500D1D8A6 /* FMResultSet.m in Sources */,
 				442E5C351F579AD500D1D8A6 /* FMDatabaseAdditions.m in Sources */,
 				442E5BF81F579AB200D1D8A6 /* MJRefreshStateHeader.m in Sources */,

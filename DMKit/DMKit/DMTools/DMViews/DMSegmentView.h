@@ -10,14 +10,15 @@
 
 @interface DMSegmentView : UIView
 
+/** frame&views 必填   其他非必填 */
 - (instancetype)initWithFrame:(CGRect)frame
                         views:(NSArray <UIView *> *)views
                        titles:(NSArray <NSString *>*)titles
+                    titleFont:(UIFont *)font
                    titleColor:(UIColor *)titleColor
            titleSelectedColor:(UIColor *)selectedColor
+              titlesIsAverage:(BOOL)isAve
                    showAction:(void(^)(NSInteger index))showAction;
-
-
 
 
 @end

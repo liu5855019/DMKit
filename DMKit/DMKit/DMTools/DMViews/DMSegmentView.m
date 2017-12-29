@@ -11,17 +11,16 @@
 
 
 #define kHeaderH 44
-#define kTitleSpace kScaleW(20)
 #define kUnderLineW kScaleW(40)
 
 
 @interface DMSegmentView () <UIScrollViewDelegate>
 
-
 @property (nonatomic , copy) NSArray *views;
 @property (nonatomic , copy) NSArray *titles;
 @property (nonatomic , copy) void (^showAction)(NSInteger index);
 
+@property (nonatomic , strong) UIFont *titleFont;
 @property (nonatomic , strong) UIColor *titleColor;
 @property (nonatomic , strong) UIColor *selectedColor;
 
@@ -32,6 +31,8 @@
 
 @property (nonatomic , assign) NSInteger lastShowTag;
 
+@property (nonatomic , assign) CGFloat titleSpaceW;
+
 @end
 
 @implementation DMSegmentView
@@ -39,17 +40,27 @@
 - (instancetype)initWithFrame:(CGRect)frame
                         views:(NSArray <UIView *> *)views
                        titles:(NSArray <NSString *>*)titles
+                    titleFont:(UIFont *)font
                    titleColor:(UIColor *)titleColor
            titleSelectedColor:(UIColor *)selectedColor
+              titlesIsAverage:(BOOL)isAve
                    showAction:(void(^)(NSInteger index))showAction
 {
     if (self = [super initWithFrame:frame]) {
-        self.views = views;
-        self.titles = titles;
-        self.showAction = showAction;
-        self.titleColor = titleColor;
-        self.selectedColor = selectedColor;
-        [self setupViews];
+        if (views.count > 0) {  // views 必填
+            self.views = views;
+            self.titles = titles;
+            self.titleFont = font;
+            self.showAction = showAction;
+            self.titleColor = titleColor;
+            self.selectedColor = selectedColor;
+            
+            if (isAve) {
+                [self aveTitleSpaceW];
+            }
+            
+            [self setupViews];
+        }
     }
     return self;
 }
@@ -60,7 +71,7 @@
     [self setupPages];
 }
 
-
+#pragma mark - << Action >>
 
 //响应button
 -(void)clickTitleBtn:(UIButton *)sender
@@ -83,26 +94,89 @@
     
     for (UIButton *aView in _headerScroll.subviews) {
         if ([aView isKindOfClass:[UIButton class]]) {
-            [aView setTitleColor:aView.tag == tag ? _selectedColor : _titleColor forState:UIControlStateNormal];
+            [aView setTitleColor:aView.tag == tag ? self.selectedColor : self.titleColor forState:UIControlStateNormal];
         }
     }
+    
+    UIView *sender = [_headerScroll viewWithTag:tag];
     CGPoint centre = _underLine.center;
-    centre.x = [[_headerScroll viewWithTag:tag] center].x;
+    centre.x = [sender center].x;
     WeakObj(self);
     [UIView animateWithDuration:0.25 animations:^{
         selfWeak.underLine.center = centre;
     }];
+    
+    if (kGetX(sender) < _headerScroll.contentOffset.x) {
+        [_headerScroll setContentOffset:CGPointMake(kGetX(sender), 0) animated:YES];
+    }
+    if (kGetMaxX(sender) > _headerScroll.contentOffset.x + kGetW(self)) {
+        CGFloat offset = kGetMaxX(sender) - kGetW(self);
+        [_headerScroll setContentOffset:CGPointMake(offset, 0) animated:YES];
+    }
 }
 
-#pragma mark - <<Delegate>>
+- (void)aveTitleSpaceW
+{
+    CGFloat spaceW = 0;
+    //获取所有title的总w
+    for (int i = 0; i < _views.count; i++) {
+        NSString *title = [_titles dm_objectAtIndex:i];
+        title = title ? title : @"";
+        CGSize size = kGetTextSize(title, self.titleFont);
+        spaceW += size.width + 1;
+    }
+    //获取剩余W
+    spaceW = kGetW(self) - spaceW;
+    if (spaceW <= 0) {
+        _titleSpaceW = 0;
+    }else{
+        _titleSpaceW = spaceW / (_views.count * 2);
+    }
+}
 
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
+#pragma mark - << Setter/Getter >>
+
+- (CGFloat)titleSpaceW
+{
+    if (_titleSpaceW == 0) {
+        _titleSpaceW = kScaleW(20);
+    }
+    return _titleSpaceW;
+}
+
+- (UIFont *)titleFont
+{
+    if (_titleFont == nil) {
+        _titleFont = kFont(kScaleW(15));
+    }
+    return _titleFont;
+}
+
+- (UIColor *)titleColor
+{
+    if (_titleColor == nil) {
+        _titleColor = [UIColor blackColor];
+    }
+    return _titleColor;
+}
+
+- (UIColor *)selectedColor
+{
+    if (_selectedColor == nil) {
+        _selectedColor = [UIColor blueColor];
+    }
+    return _selectedColor;
+}
+
+#pragma mark - << Delegate >>
+
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     NSInteger index = (int)(scrollView.contentOffset.x / kGetW(self));
     [self changeBtnColorWithTag:index + 1000];
 }
 
-#pragma mark - << setup >>
+#pragma mark - << Setup >>
 
 - (void)setupPages
 {
@@ -151,21 +225,20 @@
     //添加buttons
     for (int i = 0; i < _views.count; i++) {
         UIButton *button = [[UIButton alloc] init];
-        button.backgroundColor = kRandomColor;
-        UIFont *font = kFont(kScaleW(15));
-        button.titleLabel.font = font;
+        button.titleLabel.font = self.titleFont;
         NSString *title = [_titles dm_objectAtIndex:i];
-        [button setTitle:title ? title : @"" forState:UIControlStateNormal];
-        [button setTitleColor:_titleColor forState:UIControlStateNormal];
+        title = title ? title : @"";
+        [button setTitle:title forState:UIControlStateNormal];
+        [button setTitleColor:self.titleColor forState:UIControlStateNormal];
         button.titleLabel.textAlignment = NSTextAlignmentCenter;
         button.tag = 1000 + i;
         [button addTarget:self action:@selector(clickTitleBtn:) forControlEvents:UIControlEventTouchUpInside];
         [_headerScroll addSubview:button];
         
-        
+        WeakObj(self);
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
-            CGSize size = kGetTextSize(title ? title : @"", font);
-            make.width.mas_equalTo(size.width + 1 + 2*kTitleSpace );
+            CGSize size = kGetTextSize(title, selfWeak.titleFont);
+            make.width.mas_equalTo(size.width + 1 + 2*selfWeak.titleSpaceW);
             make.centerY.mas_equalTo(0);
             
             if (i == 0) {
@@ -184,7 +257,7 @@
     //添加underlineView
     _underLine =[[UIView alloc] initWithFrame:CGRectMake(0, kHeaderH - 2, kUnderLineW, 2)];
     [_headerScroll addSubview:_underLine];
-    _underLine.backgroundColor = _selectedColor;
+    _underLine.backgroundColor = self.selectedColor;
     _underLine.tag = 2000;
     
     [self changeBtnColorWithTag:1000];
@@ -193,7 +266,7 @@
     NSString *title = [_titles dm_firstObject];
     UIFont *font = kFont(kScaleW(15));
     CGSize size = kGetTextSize(title ? title : @"", font);
-    CGFloat w = size.width + 1 + 2*kTitleSpace;
+    CGFloat w = size.width + 1 + 2*self.titleSpaceW;
     CGPoint centre = _underLine.center;
     centre.x = w/2;
     _underLine.center = centre;
