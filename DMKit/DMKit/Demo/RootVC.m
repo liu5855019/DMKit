@@ -9,6 +9,7 @@
 #import "RootVC.h"
 #import "DMSegmentViewVC.h"
 #import "AVFoundationVC.h"
+#import "SocketClientVC.h"
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
 
@@ -28,7 +29,9 @@
     [self.view addSubview:self.tabV];
     AdjustsScrollViewInsetNever(self, _tabV)
     
-    _datas = @[@"DMSegmentView",@"AVFoundationVC"];
+    _datas = @[@"DMSegmentView",
+               @"AVFoundationVC",
+               @"SocketClientVC"];
 }
 
 
@@ -77,9 +80,10 @@
         [self.navigationController pushViewController:[AVFoundationVC new] animated:YES];
         return;
     }
-    
-    
-    
+    if (indexPath.row == 2) {
+        [self.navigationController pushViewController:[SocketClientVC new] animated:YES];
+        return;
+    }
 }
 
 
