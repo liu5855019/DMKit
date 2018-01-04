@@ -8,6 +8,7 @@
 
 #import "RootVC.h"
 #import "DMSegmentViewVC.h"
+#import "AVFoundationVC.h"
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
 
@@ -27,7 +28,7 @@
     [self.view addSubview:self.tabV];
     AdjustsScrollViewInsetNever(self, _tabV)
     
-    _datas = @[@"DMSegmentView"];
+    _datas = @[@"DMSegmentView",@"AVFoundationVC"];
 }
 
 
@@ -72,8 +73,12 @@
         [self.navigationController pushViewController:[DMSegmentViewVC new] animated:YES];
         return;
     }
+    if (indexPath.row == 1) {
+        [self.navigationController pushViewController:[AVFoundationVC new] animated:YES];
+        return;
+    }
     
-
+    
     
 }
 
@@ -89,3 +94,4 @@
 
 
 @end
+

@@ -72,6 +72,7 @@
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
+		44913C4E1FFE1076008EB55E /* AVFoundationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44913C4D1FFE1076008EB55E /* AVFoundationVC.m */; };
 		44CC09811F56A6B900B26FC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09801F56A6B900B26FC4 /* main.m */; };
 		44CC09841F56A6B900B26FC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09831F56A6B900B26FC4 /* AppDelegate.m */; };
 		44CC09871F56A6B900B26FC4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09861F56A6B900B26FC4 /* ViewController.m */; };
@@ -227,6 +228,8 @@
 		44779B241FF6455000908F50 /* UIView+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+DMTools.m"; sourceTree = "<group>"; };
 		447E71B41FF4C731001D5A60 /* DMSegmentViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMSegmentViewVC.h; sourceTree = "<group>"; };
 		447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMSegmentViewVC.m; sourceTree = "<group>"; };
+		44913C4C1FFE1076008EB55E /* AVFoundationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFoundationVC.h; sourceTree = "<group>"; };
+		44913C4D1FFE1076008EB55E /* AVFoundationVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AVFoundationVC.m; sourceTree = "<group>"; };
 		44CC097C1F56A6B900B26FC4 /* DMKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44CC09801F56A6B900B26FC4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		44CC09821F56A6B900B26FC4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -515,6 +518,15 @@
 			path = DMSegmentViewVC;
 			sourceTree = "<group>";
 		};
+		44913C4B1FFE1076008EB55E /* AVFoundation */ = {
+			isa = PBXGroup;
+			children = (
+				44913C4C1FFE1076008EB55E /* AVFoundationVC.h */,
+				44913C4D1FFE1076008EB55E /* AVFoundationVC.m */,
+			);
+			path = AVFoundation;
+			sourceTree = "<group>";
+		};
 		44CC09731F56A6B900B26FC4 = {
 			isa = PBXGroup;
 			children = (
@@ -588,6 +600,7 @@
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				44913C4B1FFE1076008EB55E /* AVFoundation */,
 				447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */,
 				6485BA041FE95AEB00EFB5A8 /* RootVC.h */,
 				6485BA051FE95AEB00EFB5A8 /* RootVC.m */,
@@ -680,7 +693,7 @@
 				TargetAttributes = {
 					44CC097B1F56A6B900B26FC4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = C834GUTVBG;
+						DevelopmentTeam = C945PF325Y;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -741,6 +754,7 @@
 				442E5BEC1F579AB200D1D8A6 /* MJRefreshBackFooter.m in Sources */,
 				442E5BB51F579AA900D1D8A6 /* UIButton+WebCache.m in Sources */,
 				442E5C4A1F579AE400D1D8A6 /* AFSecurityPolicy.m in Sources */,
+				44913C4E1FFE1076008EB55E /* AVFoundationVC.m in Sources */,
 				442E5C201F579AC400D1D8A6 /* MASLayoutConstraint.m in Sources */,
 				442E5C1D1F579AC400D1D8A6 /* MASCompositeConstraint.m in Sources */,
 				442E5C371F579AD500D1D8A6 /* FMDatabaseQueue.m in Sources */,
@@ -919,7 +933,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C834GUTVBG;
+				DEVELOPMENT_TEAM = C945PF325Y;
 				INFOPLIST_FILE = DMKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -932,7 +946,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C834GUTVBG;
+				DEVELOPMENT_TEAM = C945PF325Y;
 				INFOPLIST_FILE = DMKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
