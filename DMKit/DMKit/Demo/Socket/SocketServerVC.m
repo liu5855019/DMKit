@@ -1,31 +1,38 @@
 //
-//  Socket.m
+//  SocketServerVC.m
 //  DMKit
 //
-//  Created by 西安旺豆电子信息有限公司 on 2018/1/4.
+//  Created by 西安旺豆电子信息有限公司 on 2018/1/5.
 //  Copyright © 2018年 呆木出品. All rights reserved.
 //
 
-#import "SocketClientVC.h"
-#import <sys/Socket.h>
+#import "SocketServerVC.h"
+#import <sys/socket.h>
 #import <netinet/in.h>
 #import <arpa/inet.h>
 
-@interface SocketClientVC ()
+
+@interface SocketServerVC ()
 
 @property (nonatomic , assign) int socket;
 
 @end
 
-@implementation SocketClientVC
+@implementation SocketServerVC
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     
-    self.mainTitleLabel.text = @"socket 客户端";
+    self.mainTitleLabel.text = @"socket 服务端";
     
+    [self performSelector:@selector(setup) withObject:nil afterDelay:0.1];
     
+}
+
+- (void)setup
+{
     if ([self setupSocketWithPort:12345 addr:@"192.168.100.111"]) {
         [self read:^(NSString *msg) {
             NSLog(@"%@",msg);
@@ -41,36 +48,53 @@
     //    type：指定socket类型TCP（SOCK_STREAM）和UDP（SOCK_DGRAM）。
     //    protocol：指定协议。套接口所用的协议。如调用者不想指定，可用0。常用的协议有，IPPROTO_TCP、IPPROTO_UDP、IPPROTO_STCP、IPPROTO_TIPC等，它们分别对应TCP传输协议、UDP传输协议、STCP传输协议、TIPC传输协议。
     
-    int clientSocket = socket(AF_INET, SOCK_STREAM, 0);
+    int serverSocket = socket(AF_INET, SOCK_STREAM, 0);
     
-    if (clientSocket > 0) {
-        _socket = clientSocket;
-        //NSLog(@"创建socket成功:%d",clientSocket);
-        [DMTools showToastAtWindow:[NSString stringWithFormat:@"创建socket成功:%d",clientSocket]];
-        
+    if (serverSocket > 0) {
+        _socket = serverSocket;
+        NSLog(@"创建socket成功:%d",serverSocket);
     } else {
-        //NSLog(@"创建socket失败:%d",clientSocket);
-        [DMTools showToastAtWindow:[NSString stringWithFormat:@"创建socket失败:%d",clientSocket]];
+        NSLog(@"创建socket失败:%d",serverSocket);
         return NO;
     }
     
-    //终端创建服务器命令   nc -lk 12345
-    //2.连接到服务器
-    
-    
+    //2.bind
     struct sockaddr_in serverAddr;
     serverAddr.sin_family = AF_INET;
     serverAddr.sin_port = htons(port);
     serverAddr.sin_addr.s_addr = inet_addr(addr.UTF8String);
-    //    s：标识一个未连接socket
-    //    name：指向要连接套接字的sockaddr结构体的指针
-    //    namelen：sockaddr结构体的字节长度
-    int connectResult = connect(clientSocket, (const struct sockaddr *)&serverAddr, sizeof(serverAddr));
-    
-    if (connectResult == 0) {
-        [DMTools showToastAtWindow:[NSString stringWithFormat:@"连接服务器成功"]];
+    int bindResult = bind(_socket, (const struct sockaddr *)&serverAddr, sizeof(serverAddr));
+    if (bindResult == noErr) {
+        NSLog(@"bind 成功!");
+        [DMTools showToastAtWindow:@"bind 成功!"];
     }else{
-        [DMTools showToastAtWindow:[NSString stringWithFormat:@"连接服务器失败:%d",connectResult]];
+        NSLog(@"bind 失败!");
+        [DMTools showToastAtWindow:@"bind 失败!"];
+        return NO;
+    }
+    
+    //3.listen
+    //sockfd：用于标识一个已捆绑未连接套接口的描述字。
+    //backlog：等待连接队列的最大长度。
+    bindResult = listen(_socket, 100);
+    
+    if (bindResult == noErr) {
+        NSLog(@"listen 成功!");
+        [DMTools showToastAtWindow:@"listen 成功!"];
+    }else{
+        NSLog(@"listen 失败!");
+        [DMTools showToastAtWindow:@"listen 失败!"];
+        return NO;
+    }
+    
+    //4.accept
+    
+    int acceptResult = accept(_socket, NULL, NULL);
+    
+    if (acceptResult >= 0) {
+        [DMTools showToastAtWindow:@"accept 成功!"];
+    }else{
+        [DMTools showToastAtWindow:@"accept 失败!"];
         return NO;
     }
     
@@ -88,7 +112,7 @@
 
 -(void) read:(void (^)(NSString *msg))readAction
 {
-   
+    
     WeakObj(self); dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         BOOL rs = YES;
         while (rs) {
@@ -137,6 +161,8 @@
     
     MyLog(@"over...");
 }
+
+
 
 
 @end

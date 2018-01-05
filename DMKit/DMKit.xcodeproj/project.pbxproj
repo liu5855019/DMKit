@@ -69,6 +69,7 @@
 		442E5C4D1F579AE400D1D8A6 /* AFURLSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C471F579AE400D1D8A6 /* AFURLSessionManager.m */; };
 		442E5C501F579B1B00D1D8A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 442E5C4F1F579B1B00D1D8A6 /* libsqlite3.tbd */; };
 		442E5C531F579D5500D1D8A6 /* DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C521F579D5500D1D8A6 /* DMTools.m */; };
+		444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 444097031FFF568F0013F4C4 /* SocketServerVC.m */; };
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
@@ -223,6 +224,8 @@
 		442E5C4F1F579B1B00D1D8A6 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 		442E5C511F579D5500D1D8A6 /* DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMTools.h; sourceTree = "<group>"; };
 		442E5C521F579D5500D1D8A6 /* DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTools.m; sourceTree = "<group>"; };
+		444097021FFF568F0013F4C4 /* SocketServerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketServerVC.h; sourceTree = "<group>"; };
+		444097031FFF568F0013F4C4 /* SocketServerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketServerVC.m; sourceTree = "<group>"; };
 		44779B1D1FF62E0B00908F50 /* NSString+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DMTools.h"; sourceTree = "<group>"; };
 		44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DMTools.m"; sourceTree = "<group>"; };
 		44779B231FF6455000908F50 /* UIView+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+DMTools.h"; sourceTree = "<group>"; };
@@ -535,6 +538,8 @@
 			children = (
 				44913C501FFE1E55008EB55E /* SocketClientVC.h */,
 				44913C511FFE1E55008EB55E /* SocketClientVC.m */,
+				444097021FFF568F0013F4C4 /* SocketServerVC.h */,
+				444097031FFF568F0013F4C4 /* SocketServerVC.m */,
 			);
 			path = Socket;
 			sourceTree = "<group>";
@@ -775,6 +780,7 @@
 				44913C521FFE1E55008EB55E /* SocketClientVC.m in Sources */,
 				442E5BFE1F579AB200D1D8A6 /* UIView+MJExtension.m in Sources */,
 				64E6BA071FE94D0100CAAFCF /* UINavigationBar+DMTools.m in Sources */,
+				444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */,
 				442E5C021F579ABD00D1D8A6 /* MBProgressHUD.m in Sources */,
 				442E5BF31F579AB200D1D8A6 /* MJRefreshBackGifFooter.m in Sources */,
 				64E6BA081FE94D0100CAAFCF /* NSArray+DMTools.m in Sources */,
