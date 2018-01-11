@@ -70,6 +70,7 @@
 		442E5C501F579B1B00D1D8A6 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 442E5C4F1F579B1B00D1D8A6 /* libsqlite3.tbd */; };
 		442E5C531F579D5500D1D8A6 /* DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C521F579D5500D1D8A6 /* DMTools.m */; };
 		444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 444097031FFF568F0013F4C4 /* SocketServerVC.m */; };
+		4445250A200301B10008CC0D /* DMItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44452508200301B00008CC0D /* DMItemsView.m */; };
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
@@ -226,6 +227,8 @@
 		442E5C521F579D5500D1D8A6 /* DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMTools.m; sourceTree = "<group>"; };
 		444097021FFF568F0013F4C4 /* SocketServerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SocketServerVC.h; sourceTree = "<group>"; };
 		444097031FFF568F0013F4C4 /* SocketServerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketServerVC.m; sourceTree = "<group>"; };
+		44452508200301B00008CC0D /* DMItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMItemsView.m; sourceTree = "<group>"; };
+		44452509200301B10008CC0D /* DMItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMItemsView.h; sourceTree = "<group>"; };
 		44779B1D1FF62E0B00908F50 /* NSString+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DMTools.h"; sourceTree = "<group>"; };
 		44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DMTools.m"; sourceTree = "<group>"; };
 		44779B231FF6455000908F50 /* UIView+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+DMTools.h"; sourceTree = "<group>"; };
@@ -659,6 +662,8 @@
 				64B8CDF11FF154A9003AA245 /* DMWebView.m */,
 				64E6B9FA1FE930AE00CAAFCF /* DMSegmentView.h */,
 				64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */,
+				44452509200301B10008CC0D /* DMItemsView.h */,
+				44452508200301B00008CC0D /* DMItemsView.m */,
 			);
 			path = DMViews;
 			sourceTree = "<group>";
@@ -796,6 +801,7 @@
 				442E5C341F579AD500D1D8A6 /* FMDatabase.m in Sources */,
 				442E5C361F579AD500D1D8A6 /* FMDatabasePool.m in Sources */,
 				442E5C4B1F579AE400D1D8A6 /* AFURLRequestSerialization.m in Sources */,
+				4445250A200301B10008CC0D /* DMItemsView.m in Sources */,
 				442E5BB11F579AA900D1D8A6 /* SDWebImageDownloader.m in Sources */,
 				44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */,
 				442E5BED1F579AB200D1D8A6 /* MJRefreshComponent.m in Sources */,
