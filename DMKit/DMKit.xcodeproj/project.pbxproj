@@ -72,6 +72,7 @@
 		444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 444097031FFF568F0013F4C4 /* SocketServerVC.m */; };
 		4445250A200301B10008CC0D /* DMItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44452508200301B00008CC0D /* DMItemsView.m */; };
 		44728E5820109A7800A8C236 /* ImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 44728E5620109A7800A8C236 /* ImagePickerTool.m */; };
+		44728E5B20109C3800A8C236 /* NSDate+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44728E5A20109C3800A8C236 /* NSDate+DMTools.m */; };
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
@@ -232,6 +233,8 @@
 		44452509200301B10008CC0D /* DMItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMItemsView.h; sourceTree = "<group>"; };
 		44728E5620109A7800A8C236 /* ImagePickerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerTool.m; sourceTree = "<group>"; };
 		44728E5720109A7800A8C236 /* ImagePickerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerTool.h; sourceTree = "<group>"; };
+		44728E5920109C3800A8C236 /* NSDate+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSDate+DMTools.h"; sourceTree = "<group>"; };
+		44728E5A20109C3800A8C236 /* NSDate+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSDate+DMTools.m"; sourceTree = "<group>"; };
 		44779B1D1FF62E0B00908F50 /* NSString+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DMTools.h"; sourceTree = "<group>"; };
 		44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DMTools.m"; sourceTree = "<group>"; };
 		44779B231FF6455000908F50 /* UIView+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+DMTools.h"; sourceTree = "<group>"; };
@@ -686,6 +689,8 @@
 				44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */,
 				44779B231FF6455000908F50 /* UIView+DMTools.h */,
 				44779B241FF6455000908F50 /* UIView+DMTools.m */,
+				44728E5920109C3800A8C236 /* NSDate+DMTools.h */,
+				44728E5A20109C3800A8C236 /* NSDate+DMTools.m */,
 			);
 			path = DMCategory;
 			sourceTree = "<group>";
@@ -765,6 +770,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442E5C231F579AC400D1D8A6 /* NSArray+MASAdditions.m in Sources */,
+				44728E5B20109C3800A8C236 /* NSDate+DMTools.m in Sources */,
 				442E5C491F579AE400D1D8A6 /* AFNetworkReachabilityManager.m in Sources */,
 				442E5BF61F579AB200D1D8A6 /* MJRefreshGifHeader.m in Sources */,
 				64B8CDF21FF154A9003AA245 /* DMWebView.m in Sources */,

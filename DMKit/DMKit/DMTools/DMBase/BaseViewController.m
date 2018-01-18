@@ -11,7 +11,6 @@
 @interface BaseViewController ()
 
 
-
 @end
 
 @implementation BaseViewController
@@ -35,6 +34,29 @@
     }
     return _mainTitleLabel;
 }
+
+#pragma mark - MBHud
+- (MBProgressHUD *)mbHud{
+    if (_mbHud == nil) {
+        _mbHud = [[MBProgressHUD alloc] initWithView:self.view];
+        [self.view addSubview:_mbHud];
+        //_mbHud.label.text = kLocStr(@"登录中...");
+    }
+    return _mbHud;
+}
+
+- (void)showHUD
+{
+    [self.view bringSubviewToFront:self.mbHud];
+    
+    [self.mbHud showAnimated:YES];
+}
+
+- (void)hideHUD
+{
+    [self.mbHud hideAnimated:YES];
+}
+
 
 
 - (void)didReceiveMemoryWarning {
