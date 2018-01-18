@@ -59,11 +59,11 @@
 
 
 /** 获取到最新经纬度block */
-@property (nonatomic , strong) void (^didUpdateLocation)(CLLocation *);
+@property (nonatomic , strong) void (^didUpdateLocation)(CLLocation *location);
 /** 获取到最新地理位置block  只有获取到str的时候才会调用 */
-@property (nonatomic , strong) void (^didUpdateAddr)(NSString *,CLLocation *,CLPlacemark *);
+@property (nonatomic , strong) void (^didUpdateAddr)(NSString *addrStr,CLLocation *location,CLPlacemark *placemark);
 /** 定位结束(当定位失败/定位到地址名称时) */
-@property (nonatomic , strong) void (^didEndUpdate)();
+@property (nonatomic , strong) void (^didEndUpdate)(void);
 
 
 

@@ -82,10 +82,10 @@
                 [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
             }
             
-        } andCancelBlock:nil andSureTitle:kLocStr(@"是") andCancelTitle:kLocStr(@"否")];
+        } andCancelBlock:nil andSureTitle:kLocStr(@"是") andCancelTitle:kLocStr(@"否") atVC:nil];
     }else{
         if(error){
-            [DMTools showAlertWithTitle:kLocStr(@"提示") andContent:kLocStr(@"定位失败") andBlock:nil];
+            [DMTools showAlertWithTitle:kLocStr(@"提示") andContent:kLocStr(@"定位失败") andBlock:nil atVC:nil];
         }
     }
     [manager stopUpdatingLocation];

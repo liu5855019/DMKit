@@ -71,6 +71,7 @@
 		442E5C531F579D5500D1D8A6 /* DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C521F579D5500D1D8A6 /* DMTools.m */; };
 		444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 444097031FFF568F0013F4C4 /* SocketServerVC.m */; };
 		4445250A200301B10008CC0D /* DMItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44452508200301B00008CC0D /* DMItemsView.m */; };
+		44728E5820109A7800A8C236 /* ImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 44728E5620109A7800A8C236 /* ImagePickerTool.m */; };
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
@@ -229,6 +230,8 @@
 		444097031FFF568F0013F4C4 /* SocketServerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketServerVC.m; sourceTree = "<group>"; };
 		44452508200301B00008CC0D /* DMItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMItemsView.m; sourceTree = "<group>"; };
 		44452509200301B10008CC0D /* DMItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMItemsView.h; sourceTree = "<group>"; };
+		44728E5620109A7800A8C236 /* ImagePickerTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ImagePickerTool.m; sourceTree = "<group>"; };
+		44728E5720109A7800A8C236 /* ImagePickerTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ImagePickerTool.h; sourceTree = "<group>"; };
 		44779B1D1FF62E0B00908F50 /* NSString+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSString+DMTools.h"; sourceTree = "<group>"; };
 		44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSString+DMTools.m"; sourceTree = "<group>"; };
 		44779B231FF6455000908F50 /* UIView+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIView+DMTools.h"; sourceTree = "<group>"; };
@@ -651,6 +654,8 @@
 				44FFFB0C1F5E325D00CFE63F /* UserInfo.m */,
 				64B8CDF41FF15733003AA245 /* LocationTool.h */,
 				64B8CDF31FF15733003AA245 /* LocationTool.m */,
+				44728E5720109A7800A8C236 /* ImagePickerTool.h */,
+				44728E5620109A7800A8C236 /* ImagePickerTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -711,7 +716,7 @@
 		44CC09741F56A6B900B26FC4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0820;
+				LastUpgradeCheck = 0920;
 				ORGANIZATIONNAME = "呆木出品";
 				TargetAttributes = {
 					44CC097B1F56A6B900B26FC4 = {
@@ -786,6 +791,7 @@
 				442E5BFE1F579AB200D1D8A6 /* UIView+MJExtension.m in Sources */,
 				64E6BA071FE94D0100CAAFCF /* UINavigationBar+DMTools.m in Sources */,
 				444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */,
+				44728E5820109A7800A8C236 /* ImagePickerTool.m in Sources */,
 				442E5C021F579ABD00D1D8A6 /* MBProgressHUD.m in Sources */,
 				442E5BF31F579AB200D1D8A6 /* MJRefreshBackGifFooter.m in Sources */,
 				64E6BA081FE94D0100CAAFCF /* NSArray+DMTools.m in Sources */,
@@ -872,7 +878,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -880,7 +888,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
@@ -921,7 +933,9 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
@@ -929,7 +943,11 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;

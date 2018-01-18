@@ -41,7 +41,7 @@
         self.didClickButton = didClickButton;
         self.datas = datas;
         
-        //[self makeDatasWithIsNetImg:isNetImg];
+        [self makeDatas];
         [self setupViews];
         [self setupLayouts];
     }
@@ -49,30 +49,7 @@
 }
 
 
-//-(instancetype)initWithFrame:(CGRect)frame
-//               numberOfLines:(NSInteger)numberOfLines
-//         numberOfItemsInLine:(NSInteger)numberOfItemsInLine
-//                   titleFont:(CGFloat)titleFont
-//              didClickButton:(void(^)(NSInteger index))didClickButton
-//                       datas:(NSArray *)datas
-//                    isNetImg:(BOOL)isNetImg
-//{
-//    if (self = [super initWithFrame:frame]) {
-//        _numberOfLines = numberOfLines;
-//        _numberOfItemsInLine = numberOfItemsInLine;
-//        _titleFont = titleFont;
-//        self.didClickButton = didClickButton;
-//        self.datas = datas;
-//        
-//        [self makeDatasWithIsNetImg:isNetImg];
-//        [self setupViews];
-//        [self setupLayouts];
-//    }
-//    return self;
-//}
-
-
--(void)makeDatasWithIsNetImg:(BOOL)isNetImg
+-(void)makeDatas
 {
     NSInteger numsOfPage = self.numberOfItemsInLine * self.numberOfLines;
     
@@ -90,8 +67,6 @@
             NSDictionary *dict = _datas[index];
             NSMutableDictionary *mudict = [NSMutableDictionary dictionaryWithDictionary:dict];
             [mudict addEntriesFromDictionary:@{@"tag":@(1000 + index)}];
-            [mudict addEntriesFromDictionary:@{@"isNetImg":@(isNetImg)}];
-
             [items addObject:mudict];
         }
         
@@ -268,7 +243,8 @@
     for (NSDictionary *dict in _datas) {
         
         ItemButton *button = [[ItemButton alloc] initWithFrame:CGRectMake(index%self.numberOfItemsInLine*buttonW , index/self.numberOfItemsInLine*buttonH, buttonW, buttonH)];
-        if ([dict[@"isNetImg"] boolValue]) {
+        
+        if ([dict[@"image"] isKindOfClass:[NSString class]]) {
             [button.upIV sd_setImageWithURL:[NSURL URLWithString:dict[@"image"]] placeholderImage:nil];
             
             [[SDWebImageManager sharedManager] downloadImageWithURL:[NSURL URLWithString:dict[@"imageH"]] options:0 progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
@@ -279,8 +255,8 @@
                 }
             }];
         }else{
-            button.upIV.image = kGetImage(dict[@"image"]);
-            button.upIV.highlightedImage = kGetImage(dict[@"imageH"]);
+            button.upIV.image = dict[@"image"];
+            button.upIV.highlightedImage = dict[@"imageH"];
         }
         
         button.downLab.text = dict[@"title"];

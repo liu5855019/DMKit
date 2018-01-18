@@ -19,7 +19,8 @@
 /** 弹出对话框,只有确定按钮 */
 + (void)showAlertWithTitle:(NSString *)title
                 andContent:(NSString *)content
-                  andBlock:(void (^)())todo
+                  andBlock:(void (^)(void))todo
+                      atVC:(UIViewController *__weak)vc
 {
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleAlert];
     
@@ -31,16 +32,21 @@
     
     [controller addAction:action];
     
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:controller animated:YES completion:nil];
+    if (vc == nil) {
+        vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    }
+    
+    [vc presentViewController:controller animated:YES completion:nil];
 }
 
 /** 弹出对话框,带确定和取消按钮,可定制确定取消的标题 */
 + (void)showAlertWithTitle:(NSString *)title
                 andContent:(NSString *)content
-              andSureBlock:(void(^)())sureTodo
-            andCancelBlock:(void(^)())cancelTodo
+              andSureBlock:(void(^)(void))sureTodo
+            andCancelBlock:(void(^)(void))cancelTodo
               andSureTitle:(NSString *)sureTitle
             andCancelTitle:(NSString *)cancelTitle
+                      atVC:(UIViewController *__weak)vc
 {
     UIAlertController *controller = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleAlert];
     sureTitle = sureTitle.length ? sureTitle : kLocStr(@"确定");
@@ -70,7 +76,11 @@
     [controller addAction:cancelAction];
     [controller addAction:sureAction];
     
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:controller animated:YES completion:nil];
+    
+    if (vc == nil) {
+        vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    }
+    [vc presentViewController:controller animated:YES completion:nil];
 }
 
 /** 弹出sheet,根据数组弹出不同个数的action,外带取消按钮 */
@@ -78,6 +88,7 @@
                andContent:(NSString *)content
           andActionTitles:(NSArray <NSString*> *)titles
                  andBlock:(void (^)(int index))clickBlock
+                     atVC:(UIViewController *__weak)vc
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleActionSheet];
     int i = 0;
@@ -97,7 +108,16 @@
     
     [alertController addAction:action];
     
-    [[UIApplication sharedApplication].keyWindow.rootViewController presentViewController:alertController animated:YES completion:nil];
+    if (vc == nil) {
+        vc = [UIApplication sharedApplication].keyWindow.rootViewController;
+    }
+    
+    if (IS_IPAD) {
+        UIPopoverPresentationController *popPresenter = [alertController popoverPresentationController];
+        popPresenter.sourceView = vc.view;
+        popPresenter.sourceRect = vc.view.bounds;
+    }
+    [vc presentViewController:alertController animated:YES completion:nil];
 }
 
 /** 在window上显示toast */
