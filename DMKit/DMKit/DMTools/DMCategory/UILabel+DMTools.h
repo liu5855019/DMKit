@@ -10,11 +10,12 @@
 
 @interface UILabel (DMTools)
 
-- (UIView * (^)(NSString *str))dm_text;
-- (UIView * (^)(UIFont *font))dm_font;
-- (UIView * (^)(UIColor *textColor))dm_textColor;
-- (UIView * (^)(NSTextAlignment alignment))dm_alignment;
-- (UIView * (^)(NSInteger numberOfLines))dm_numberOfLines;
+- (UILabel *(^)(NSString *str))dm_text;
+- (UILabel *(^)(UIFont *font))dm_font;
+- (UILabel *(^)(UIColor *textColor))dm_textColor;
+- (UILabel *(^)(NSTextAlignment alignment))dm_alignment;
+- (UILabel *(^)(NSInteger numberOfLines))dm_numberOfLines;
+
 
 
 @end

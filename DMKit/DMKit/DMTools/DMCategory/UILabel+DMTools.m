@@ -10,7 +10,7 @@
 
 @implementation UILabel (DMTools)
 
-- (UIView * (^)(NSString *str))dm_text
+- (UILabel *(^)(NSString *str))dm_text
 {
     return ^(NSString *str){
         self.text = str;
@@ -18,7 +18,7 @@
     };
 }
 
-- (UIView * (^)(UIFont *font))dm_font
+- (UILabel *(^)(UIFont *font))dm_font
 {
     return ^(UIFont *font){
         self.font = font;
@@ -26,7 +26,7 @@
     };
 }
 
-- (UIView * (^)(UIColor *textColor))dm_textColor
+- (UILabel *(^)(UIColor *textColor))dm_textColor
 {
     return ^(UIColor *textColor){
         self.textColor = textColor;
@@ -34,7 +34,7 @@
     };
 }
 
-- (UIView * (^)(NSTextAlignment alignment))dm_alignment
+- (UILabel *(^)(NSTextAlignment alignment))dm_alignment
 {
     return ^(NSTextAlignment alignment){
         self.textAlignment = alignment;
@@ -42,7 +42,7 @@
     };
 }
 
-- (UIView * (^)(NSInteger numberOfLines))dm_numberOfLines
+- (UILabel *(^)(NSInteger numberOfLines))dm_numberOfLines
 {
     return ^(NSInteger numberOfLines){
         self.numberOfLines = numberOfLines;
