@@ -20,5 +20,11 @@
 @property (nonatomic, assign) CGFloat centerY;
 
 - (UIView * (^)(CGRect rect))dm_frame;
+- (UIView * (^)(UIColor *color))dm_bgColor;
+
+
+/** 根据类名加载xib ---> View */
++ (__kindof UIView *) viewWithXibClassName:(NSString *)className;
+
 
 @end

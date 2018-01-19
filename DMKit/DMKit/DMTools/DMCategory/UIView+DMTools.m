@@ -10,6 +10,8 @@
 
 @implementation UIView (DMTools)
 
+#pragma mark - << setter/getter >>
+
 - (CGFloat)x
 {
     return self.frame.origin.x;
@@ -88,6 +90,9 @@
     self.center = center;
 }
 
+
+#pragma mark - << blockSet >>
+
 - (UIView * (^)(CGRect rect))dm_frame
 {
     return ^(CGRect rect){
@@ -95,5 +100,24 @@
         return self;
     };
 }
+
+- (UIView * (^)(UIColor *color))dm_bgColor
+{
+    return ^(UIColor *color){
+        self.backgroundColor = color;
+        return self;
+    };
+}
+
+
+
+/** 根据类名加载xib ---> View */
++ (__kindof UIView *) viewWithXibClassName:(NSString *)className
+{
+    return [[NSBundle mainBundle] loadNibNamed:className owner:nil options:nil][0];
+}
+
+
+
 
 @end

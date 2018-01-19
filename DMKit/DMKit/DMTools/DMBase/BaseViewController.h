@@ -12,7 +12,7 @@
 
 @property (nonatomic , strong) UILabel *mainTitleLabel;
 
-@property (nonatomic ,strong) MBProgressHUD * mbHud;
+@property (nonatomic , strong) MBProgressHUD * mbHud;
 - (void)showHUD;
 - (void)hideHUD;
 
