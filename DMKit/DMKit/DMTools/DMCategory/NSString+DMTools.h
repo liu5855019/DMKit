@@ -10,4 +10,20 @@
 
 @interface NSString (DMTools)
 
+
+
+
+- (BOOL)isNullString;
+- (BOOL)isAllWithSpace;
+- (BOOL)isHaveSpace;
+
+
+- (BOOL)isEmail;
+- (BOOL)isInArray:(NSArray *)array;
+
+
+- (NSString *)pinyin;
+- (NSString *)MD5;
+
+
 @end

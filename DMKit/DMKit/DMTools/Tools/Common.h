@@ -38,6 +38,7 @@
 //Category  类别
 #import "UIViewController+DMTools.h"
 #import "UINavigationBar+DMTools.h"
+#import "NSObject+DMTools.h"
 #import "NSArray+DMTools.h"
 #import "NSString+DMTools.h"
 #import "NSDate+DMTools.h"

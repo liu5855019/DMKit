@@ -11,6 +11,7 @@
 #import "AVFoundationVC.h"
 #import "SocketClientVC.h"
 #import "SocketServerVC.h"
+#import "SortVersionCodeVC.h"
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
 
@@ -33,7 +34,8 @@
     _datas = @[@"DMSegmentView",
                @"AVFoundationVC",
                @"SocketClientVC",
-               @"SocketServerVC"];
+               @"SocketServerVC",
+               @"SortVersionCodeVC"];
 }
 
 
@@ -88,6 +90,10 @@
     }
     if (indexPath.row == 3) {
         [self.navigationController pushViewController:[SocketServerVC new] animated:YES];
+        return;
+    }
+    if (indexPath.row == 4) {
+        [self.navigationController pushViewController:[SortVersionCodeVC new] animated:YES];
         return;
     }
 }
