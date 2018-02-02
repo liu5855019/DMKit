@@ -50,6 +50,7 @@
 #import "DMItemsView.h"
 #import "DMSegmentView.h"
 #import "DMWebView.h"
+#import "DMAlertView.h"
 
 
 

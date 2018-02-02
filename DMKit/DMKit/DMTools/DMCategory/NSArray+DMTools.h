@@ -14,6 +14,6 @@
 - (id)dm_firstObject;
 
 - (id)dm_objectAtIndex:(NSUInteger)index;
-- (id (^)(NSInteger index))dm_objectAtIndex;
+
 
 @end

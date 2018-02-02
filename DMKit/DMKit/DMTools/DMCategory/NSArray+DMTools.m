@@ -23,11 +23,6 @@
     return [self objectAtIndex:index];
 }
 
-- (id (^)(NSInteger index))dm_objectAtIndex
-{
-    return ^(NSInteger index){
-        return [self dm_objectAtIndex:index];
-    };
-}
+
 
 @end

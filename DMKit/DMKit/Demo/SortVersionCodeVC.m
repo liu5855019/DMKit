@@ -34,8 +34,8 @@
     NSUInteger maxCount = arr1.count > arr2.count ? arr1.count : arr2.count;
     
     for (int i = 0; i < maxCount; i++) {
-        NSString *intStr1 = arr1.dm_objectAtIndex(i);
-        NSString *intStr2 = arr2.dm_objectAtIndex(i);
+        NSString *intStr1 = [arr1 dm_objectAtIndex:i];
+        NSString *intStr2 = [arr2 dm_objectAtIndex:i];
         NSUInteger int1 = [intStr1 integerValue];
         NSUInteger int2 = [intStr2 integerValue];
         if (int1 > int2) {

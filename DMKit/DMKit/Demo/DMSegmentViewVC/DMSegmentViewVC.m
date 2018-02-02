@@ -42,7 +42,7 @@
     WeakObj(self);
     DMSegmentView *aView = [[DMSegmentView alloc] initWithFrame:CGRectMake(0, kNAV_HEIGHT, kScreenW, kScreenH - kNAV_HEIGHT - kSAFE_BOTTOM_HEIGHT) views:views titles:titles titleFont:nil titleColor:nil titleSelectedColor:nil titlesIsAverage:YES showAction:^(NSInteger index) {
         NSLog(@"%ld",(long)index);
-        UITableView *tabView = selfWeak.tabViews.dm_objectAtIndex(index);
+        UITableView *tabView = [selfWeak.tabViews dm_objectAtIndex:index];
         [tabView.mj_header beginRefreshing];
     }];
     
