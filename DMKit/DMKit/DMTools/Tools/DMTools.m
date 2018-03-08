@@ -292,7 +292,16 @@
     if ([self stringIsNull:path]) {
         return NO;
     }
-    return [[NSFileManager defaultManager] fileExistsAtPath:path];
+    BOOL isDir;
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:path isDirectory:&isDir];
+    if (!result) {
+        return NO;
+    }
+    if (isDir) {
+        return NO;
+    }
+    return YES;
+    
 }
 
 /** 目录是否存在 */
@@ -302,7 +311,14 @@
         return NO;
     }
     BOOL isDir = YES;
-    return [[NSFileManager defaultManager] fileExistsAtPath:dirPath isDirectory:&isDir];
+    BOOL result = [[NSFileManager defaultManager] fileExistsAtPath:dirPath isDirectory:&isDir];
+    if (!result) {
+        return NO;
+    }
+    if (!isDir) {
+        return NO;
+    }
+    return YES;
 }
 
 /** 创建目录 */
