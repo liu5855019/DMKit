@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		442230452057630E003E2DCC /* DMBasePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442230442057630E003E2DCC /* DMBasePickerView.m */; };
+		44223048205763B5003E2DCC /* DMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44223047205763B5003E2DCC /* DMPickerView.m */; };
+		4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4422304F20576BB7003E2DCC /* DMPickerVC.m */; };
 		442E5B891F579AA100D1D8A6 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B881F579AA100D1D8A6 /* UIView+Toast.m */; };
 		442E5BAC1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8C1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m */; };
 		442E5BAD1F579AA900D1D8A6 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8E1F579AA900D1D8A6 /* NSData+ImageContentType.m */; };
@@ -101,6 +104,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		442230432057630E003E2DCC /* DMBasePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMBasePickerView.h; sourceTree = "<group>"; };
+		442230442057630E003E2DCC /* DMBasePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMBasePickerView.m; sourceTree = "<group>"; };
+		44223046205763B5003E2DCC /* DMPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMPickerView.h; sourceTree = "<group>"; };
+		44223047205763B5003E2DCC /* DMPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMPickerView.m; sourceTree = "<group>"; };
+		4422304E20576BB7003E2DCC /* DMPickerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMPickerVC.h; sourceTree = "<group>"; };
+		4422304F20576BB7003E2DCC /* DMPickerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMPickerVC.m; sourceTree = "<group>"; };
 		442E5B871F579AA100D1D8A6 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		442E5B881F579AA100D1D8A6 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		442E5B8B1F579AA900D1D8A6 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -304,6 +313,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4422304920576AE6003E2DCC /* SortVersionCode */ = {
+			isa = PBXGroup;
+			children = (
+				44910911201576280053E438 /* SortVersionCodeVC.h */,
+				44910912201576280053E438 /* SortVersionCodeVC.m */,
+			);
+			path = SortVersionCode;
+			sourceTree = "<group>";
+		};
+		4422304A20576AFB003E2DCC /* PickerView */ = {
+			isa = PBXGroup;
+			children = (
+				4422304E20576BB7003E2DCC /* DMPickerVC.h */,
+				4422304F20576BB7003E2DCC /* DMPickerVC.m */,
+			);
+			path = PickerView;
+			sourceTree = "<group>";
+		};
 		442E5B861F579AA100D1D8A6 /* Toast */ = {
 			isa = PBXGroup;
 			children = (
@@ -638,13 +665,13 @@
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				4422304A20576AFB003E2DCC /* PickerView */,
+				4422304920576AE6003E2DCC /* SortVersionCode */,
 				44913C4F1FFE1C31008EB55E /* Socket */,
 				44913C4B1FFE1076008EB55E /* AVFoundation */,
 				447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */,
 				6485BA041FE95AEB00EFB5A8 /* RootVC.h */,
 				6485BA051FE95AEB00EFB5A8 /* RootVC.m */,
-				44910911201576280053E438 /* SortVersionCodeVC.h */,
-				44910912201576280053E438 /* SortVersionCodeVC.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -688,6 +715,10 @@
 				64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */,
 				44452509200301B10008CC0D /* DMItemsView.h */,
 				44452508200301B00008CC0D /* DMItemsView.m */,
+				442230432057630E003E2DCC /* DMBasePickerView.h */,
+				442230442057630E003E2DCC /* DMBasePickerView.m */,
+				44223046205763B5003E2DCC /* DMPickerView.h */,
+				44223047205763B5003E2DCC /* DMPickerView.m */,
 			);
 			path = DMViews;
 			sourceTree = "<group>";
@@ -790,6 +821,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				442E5C231F579AC400D1D8A6 /* NSArray+MASAdditions.m in Sources */,
+				44223048205763B5003E2DCC /* DMPickerView.m in Sources */,
 				44728E5B20109C3800A8C236 /* NSDate+DMTools.m in Sources */,
 				442E5C491F579AE400D1D8A6 /* AFNetworkReachabilityManager.m in Sources */,
 				442E5BF61F579AB200D1D8A6 /* MJRefreshGifHeader.m in Sources */,
@@ -813,6 +845,7 @@
 				446781172011879C004E461F /* UILabel+DMTools.m in Sources */,
 				444D4A182018221700A5AD8D /* DMAlertView.m in Sources */,
 				442E5C1D1F579AC400D1D8A6 /* MASCompositeConstraint.m in Sources */,
+				442230452057630E003E2DCC /* DMBasePickerView.m in Sources */,
 				442E5C371F579AD500D1D8A6 /* FMDatabaseQueue.m in Sources */,
 				442E5C221F579AC400D1D8A6 /* MASViewConstraint.m in Sources */,
 				44913C521FFE1E55008EB55E /* SocketClientVC.m in Sources */,
@@ -850,6 +883,7 @@
 				442E5BBA1F579AA900D1D8A6 /* UIImageView+WebCache.m in Sources */,
 				442E5BB01F579AA900D1D8A6 /* SDWebImageDecoder.m in Sources */,
 				64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */,
+				4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */,
 				44CC09871F56A6B900B26FC4 /* ViewController.m in Sources */,
 				442E5C261F579AC400D1D8A6 /* ViewController+MASAdditions.m in Sources */,
 				442E5C4D1F579AE400D1D8A6 /* AFURLSessionManager.m in Sources */,

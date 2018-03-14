@@ -27,7 +27,7 @@
 @implementation DMItemsView
 
 
--(instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
                numberOfLines:(NSInteger)numberOfLines
          numberOfItemsInLine:(NSInteger)numberOfItemsInLine
                    titleFont:(CGFloat)titleFont
@@ -49,7 +49,7 @@
 }
 
 
--(void)makeDatas
+- (void)makeDatas
 {
     NSInteger numsOfPage = self.numberOfItemsInLine * self.numberOfLines;
     
@@ -77,7 +77,7 @@
     
 }
 
--(void)setupViews
+- (void)setupViews
 {
     self.backgroundColor = [UIColor clearColor];
     
@@ -130,7 +130,7 @@
     
 }
 
--(void)setupLayouts
+- (void)setupLayouts
 {
     [_bgScroll mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.mas_equalTo(0);
@@ -149,7 +149,7 @@
 
 
 //结束拖拽,将要减速
--(void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
+- (void)scrollViewDidEndDragging:(UIScrollView *)scrollView willDecelerate:(BOOL)decelerate{
     if (!decelerate) {
         //如果不减速,则滚动结束
         self.pageControl.currentPage = self.bgScroll.contentOffset.x/self.bgScroll.frame.size.width;
@@ -158,13 +158,13 @@
 }
 
 //结束减速
--(void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
+- (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView{
     self.pageControl.currentPage = self.bgScroll.contentOffset.x/self.bgScroll.frame.size.width;
     
 }
 
 
--(UIButton *)getButtonWithTag:(NSInteger)tag
+- (UIButton *)getButtonWithTag:(NSInteger)tag
 {
     for (UIView *view in _bgScroll.subviews) {
         if ([view isKindOfClass:[ItemBgView class]]) {
@@ -181,7 +181,7 @@
 
 
 
--(NSInteger)numberOfLines
+- (NSInteger)numberOfLines
 {
     if (_numberOfLines == 0) {
         return 2;
@@ -192,7 +192,7 @@
     return _numberOfLines;
 }
 
--(NSInteger)numberOfItemsInLine
+- (NSInteger)numberOfItemsInLine
 {
     if (_numberOfItemsInLine == 0) {
         return 4;
@@ -206,7 +206,7 @@
     return _numberOfItemsInLine;
 }
 
--(CGFloat)titleFont
+- (CGFloat)titleFont
 {
     if (_titleFont == 0) {
         return 15;
@@ -220,7 +220,7 @@
 
 @implementation ItemBgView
 
--(void)setDatas:(NSArray *)datas
+- (void)setDatas:(NSArray *)datas
 {
     _datas = [datas copy];
     
@@ -228,7 +228,7 @@
     
 }
 
--(void)setupViews
+- (void)setupViews
 {
     self.backgroundColor = [UIColor whiteColor];
     self.layer.cornerRadius = 6;
@@ -270,7 +270,7 @@
     
 }
 
--(void)clickButton:(ItemButton *)sender
+- (void)clickButton:(ItemButton *)sender
 {
     if (_didClickButton) {
         _didClickButton(sender.tag);
@@ -286,7 +286,7 @@
 @implementation ItemButton
 
 
--(instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
 {
     CGFloat imageW = (frame.size.width < frame.size.height) ? frame.size.width * 0.55 : frame.size.height * 0.55;
     CGFloat imageH = imageW;
@@ -312,14 +312,14 @@
     return  self;
 }
 
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesBegan:touches withEvent:event];
     
     if (self.upIV.highlightedImage) {
         self.upIV.highlighted = YES;
     }
 }
--(void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     [super touchesEnded:touches withEvent:event];
     self.upIV.highlighted = NO;
 }

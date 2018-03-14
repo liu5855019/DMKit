@@ -33,7 +33,7 @@
 
 - (void)setup
 {
-    if ([self setupSocketWithPort:12345 addr:@"192.168.100.111"]) {
+    if ([self setupSocketWithPort:12344 addr:@"192.168.100.111"]) {
         [self read:^(NSString *msg) {
             NSLog(@"%@",msg);
         }];
@@ -89,14 +89,17 @@
     
     //4.accept
     
-    int acceptResult = accept(_socket, NULL, NULL);
+    BACK(^{
+        int acceptResult = accept(_socket, NULL, NULL);
+        
+        if (acceptResult >= 0) {
+            [DMTools showToastAtWindow:@"accept 成功!"];
+        }else{
+            [DMTools showToastAtWindow:@"accept 失败!"];
+        }
+    });
     
-    if (acceptResult >= 0) {
-        [DMTools showToastAtWindow:@"accept 成功!"];
-    }else{
-        [DMTools showToastAtWindow:@"accept 失败!"];
-        return NO;
-    }
+    
     
     return YES;
 }

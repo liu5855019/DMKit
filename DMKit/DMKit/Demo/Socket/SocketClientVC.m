@@ -26,7 +26,7 @@
     self.mainTitleLabel.text = @"socket 客户端";
     
     
-    if ([self setupSocketWithPort:12345 addr:@"192.168.100.111"]) {
+    if ([self setupSocketWithPort:12344 addr:@"192.168.100.111"]) {
         [self read:^(NSString *msg) {
             NSLog(@"%@",msg);
         }];

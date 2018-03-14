@@ -51,6 +51,8 @@
 #import "DMSegmentView.h"
 #import "DMWebView.h"
 #import "DMAlertView.h"
+#import "DMBasePickerView.h"
+#import "DMPickerView.h"
 
 
 

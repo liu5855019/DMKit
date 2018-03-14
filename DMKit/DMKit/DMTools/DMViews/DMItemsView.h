@@ -28,7 +28,7 @@
 @property (nonatomic , copy) NSArray *datas;
 
 
--(instancetype)initWithFrame:(CGRect)frame
+- (instancetype)initWithFrame:(CGRect)frame
                numberOfLines:(NSInteger)numberOfLines
          numberOfItemsInLine:(NSInteger)numberOfItemsInLine
                    titleFont:(CGFloat)titleFont

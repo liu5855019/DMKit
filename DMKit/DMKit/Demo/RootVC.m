@@ -12,6 +12,7 @@
 #import "SocketClientVC.h"
 #import "SocketServerVC.h"
 #import "SortVersionCodeVC.h"
+#import "DMPickerVC.h"
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
 
@@ -31,11 +32,12 @@
     [self.view addSubview:self.tabV];
     AdjustsScrollViewInsetNever(self, _tabV)
     
-    _datas = @[@"DMSegmentView",
+    _datas = @[@"DMSegmentViewVC",
                @"AVFoundationVC",
                @"SocketClientVC",
                @"SocketServerVC",
-               @"SortVersionCodeVC"];
+               @"SortVersionCodeVC",
+               @"DMPickerVC"];
 }
 
 
@@ -96,6 +98,9 @@
         [self.navigationController pushViewController:[SortVersionCodeVC new] animated:YES];
         return;
     }
+    
+    UIViewController *vc = [NSClassFromString([_datas dm_objectAtIndex:indexPath.row]) new];
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 

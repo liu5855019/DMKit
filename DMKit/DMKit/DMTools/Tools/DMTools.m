@@ -453,6 +453,29 @@
     return [str stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
+/** 比较版本号大小 : 3.2.1 > 3.2.0    4 > 3.02.1 */
++ (NSString *)maxStr1:(NSString *)str1 str2:(NSString *)str2
+{
+    NSArray *arr1 = [str1 componentsSeparatedByString:@"."];
+    NSArray *arr2 = [str2 componentsSeparatedByString:@"."];
+    
+    NSUInteger maxCount = arr1.count > arr2.count ? arr1.count : arr2.count;
+    
+    for (int i = 0; i < maxCount; i++) {
+        NSString *intStr1 = [arr1 dm_objectAtIndex:i];
+        NSString *intStr2 = [arr2 dm_objectAtIndex:i];
+        NSUInteger int1 = [intStr1 integerValue];
+        NSUInteger int2 = [intStr2 integerValue];
+        if (int1 > int2) {
+            return str1;
+        }
+        if (int2 > int1) {
+            return str2;
+        }
+    }
+    return  arr1.count > arr2.count ? str1 : str2;
+}
+
 #pragma mark - << 正则匹配 >>
 
 /** 正则匹配邮箱号 */

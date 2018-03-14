@@ -143,6 +143,9 @@
 /** 字符串转拼音 (没试过)*/
 + (NSString *)stringToPinyinWithString:(NSString *)string;
 
+/** 比较版本号大小 : 3.2.1 > 3.2.0    4 > 3.02.1 */
++ (NSString *)maxStr1:(NSString *)str1 str2:(NSString *)str2;
+
 
 
 #pragma mark - << 正则匹配 >>
