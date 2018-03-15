@@ -19,15 +19,26 @@
 
     self.mainTitleLabel.text = @"SortVersionCodeVC";
     
-    NSLog(@"max:%@",[DMTools maxStr1:@"3.2.1" str2:@"3.2.0"]);
-    NSLog(@"max:%@",[DMTools maxStr1:@"3.2" str2:@"3.2.0"]);
-    NSLog(@"max:%@",[DMTools maxStr1:@"3.2.1" str2:@"3.2.01"]);
-    NSLog(@"max:%@",[DMTools maxStr1:@"3.02.1" str2:@"3.2.1"]);
-    NSLog(@"max:%@",[DMTools maxStr1:@"3.02.1" str2:@"3.2.2"]);
-    NSLog(@"max:%@",[DMTools maxStr1:@"3.02.0" str2:@"3.2.00.00"]);
-    NSLog(@"max:%@",[DMTools maxStr1:@"3.02.1" str2:@"4"]);
+    [DMTools checkVersionWithAppId:@"1210593841"];
+    
+    
+    
+    NSLog(@"max:%@",[self maxStr1:@"3.2.1" str2:@"3.2.0"]);
+    NSLog(@"max:%@",[self maxStr1:@"3.2" str2:@"3.2.0"]);
+    NSLog(@"max:%@",[self maxStr1:@"3.2.1" str2:@"3.2.01"]);
+    NSLog(@"max:%@",[self maxStr1:@"3.02.1" str2:@"3.2.1"]);
+    NSLog(@"max:%@",[self maxStr1:@"3.02.1" str2:@"3.2.2"]);
+    NSLog(@"max:%@",[self maxStr1:@"3.02.0" str2:@"3.2.00.00"]);
+    NSLog(@"max:%@",[self maxStr1:@"3.02.1" str2:@"4"]);
+    
+    
+    
 }
 
+- (NSString *)maxStr1:(NSString *)str1 str2:(NSString *)str2
+{
+    return [DMTools version1:str1 greatThanVersion2:str2] ? str1 : str2;
+}
 
 
 

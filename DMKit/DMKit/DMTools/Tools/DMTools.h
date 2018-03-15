@@ -10,6 +10,15 @@
 
 @interface DMTools : NSObject
 
+#pragma mark - << Device & Version >>
+
+/** 获取设备型号 */
++ (NSString *)getDeviceType;
+
+/** 检查版本是否需要更新 */
++ (void)checkVersionWithAppId:(NSString *)appId;
+
+
 #pragma mark - <<Alert & Sheet & Toast>>
 
 /** 弹出对话框,只有确定按钮 */
@@ -143,8 +152,8 @@
 /** 字符串转拼音 (没试过)*/
 + (NSString *)stringToPinyinWithString:(NSString *)string;
 
-/** 比较版本号大小 : 3.2.1 > 3.2.0    4 > 3.02.1 */
-+ (NSString *)maxStr1:(NSString *)str1 str2:(NSString *)str2;
+/** 比较版本号大小 : 3.2.1 > 3.2.0    4 > 3.02.1  只有大于才会yes  其他no */
++ (BOOL)version1:(NSString *)str1 greatThanVersion2:(NSString *)str2;
 
 
 

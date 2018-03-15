@@ -10,10 +10,184 @@
 
 #include <objc/runtime.h>
 
+#import <sys/utsname.h>
+
 #import <CommonCrypto/CommonDigest.h>   //md5 用到
 
 
 @implementation DMTools
+
+#pragma mark - << Device & Version >>
+
+/** 获取设备型号 */
++ (NSString *)getDeviceType
+{
+    //需要导入头文件：#import <sys/utsname.h>
+    
+    struct utsname systemInfo;
+    
+    uname(&systemInfo);
+    
+    NSString *platform = [NSString stringWithCString:systemInfo.machine encoding:NSASCIIStringEncoding];
+    
+    if ([platform isEqualToString:@"iPhone1,1"]) return @"iPhone 2G";
+    
+    if ([platform isEqualToString:@"iPhone1,2"]) return @"iPhone 3G";
+    
+    if ([platform isEqualToString:@"iPhone2,1"]) return @"iPhone 3GS";
+    
+    if ([platform isEqualToString:@"iPhone3,1"]) return @"iPhone 4";
+    
+    if ([platform isEqualToString:@"iPhone3,2"]) return @"iPhone 4";
+    
+    if ([platform isEqualToString:@"iPhone3,3"]) return @"iPhone 4";
+    
+    if ([platform isEqualToString:@"iPhone4,1"]) return @"iPhone 4S";
+    
+    if ([platform isEqualToString:@"iPhone5,1"]) return @"iPhone 5";
+    
+    if ([platform isEqualToString:@"iPhone5,2"]) return @"iPhone 5";
+    
+    if ([platform isEqualToString:@"iPhone5,3"]) return @"iPhone 5c";
+    
+    if ([platform isEqualToString:@"iPhone5,4"]) return @"iPhone 5c";
+    
+    if ([platform isEqualToString:@"iPhone6,1"]) return @"iPhone 5s";
+    
+    if ([platform isEqualToString:@"iPhone6,2"]) return @"iPhone 5s";
+    
+    if ([platform isEqualToString:@"iPhone7,1"]) return @"iPhone 6 Plus";
+    
+    if ([platform isEqualToString:@"iPhone7,2"]) return @"iPhone 6";
+    
+    if ([platform isEqualToString:@"iPhone8,1"]) return @"iPhone 6s";
+    
+    if ([platform isEqualToString:@"iPhone8,2"]) return @"iPhone 6s Plus";
+    
+    if ([platform isEqualToString:@"iPhone8,4"]) return @"iPhone SE";
+    
+    if ([platform isEqualToString:@"iPhone9,1"]) return @"iPhone 7";
+    
+    if ([platform isEqualToString:@"iPhone9,2"]) return @"iPhone 7 Plus";
+    
+    if([platform isEqualToString:@"iPhone10,1"]) return@"iPhone 8";
+    
+    if([platform isEqualToString:@"iPhone10,4"]) return@"iPhone 8";
+    
+    if([platform isEqualToString:@"iPhone10,2"]) return@"iPhone 8 Plus";
+    
+    if([platform isEqualToString:@"iPhone10,5"]) return@"iPhone 8 Plus";
+    
+    if([platform isEqualToString:@"iPhone10,3"]) return@"iPhone X";
+    
+    if([platform isEqualToString:@"iPhone10,6"]) return@"iPhone X";
+    
+    
+    if ([platform isEqualToString:@"iPod1,1"])   return @"iPod Touch 1G";
+    
+    if ([platform isEqualToString:@"iPod2,1"])   return @"iPod Touch 2G";
+    
+    if ([platform isEqualToString:@"iPod3,1"])   return @"iPod Touch 3G";
+    
+    if ([platform isEqualToString:@"iPod4,1"])   return @"iPod Touch 4G";
+    
+    if ([platform isEqualToString:@"iPod5,1"])   return @"iPod Touch 5G";
+    
+    if ([platform isEqualToString:@"iPad1,1"])   return @"iPad 1G";
+    
+    if ([platform isEqualToString:@"iPad2,1"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,2"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,3"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,4"])   return @"iPad 2";
+    
+    if ([platform isEqualToString:@"iPad2,5"])   return @"iPad Mini 1G";
+    
+    if ([platform isEqualToString:@"iPad2,6"])   return @"iPad Mini 1G";
+    
+    if ([platform isEqualToString:@"iPad2,7"])   return @"iPad Mini 1G";
+    
+    if ([platform isEqualToString:@"iPad3,1"])   return @"iPad 3";
+    
+    if ([platform isEqualToString:@"iPad3,2"])   return @"iPad 3";
+    
+    if ([platform isEqualToString:@"iPad3,3"])   return @"iPad 3";
+    
+    if ([platform isEqualToString:@"iPad3,4"])   return @"iPad 4";
+    
+    if ([platform isEqualToString:@"iPad3,5"])   return @"iPad 4";
+    
+    if ([platform isEqualToString:@"iPad3,6"])   return @"iPad 4";
+    
+    if ([platform isEqualToString:@"iPad4,1"])   return @"iPad Air";
+    
+    if ([platform isEqualToString:@"iPad4,2"])   return @"iPad Air";
+    
+    if ([platform isEqualToString:@"iPad4,3"])   return @"iPad Air";
+    
+    if ([platform isEqualToString:@"iPad4,4"])   return @"iPad Mini 2G";
+    
+    if ([platform isEqualToString:@"iPad4,5"])   return @"iPad Mini 2G";
+    
+    if ([platform isEqualToString:@"iPad4,6"])   return @"iPad Mini 2G";
+    
+    if ([platform isEqualToString:@"i386"])      return @"iPhone Simulator";
+    
+    if ([platform isEqualToString:@"x86_64"])    return @"iPhone Simulator";
+    
+    return platform;
+    
+}
+
+/** 检查版本是否需要更新 */
++ (void)checkVersionWithAppId:(NSString *)appId
+{
+    BACK((^{
+        //1.获取当前项目工程版本
+        NSDictionary *infoDic = [[NSBundle mainBundle] infoDictionary];
+        NSString *currentVersion = infoDic[@"CFBundleShortVersionString"];
+        NSLog(@"currentVersion : %@",currentVersion);
+        //2.获取AppStore中版本号
+        //http://itunes.apple.com/cn/lookup?id=%@       //中国地区
+        //http://itunes.apple.com/lookup?id=%@          //世界地区
+        NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",appId];
+        NSURL *url = [NSURL URLWithString:urlStr];
+        NSError *error = nil;
+        NSString *appInfoStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
+        NSData *jsonData = [appInfoStr dataUsingEncoding:NSUTF8StringEncoding];
+        NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
+        if (!error && appInfo) {
+            NSArray *resultAry = appInfo[@"results"];
+            if (resultAry.count == 0) {
+                //获取失败
+                return;
+            }
+            NSDictionary *dic = resultAry[0];
+            //获取到appstore中版本号
+            NSString *appStoreVersion = dic[@"version"];
+            NSLog(@"appStoreVersion : %@",appStoreVersion);
+//            if ([currentVersion compare:appStoreVersion options:NSNumericSearch] == NSOrderedAscending) {
+//                NSLog(@"需要更新");
+//            }
+            
+            //3.比较大小
+            if ([DMTools version1:appStoreVersion greatThanVersion2:currentVersion])
+            {
+                MAIN((^{
+                    [DMTools showAlertWithTitle:@"版本更新" andContent:@"有新版本确定更新吗?" andSureBlock:^{
+                        //打开appstore
+                        NSString *appStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",appId];
+                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStr]];
+                    } andCancelBlock:nil andSureTitle:@"确定" andCancelTitle:@"取消" atVC:nil];
+                }));
+            }
+        }
+    }));
+}
+
+
 
 #pragma mark - <<Alert & Sheet & Toast>>
 /** 弹出对话框,只有确定按钮 */
@@ -453,8 +627,8 @@
     return [str stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
-/** 比较版本号大小 : 3.2.1 > 3.2.0    4 > 3.02.1 */
-+ (NSString *)maxStr1:(NSString *)str1 str2:(NSString *)str2
+/** 比较版本号大小 : 3.2.1 > 3.2.0    4 > 3.02.1  只有大于才会yes  其他no */
++ (BOOL)version1:(NSString *)str1 greatThanVersion2:(NSString *)str2
 {
     NSArray *arr1 = [str1 componentsSeparatedByString:@"."];
     NSArray *arr2 = [str2 componentsSeparatedByString:@"."];
@@ -467,13 +641,13 @@
         NSUInteger int1 = [intStr1 integerValue];
         NSUInteger int2 = [intStr2 integerValue];
         if (int1 > int2) {
-            return str1;
+            return YES;
         }
         if (int2 > int1) {
-            return str2;
+            return NO;
         }
     }
-    return  arr1.count > arr2.count ? str1 : str2;
+    return  arr1.count > arr2.count ? YES : NO;
 }
 
 #pragma mark - << 正则匹配 >>
