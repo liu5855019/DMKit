@@ -89,6 +89,9 @@
     return [hash lowercaseString];
 }
 
-
+- (void)dealloc
+{
+    NSLog(@"%@ -- over",self);
+}
 
 @end

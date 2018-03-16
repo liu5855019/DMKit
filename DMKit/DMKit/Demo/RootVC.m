@@ -13,6 +13,7 @@
 #import "SocketServerVC.h"
 #import "SortVersionCodeVC.h"
 #import "DMPickerVC.h"
+#import "ColliderVC.h"
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
 
@@ -37,7 +38,8 @@
                @"SocketClientVC",
                @"SocketServerVC",
                @"SortVersionCodeVC",
-               @"DMPickerVC"];
+               @"DMPickerVC",
+               @"ColliderVC"];
 }
 
 

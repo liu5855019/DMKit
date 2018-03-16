@@ -82,6 +82,8 @@
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
+		4483398D205B63CC00B0840B /* ColliderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4483398C205B63CC00B0840B /* ColliderVC.m */; };
+		44833990205B900800B0840B /* ColliderTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4483398F205B900800B0840B /* ColliderTool.m */; };
 		44910913201576280053E438 /* SortVersionCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44910912201576280053E438 /* SortVersionCodeVC.m */; };
 		44913C4E1FFE1076008EB55E /* AVFoundationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44913C4D1FFE1076008EB55E /* AVFoundationVC.m */; };
 		44913C521FFE1E55008EB55E /* SocketClientVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44913C511FFE1E55008EB55E /* SocketClientVC.m */; };
@@ -260,6 +262,10 @@
 		44779B241FF6455000908F50 /* UIView+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+DMTools.m"; sourceTree = "<group>"; };
 		447E71B41FF4C731001D5A60 /* DMSegmentViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMSegmentViewVC.h; sourceTree = "<group>"; };
 		447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMSegmentViewVC.m; sourceTree = "<group>"; };
+		4483398B205B63CC00B0840B /* ColliderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColliderVC.h; sourceTree = "<group>"; };
+		4483398C205B63CC00B0840B /* ColliderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColliderVC.m; sourceTree = "<group>"; };
+		4483398E205B900800B0840B /* ColliderTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColliderTool.h; sourceTree = "<group>"; };
+		4483398F205B900800B0840B /* ColliderTool.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColliderTool.m; sourceTree = "<group>"; };
 		44910911201576280053E438 /* SortVersionCodeVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SortVersionCodeVC.h; sourceTree = "<group>"; };
 		44910912201576280053E438 /* SortVersionCodeVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SortVersionCodeVC.m; sourceTree = "<group>"; };
 		44913C4C1FFE1076008EB55E /* AVFoundationVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AVFoundationVC.h; sourceTree = "<group>"; };
@@ -672,6 +678,10 @@
 				447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */,
 				6485BA041FE95AEB00EFB5A8 /* RootVC.h */,
 				6485BA051FE95AEB00EFB5A8 /* RootVC.m */,
+				4483398B205B63CC00B0840B /* ColliderVC.h */,
+				4483398C205B63CC00B0840B /* ColliderVC.m */,
+				4483398E205B900800B0840B /* ColliderTool.h */,
+				4483398F205B900800B0840B /* ColliderTool.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -855,6 +865,7 @@
 				44728E5820109A7800A8C236 /* ImagePickerTool.m in Sources */,
 				445D77FA20173A830080309C /* NSObject+DMTools.m in Sources */,
 				442E5C021F579ABD00D1D8A6 /* MBProgressHUD.m in Sources */,
+				4483398D205B63CC00B0840B /* ColliderVC.m in Sources */,
 				442E5BF31F579AB200D1D8A6 /* MJRefreshBackGifFooter.m in Sources */,
 				64E6BA081FE94D0100CAAFCF /* NSArray+DMTools.m in Sources */,
 				6485BA031FE9593100EFB5A8 /* BaseNavigationController.m in Sources */,
@@ -902,6 +913,7 @@
 				442E5BEE1F579AB200D1D8A6 /* MJRefreshFooter.m in Sources */,
 				44FFFB0D1F5E325D00CFE63F /* UserInfo.m in Sources */,
 				442E5C241F579AC400D1D8A6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				44833990205B900800B0840B /* ColliderTool.m in Sources */,
 				44CC09811F56A6B900B26FC4 /* main.m in Sources */,
 				442E5BF71F579AB200D1D8A6 /* MJRefreshNormalHeader.m in Sources */,
 				442E5C1F1F579AC400D1D8A6 /* MASConstraintMaker.m in Sources */,
