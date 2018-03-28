@@ -42,13 +42,13 @@
     BACK((^{
         
         NSString *str = @"123456";
-        NSString *md5 = str.MD5;
+        NSString *md5 = str.md5;
         
         NSLog(@"begin");
         for (long long i = 0; i < 10000000000; i++) {
             @autoreleasepool{
                 NSString *str1 = [[NSString alloc] initWithFormat:@"%lld",i];
-                NSString *strMd5 = str1.MD5;
+                NSString *strMd5 = str1.md5;
                 [[DBManager shareDB] insertLogWithPage:str1 Content:strMd5 Date:nil];
                 if ([strMd5 isEqualToString:md5]) {
                     [_results addObject:str1];
