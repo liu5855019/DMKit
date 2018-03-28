@@ -17,9 +17,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
+    self.mainTitleLabel.text = @"结果请看log";
+    
     NSString *str = @"123456";
     
-    NSString *key = @"tinyprofit_tokentinyprofit_token";
+    NSString *key = @"123456";
     
     NSString *iv = @"tinyprofit_toke";
     
@@ -33,8 +35,10 @@
     
     
     NSLog(@"%@",str.MD5);
-    
-    
+    NSLog(@"%@",str.md5);
+    NSLog(@"%@",str.sha512);
+    NSLog(@"%@",[str hmacMD5StringWithKey:key]);
+    NSLog(@"%@",[str hmacSHA512StringWithKey:key]);
     
 }
 

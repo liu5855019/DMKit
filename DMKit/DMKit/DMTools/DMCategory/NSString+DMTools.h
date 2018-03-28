@@ -23,8 +23,32 @@
 
 
 - (NSString *)pinyin;
-- (NSString *)MD5;
 
+
+#pragma mark - Hash
+
+- (NSString *)md2;
+- (NSString *)md4;
+- (NSString *)md5;
+- (NSString *)sha1;
+- (NSString *)sha224;
+- (NSString *)sha256;
+- (NSString *)sha384;
+- (NSString *)sha512;
+
+#pragma mark - Hmac
+
+- (NSString *)hmacMD5StringWithKey:(NSString *)key;
+
+- (NSString *)hmacSHA1StringWithKey:(NSString *)key;
+
+- (NSString *)hmacSHA224StringWithKey:(NSString *)key;
+
+- (NSString *)hmacSHA256StringWithKey:(NSString *)key;
+
+- (NSString *)hmacSHA384StringWithKey:(NSString *)key;
+
+- (NSString *)hmacSHA512StringWithKey:(NSString *)key;
 
 
 #pragma mark - aes

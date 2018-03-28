@@ -77,20 +77,86 @@
     return [str stringByReplacingOccurrencesOfString:@" " withString:@""];
 }
 
-- (NSString *)MD5
+#pragma mark - Hash
+
+- (NSString *)md2
 {
-    const char* aString = [self UTF8String];
-    unsigned char result[16];
-    CC_MD5(aString, (CC_LONG)strlen(aString), result);
-    NSString* hash = [NSString stringWithFormat:@"%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X%02X",
-                      result[0], result[1], result[2], result[3], result[4], result[5], result[6], result[7],
-                      result[8], result[9], result[10], result[11], result[12], result[13], result[14], result[15]];
-    
-    return [hash lowercaseString];
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.md2String;
+}
+- (NSString *)md4
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.md4String;
+}
+- (NSString *)md5
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.md5String;
+}
+- (NSString *)sha1
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.sha1String;
+}
+- (NSString *)sha224
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.sha224String;
+}
+- (NSString *)sha256
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.sha256String;
+}
+- (NSString *)sha384
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.sha384String;
+}
+- (NSString *)sha512
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return data.sha512String;
 }
 
+#pragma mark - Hmac
 
+- (NSString *)hmacMD5StringWithKey:(NSString *)key
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data hmacMD5StringWithKey:key];
+}
 
+- (NSString *)hmacSHA1StringWithKey:(NSString *)key
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data hmacSHA1StringWithKey:key];
+}
+
+- (NSString *)hmacSHA224StringWithKey:(NSString *)key
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data hmacSHA224StringWithKey:key];
+}
+
+- (NSString *)hmacSHA256StringWithKey:(NSString *)key
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data hmacSHA256StringWithKey:key];
+}
+
+- (NSString *)hmacSHA384StringWithKey:(NSString *)key
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data hmacSHA384StringWithKey:key];
+}
+
+- (NSString *)hmacSHA512StringWithKey:(NSString *)key
+{
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    return [data hmacSHA512StringWithKey:key];
+}
 
 
 #pragma mark - aes
