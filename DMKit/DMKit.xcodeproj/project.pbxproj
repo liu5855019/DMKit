@@ -99,6 +99,8 @@
 		6485BA061FE95AEB00EFB5A8 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485BA051FE95AEB00EFB5A8 /* RootVC.m */; };
 		64B8CDF21FF154A9003AA245 /* DMWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B8CDF11FF154A9003AA245 /* DMWebView.m */; };
 		64B8CDF51FF15733003AA245 /* LocationTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 64B8CDF31FF15733003AA245 /* LocationTool.m */; };
+		64DD8010205CF22D0002B91E /* DBManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DD800E205CF22D0002B91E /* DBManager.m */; };
+		64DD8013205CF98E0002B91E /* ShowLogVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64DD8012205CF98E0002B91E /* ShowLogVC.m */; };
 		64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */; };
 		64E6BA061FE94D0100CAAFCF /* UIViewController+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */; };
 		64E6BA071FE94D0100CAAFCF /* UINavigationBar+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA021FE94D0100CAAFCF /* UINavigationBar+DMTools.m */; };
@@ -297,6 +299,10 @@
 		64B8CDF11FF154A9003AA245 /* DMWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMWebView.m; sourceTree = "<group>"; };
 		64B8CDF31FF15733003AA245 /* LocationTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocationTool.m; sourceTree = "<group>"; };
 		64B8CDF41FF15733003AA245 /* LocationTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocationTool.h; sourceTree = "<group>"; };
+		64DD800E205CF22D0002B91E /* DBManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DBManager.m; sourceTree = "<group>"; };
+		64DD800F205CF22D0002B91E /* DBManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DBManager.h; sourceTree = "<group>"; };
+		64DD8011205CF98E0002B91E /* ShowLogVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ShowLogVC.h; sourceTree = "<group>"; };
+		64DD8012205CF98E0002B91E /* ShowLogVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowLogVC.m; sourceTree = "<group>"; };
 		64E6B9FA1FE930AE00CAAFCF /* DMSegmentView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMSegmentView.h; sourceTree = "<group>"; };
 		64E6B9FB1FE930AE00CAAFCF /* DMSegmentView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMSegmentView.m; sourceTree = "<group>"; };
 		64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+DMTools.m"; sourceTree = "<group>"; };
@@ -678,10 +684,14 @@
 				447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */,
 				6485BA041FE95AEB00EFB5A8 /* RootVC.h */,
 				6485BA051FE95AEB00EFB5A8 /* RootVC.m */,
+				64DD8011205CF98E0002B91E /* ShowLogVC.h */,
+				64DD8012205CF98E0002B91E /* ShowLogVC.m */,
 				4483398B205B63CC00B0840B /* ColliderVC.h */,
 				4483398C205B63CC00B0840B /* ColliderVC.m */,
 				4483398E205B900800B0840B /* ColliderTool.h */,
 				4483398F205B900800B0840B /* ColliderTool.m */,
+				64DD800F205CF22D0002B91E /* DBManager.h */,
+				64DD800E205CF22D0002B91E /* DBManager.m */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -852,6 +862,7 @@
 				442E5C4A1F579AE400D1D8A6 /* AFSecurityPolicy.m in Sources */,
 				44913C4E1FFE1076008EB55E /* AVFoundationVC.m in Sources */,
 				442E5C201F579AC400D1D8A6 /* MASLayoutConstraint.m in Sources */,
+				64DD8013205CF98E0002B91E /* ShowLogVC.m in Sources */,
 				446781172011879C004E461F /* UILabel+DMTools.m in Sources */,
 				444D4A182018221700A5AD8D /* DMAlertView.m in Sources */,
 				442E5C1D1F579AC400D1D8A6 /* MASCompositeConstraint.m in Sources */,
@@ -907,6 +918,7 @@
 				64E6BA061FE94D0100CAAFCF /* UIViewController+DMTools.m in Sources */,
 				442E5BAF1F579AA900D1D8A6 /* SDWebImageCompat.m in Sources */,
 				44CC09841F56A6B900B26FC4 /* AppDelegate.m in Sources */,
+				64DD8010205CF22D0002B91E /* DBManager.m in Sources */,
 				44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */,
 				442E5BEB1F579AB200D1D8A6 /* MJRefreshAutoFooter.m in Sources */,
 				442E5BFA1F579AB200D1D8A6 /* MJRefreshConst.m in Sources */,

@@ -30,6 +30,7 @@
 #import "UserInfo.h"
 #import "LocationTool.h"
 #import "ImagePickerTool.h"
+#import "DBManager.h"
 
 //Base
 #import "BaseViewController.h"
@@ -79,7 +80,7 @@ _Pragma("clang diagnostic pop") \
 /** 删除过期数据:过期时间(s) */
 #define kDeleteDatasTime (3*24*3600)
 //是否写入日志
-#define kIsInsertLogs 0
+#define kIsInsertLogs 1
 
 
 
