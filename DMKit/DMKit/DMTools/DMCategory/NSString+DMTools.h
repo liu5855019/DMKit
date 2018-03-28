@@ -26,4 +26,12 @@
 - (NSString *)MD5;
 
 
+
+#pragma mark - aes
+/** 使用的是aes , 自动根据key长度计算aes128,aes192,aes256 , **iv长度推荐16位** , CBC加密模式 , 数据块128位 , 加密结果使用base64输出 */
+- (NSString *)aesEncryptWithKey:(NSString *)key IV:(NSString *)iv;
+/** 使用的是aes , 先解base64后解密 , 自动根据key长度计算aes128,aes192,aes256 , **iv长度推荐16位** , CBC加密模式 , 数据块128位 */
+- (NSString *)aesDecryptWithKey:(NSString *)key IV:(NSString *)iv;
+
+
 @end

@@ -89,6 +89,37 @@
     return [hash lowercaseString];
 }
 
+
+
+
+
+#pragma mark - aes
+
+
+- (NSString *)aesEncryptWithKey:(NSString *)key IV:(NSString *)iv
+{
+    NSData *contentData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *ivData = [iv dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *result = [contentData aesEncryptWithKey:keyData IV:ivData];
+    
+    return [result base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+}
+
+- (NSString *)aesDecryptWithKey:(NSString *)key IV:(NSString *)iv
+{
+    NSData *contentData = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *ivData = [iv dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *result = [contentData aesDecryptWithKey:keyData IV:ivData];
+    
+    return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+}
+
+
 - (void)dealloc
 {
     NSLog(@"%@ -- over",self);
