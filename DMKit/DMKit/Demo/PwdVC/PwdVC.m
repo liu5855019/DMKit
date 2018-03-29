@@ -38,7 +38,6 @@
     NSLog(@"%@",str.sha512);
     NSLog(@"%@",[str hmacMD5StringWithKey:key]);
     NSLog(@"%@",[str hmacSHA512StringWithKey:key]);
-    
 }
 
 - (void)didReceiveMemoryWarning {
