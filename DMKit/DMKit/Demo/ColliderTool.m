@@ -42,13 +42,13 @@
     BACK((^{
         
         NSString *str = @"123456";
-        NSString *md5 = str.MD5;
+        NSString *md5 = str.md5;
         
         NSLog(@"begin");
         for (NSInteger i = 0; i < 1000000000; i++) {
             @autoreleasepool{
                 NSString *str1 = [[NSString alloc] initWithFormat:@"%ld",i];
-                if ([str1.MD5 isEqualToString:md5]) {
+                if ([str1.md5 isEqualToString:md5]) {
                     [_results addObject:str1];
                     if (self.getResult) {
                         MAIN(^{

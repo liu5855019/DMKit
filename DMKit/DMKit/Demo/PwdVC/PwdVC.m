@@ -34,7 +34,6 @@
     NSLog(@"de : %@",decode);
     
     
-    NSLog(@"%@",str.MD5);
     NSLog(@"%@",str.md5);
     NSLog(@"%@",str.sha512);
     NSLog(@"%@",[str hmacMD5StringWithKey:key]);

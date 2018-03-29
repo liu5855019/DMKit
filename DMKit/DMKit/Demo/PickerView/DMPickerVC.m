@@ -20,14 +20,19 @@
     self.mainTitleLabel.text = @"Test DMPicker";
     
     UIButton *btn1 = [UIButton new];
-    [btn1 setTitle:@"showDMPicker" forState:UIControlStateNormal];
+    [btn1 setTitle:@"ShowDMPicker" forState:UIControlStateNormal];
     btn1.frame = CGRectMake(50, 100, 100, 50);
-    
+    [btn1 addTarget:self action:@selector(clickBtn1) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn1];
     
     
     
 }
 
+- (void)clickBtn1
+{
+    
+}
 
 
 

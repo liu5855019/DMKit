@@ -10,6 +10,7 @@
 		442230452057630E003E2DCC /* DMBasePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442230442057630E003E2DCC /* DMBasePickerView.m */; };
 		44223048205763B5003E2DCC /* DMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44223047205763B5003E2DCC /* DMPickerView.m */; };
 		4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4422304F20576BB7003E2DCC /* DMPickerVC.m */; };
+		442B906A206B9030009B6AC3 /* PwdDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B9069206B9030009B6AC3 /* PwdDictVC.m */; };
 		442E5B891F579AA100D1D8A6 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B881F579AA100D1D8A6 /* UIView+Toast.m */; };
 		442E5BAC1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8C1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m */; };
 		442E5BAD1F579AA900D1D8A6 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8E1F579AA900D1D8A6 /* NSData+ImageContentType.m */; };
@@ -114,6 +115,8 @@
 		44223047205763B5003E2DCC /* DMPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMPickerView.m; sourceTree = "<group>"; };
 		4422304E20576BB7003E2DCC /* DMPickerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMPickerVC.h; sourceTree = "<group>"; };
 		4422304F20576BB7003E2DCC /* DMPickerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMPickerVC.m; sourceTree = "<group>"; };
+		442B9068206B9030009B6AC3 /* PwdDictVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwdDictVC.h; sourceTree = "<group>"; };
+		442B9069206B9030009B6AC3 /* PwdDictVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdDictVC.m; sourceTree = "<group>"; };
 		442E5B871F579AA100D1D8A6 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		442E5B881F579AA100D1D8A6 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		442E5B8B1F579AA900D1D8A6 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -580,6 +583,8 @@
 			children = (
 				44335F12206A379F00ABB9FE /* PwdVC.h */,
 				44335F13206A379F00ABB9FE /* PwdVC.m */,
+				442B9068206B9030009B6AC3 /* PwdDictVC.h */,
+				442B9069206B9030009B6AC3 /* PwdDictVC.m */,
 			);
 			path = PwdVC;
 			sourceTree = "<group>";
@@ -866,6 +871,7 @@
 				442E5C211F579AC400D1D8A6 /* MASViewAttribute.m in Sources */,
 				442E5BBB1F579AA900D1D8A6 /* UIView+WebCacheOperation.m in Sources */,
 				442E5C4C1F579AE400D1D8A6 /* AFURLResponseSerialization.m in Sources */,
+				442B906A206B9030009B6AC3 /* PwdDictVC.m in Sources */,
 				442E5BEC1F579AB200D1D8A6 /* MJRefreshBackFooter.m in Sources */,
 				442E5BB51F579AA900D1D8A6 /* UIButton+WebCache.m in Sources */,
 				442E5C4A1F579AE400D1D8A6 /* AFSecurityPolicy.m in Sources */,

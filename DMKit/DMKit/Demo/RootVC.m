@@ -15,6 +15,7 @@
 #import "DMPickerVC.h"
 #import "ColliderVC.h"
 #import "PwdVC.h"
+#import "PwdDictVC.h"
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
 
@@ -41,7 +42,8 @@
                @"SortVersionCodeVC",
                @"DMPickerVC",
                @"ColliderVC",
-               @"PwdVC"];
+               @"PwdVC",
+               @"PwdDictVC"];
 }
 
 
