@@ -20,6 +20,9 @@
 @property (nonatomic , strong) NSArray *sendDatas;
 
 
+@property (nonatomic , strong) NSMutableArray *mergeResultDatas;
+
+
 
 @property (nonatomic , assign) NSInteger allCount;
 @property (nonatomic , assign) NSInteger oldIndex;
@@ -27,6 +30,10 @@
 @property (nonatomic , assign) CGFloat progress;
 @property (nonatomic , assign) CGFloat remainTime;
 @property (nonatomic , assign) CGFloat usedTime;
+@property (nonatomic , assign) NSInteger repeatCount;
+@property (nonatomic , assign) NSInteger runOverCount;
+
+
 
 @property (nonatomic , strong) NSDate *start;
 
@@ -76,16 +83,16 @@
     
     _dateDatas = [NSMutableArray array];
     
-    //_abcDatas = @[@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
+    _abcDatas = @[@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
     
-    _abcDatas = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",];
+    //_abcDatas = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",];
     
     [self createLink];
 }
 
 - (void)clickBtn1
 {
-    /////////////////////
+    ///////////////////// abc+date
 //    WeakObj(self);
 //    BACK(^{
 //        [selfWeak createAbcAddDate];
@@ -95,34 +102,48 @@
     
     
     
-    /////////////////////
-    NSString *dateStr = [NSString stringWithContentsOfFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/WordList/num/Allnum06_1000000.txt" encoding:NSUTF8StringEncoding error:nil];
-    _sendDatas = [dateStr componentsSeparatedByString:@"\n"];
-
-    _start = [NSDate date];
-    _allCount = _sendDatas.count;
-
-    [self send];
+    /////////////////////send
+//    NSString *dateStr = [NSString stringWithContentsOfFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/WordList/num/Allnum06_1000000.txt" encoding:NSUTF8StringEncoding error:nil];
+//    _sendDatas = [dateStr componentsSeparatedByString:@"\n"];
+//
+//    _start = [NSDate date];
+//    _allCount = _sendDatas.count;
+//
+//    [self send];
     ////////////////////
     
     
-    
+    /////////////////// abc
 //    WeakObj(self);
 //
 //    BACK(^{
 //        [selfWeak createAbcFiles];
 //    });
-//
+    ///////////////////
+    
+    NSString *path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/merge1.txt";
+    NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    _mergeResultDatas = [NSMutableArray arrayWithArray:[str componentsSeparatedByString:@"\n"]];
+
+    path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/222/1.txt";
+    str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSArray *array = [str componentsSeparatedByString:@"\n"];
+    _start = [NSDate date];
+    _allCount = array.count;
+    WeakObj(self);
+    BACK(^{
+        [selfWeak mergeWithArray:array];
+    });
 }
 
 - (void)send
 {
     if (_currentIndex < _sendDatas.count) {
         @autoreleasepool{
-        NSString *tmp = _sendDatas[_currentIndex];
-        NSString *pwd = [JoDes encode:tmp key:@"22972820"];
-        [self sendPwd:pwd];
-        _currentIndex++;
+            NSString *tmp = _sendDatas[_currentIndex];
+            NSString *pwd = [JoDes encode:tmp key:@"22972820"];
+            [self sendPwd:pwd];
+            _currentIndex++;
         }
     }
 }
@@ -179,11 +200,27 @@
         
         _progress = (CGFloat)_currentIndex/_allCount * 100;
         
-        _remainTime = time * 100 / _progress - time;
+        _remainTime = time * _allCount / _currentIndex - time;
         _oldIndex = _currentIndex;
     }
 
-    _stateLab.text = [NSString stringWithFormat:@"总计:%ld \n进行到:\t%ld---\t%.2f%%  \n预计剩余时间:\t%.2fs \n已用时间:\t%.2fs",_allCount,_currentIndex,_progress,_remainTime,_usedTime];
+    _stateLab.text = [NSString stringWithFormat:@"\t总计: %ld  \
+                      \n\t进行到: %ld---\t%.2f%%   \
+                      \n\t算法折中: %ld \
+                      \n\t算法结束: %ld \
+                      \n\t重复个数: %ld   \
+                      \n\t每秒处理个数: %.2f \
+                      \n\t预计剩余时间: %.2fs \
+                      \n\t已用时间: %.2fs ",
+                      _allCount,
+                      _currentIndex,
+                      _progress,
+                      _currentIndex - _runOverCount,
+                      _runOverCount,
+                      _repeatCount,
+                      _currentIndex/_usedTime,
+                      _remainTime,
+                      _usedTime];
     
 }
 
@@ -332,6 +369,151 @@
     
     NSLog(@"end");
 }
+
+
+
+#pragma mark - 合并字典
+
+- (void)mergeWithArray:(NSArray *)array
+{
+//    NSMutableSet *set = [NSMutableSet set];
+//    for (int i = 0; i< array.count; i++) {
+//        @autoreleasepool {
+//            _currentIndex = i+1;
+//            NSString *str = array[i];
+//            str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+//            [set addObject:str];
+//        }
+//    }
+//    NSArray *arr = [set allObjects];
+//    NSString *mergeStr = [arr componentsJoinedByString:@"\n"];
+    
+    
+    
+    
+    
+    for (int i = 0; i< array.count; i++) {
+        @autoreleasepool {
+            _currentIndex = i+1;
+            NSString *str = array[i];
+            str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+            if ([self str:str isInArray:_mergeResultDatas]) {
+                _repeatCount++;
+            }
+        }
+    }
+ 
+    NSString *mergeStr = [_mergeResultDatas componentsJoinedByString:@"\n"];
+    
+
+    BOOL result = [mergeStr writeToFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/merge3.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    if (result) {
+        NSLog(@"ok");
+    }else{
+        NSLog(@"err");
+    }
+}
+
+
+//
+//- (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array
+//{
+//    if (array.count == 0) {
+//        [array addObject:str];
+//        return NO;
+//    }
+//    for (NSInteger i = 0; i < array.count; i++) {
+//        @autoreleasepool{
+//            NSString *str1 = array[i];
+//            NSComparisonResult result = [str compare:str1];
+//            if (result == NSOrderedSame) {
+//                return YES;
+//            }
+//            if (result == NSOrderedAscending) {
+//                [array insertObject:str atIndex:i];
+//                return NO;
+//            }
+//        }
+//    }
+//    _runOverCount++;
+//    [array addObject:str];
+//    return NO;
+//}
+
+
+//
+//- (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array
+//{
+//    if (array.count == 0) {
+//        [array addObject:str];
+//        return NO;
+//    }
+//    if (array.count < 100) {
+//        return [self str:str isInArray:array begin:0 end:array.count];
+//    }
+//
+//    NSInteger index = array.count / 2;
+//
+//    NSString *str1 = array[index];
+//    NSComparisonResult result = [str compare:str1];
+//    if (result == NSOrderedSame) {
+//        return YES;
+//    }
+//    if (result == NSOrderedAscending) {
+//        return [self str:str isInArray:array begin:0 end:index];
+//    }
+//    return [self str:str isInArray:array begin:index+1 end:array.count];
+//}
+
+- (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array
+{
+    if (array.count == 0) {
+        [array addObject:str];
+        return NO;
+    }
+    if (array.count < 1000) {
+        return [self str:str isInArray:array begin:0 end:array.count];
+    }
+    
+    long m = array.count / 1000;
+    
+    for (int i = 0; i < m ; i ++){
+        NSInteger index0 = (NSInteger)(((float)i)/m * (array.count-1));
+        NSInteger index1 = (NSInteger)(((float)i+1)/m * (array.count-1));
+        
+        NSString *str1 = array[index1];
+        NSComparisonResult result = [str compare:str1];
+        if (result == NSOrderedSame) {
+            return YES;
+        }
+        if (result == NSOrderedAscending) {
+            return [self str:str isInArray:array begin:index0 end:index1];
+        }
+    }
+    return [self str:str isInArray:array begin:array.count end:array.count];
+}
+
+- (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array begin:(NSInteger)b end:(NSInteger)e
+{
+    for (NSInteger i = b; i < e; i++) {
+        @autoreleasepool{
+            NSString *str1 = array[i];
+            NSComparisonResult result = [str compare:str1];
+            if (result == NSOrderedSame) {
+                return YES;
+            }
+            if (result == NSOrderedAscending) {
+                [array insertObject:str atIndex:i];
+                return NO;
+            }
+        }
+    }
+    _runOverCount++;
+    [array addObject:str];
+    return NO;
+}
+
 
 
 - (void)didReceiveMemoryWarning {
