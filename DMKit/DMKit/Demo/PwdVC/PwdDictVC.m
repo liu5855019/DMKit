@@ -30,6 +30,9 @@
 @property (nonatomic , assign) CGFloat progress;
 @property (nonatomic , assign) CGFloat remainTime;
 @property (nonatomic , assign) CGFloat usedTime;
+@property (nonatomic , assign) CGFloat oldUsedTime;
+@property (nonatomic , assign) NSInteger oldCountIndex;
+@property (nonatomic , assign) CGFloat countOfSecond;
 @property (nonatomic , assign) NSInteger repeatCount;
 @property (nonatomic , assign) NSInteger runOverCount;
 
@@ -125,7 +128,8 @@
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     _mergeResultDatas = [NSMutableArray arrayWithArray:[str componentsSeparatedByString:@"\n"]];
 
-    path = @"/Users/daimu/Desktop/22/1.txt";
+    //path = @"/Users/daimu/Desktop/22/1.txt";
+    path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/222/1.txt";
     str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     NSArray *array = [str componentsSeparatedByString:@"\n"];
     _start = [NSDate date];
@@ -193,6 +197,13 @@
 
 - (void)linkAction:(CADisplayLink *)link
 {
+    if ( _usedTime - _oldUsedTime >= 1)
+    {
+        _countOfSecond = (_currentIndex - _oldCountIndex)/(_usedTime - _oldUsedTime);
+        _oldUsedTime = _usedTime;
+        _oldCountIndex = _currentIndex;
+    }
+    
     if (_oldIndex != _currentIndex) {
         double time = [_start timeIntervalSinceNow];
         time = -time;
@@ -211,6 +222,8 @@
                       \n\t重复个数: %ld   \
                       \n\t每秒处理个数: %.2f \
                       \n\t预计剩余时间: %.2fs \
+                      \n\t每秒处理个数: %.2f \
+                      \n\t预计剩余时间: %.2fs \
                       \n\t已用时间: %.2fs ",
                       _allCount,
                       _currentIndex,
@@ -220,6 +233,8 @@
                       _repeatCount,
                       _currentIndex/_usedTime,
                       _remainTime,
+                      _countOfSecond,
+                      (_allCount - _currentIndex)/_countOfSecond,
                       _usedTime];
     
 }
@@ -405,8 +420,8 @@
  
     NSString *mergeStr = [_mergeResultDatas componentsJoinedByString:@"\n"];
     
-///Users/daimu/Desktop/22/1.txt
-    BOOL result = [mergeStr writeToFile:@"/Users/daimu/Desktop/merge3.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
+///Users/daimu/Desktop/22/1.txt/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/merge4.txt
+    BOOL result = [mergeStr writeToFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/merge3.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
     if (result) {
         NSLog(@"ok");
@@ -468,6 +483,10 @@
 
 - (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array
 {
+//    return [self str:str isInArray:array begin:0 end:array.count];
+    
+    
+    
     if (array.count == 0) {
         [array addObject:str];
         return NO;
@@ -475,13 +494,13 @@
     if (array.count < 1000) {
         return [self str:str isInArray:array begin:0 end:array.count];
     }
-    
+
     long m = array.count / 1000;
-    
+
     for (int i = 0; i < m ; i ++){
         NSInteger index0 = (NSInteger)(((float)i)/m * (array.count-1));
         NSInteger index1 = (NSInteger)(((float)i+1)/m * (array.count-1));
-        
+
         NSString *str1 = array[index1];
         NSComparisonResult result = [str compare:str1];
         if (result == NSOrderedSame) {
@@ -493,26 +512,33 @@
     }
     return [self str:str isInArray:array begin:array.count end:array.count];
 }
+//
+////指数级缩减
+//- (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array begin:(NSInteger)b end:(NSInteger)e
+//{
+//    @autoreleasepool {
+//        if (b == e) {
+//            [array insertObject:str atIndex:b];
+//            return NO;
+//        }
+//
+//        NSInteger index = (b+e)/2;
+//
+//        NSString *str1 = array[index];
+//        NSComparisonResult result = [str compare:str1];
+//        if (result == NSOrderedSame) {
+//            return YES;
+//        }
+//        if (result == NSOrderedAscending) {
+//            return [self str:str isInArray:array begin:b end:index];
+//        }
+//        return [self str:str isInArray:array begin:index+1 end:e];
+//    }
+//}
 
-//0...2
+
 - (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array begin:(NSInteger)b end:(NSInteger)e
 {
-    
-        NSInteger index = (e+b)/2;      //2-0/2=1
-    
-        NSString *str1 = array[index];
-        NSComparisonResult result = [str compare:str1];
-        if (result == NSOrderedSame) {
-            return YES;
-        }
-        if (result == NSOrderedAscending) {
-            return [self str:str isInArray:array begin:0 end:index];
-        }
-        return [self str:str isInArray:array begin:index+1 end:array.count];
-    
-    
-    
-    
     for (NSInteger i = b; i < e; i++) {
         @autoreleasepool{
             NSString *str1 = array[i];
@@ -530,27 +556,6 @@
     [array addObject:str];
     return NO;
 }
-
-
-//- (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array begin:(NSInteger)b end:(NSInteger)e
-//{
-//    for (NSInteger i = b; i < e; i++) {
-//        @autoreleasepool{
-//            NSString *str1 = array[i];
-//            NSComparisonResult result = [str compare:str1];
-//            if (result == NSOrderedSame) {
-//                return YES;
-//            }
-//            if (result == NSOrderedAscending) {
-//                [array insertObject:str atIndex:i];
-//                return NO;
-//            }
-//        }
-//    }
-//    _runOverCount++;
-//    [array addObject:str];
-//    return NO;
-//}
 
 
 
