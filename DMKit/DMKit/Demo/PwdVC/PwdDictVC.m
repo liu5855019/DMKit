@@ -125,7 +125,7 @@
     NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     _mergeResultDatas = [NSMutableArray arrayWithArray:[str componentsSeparatedByString:@"\n"]];
 
-    path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/222/1.txt";
+    path = @"/Users/daimu/Desktop/22/1.txt";
     str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
     NSArray *array = [str componentsSeparatedByString:@"\n"];
     _start = [NSDate date];
@@ -405,8 +405,8 @@
  
     NSString *mergeStr = [_mergeResultDatas componentsJoinedByString:@"\n"];
     
-
-    BOOL result = [mergeStr writeToFile:@"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/merge3.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
+///Users/daimu/Desktop/22/1.txt
+    BOOL result = [mergeStr writeToFile:@"/Users/daimu/Desktop/merge3.txt" atomically:YES encoding:NSUTF8StringEncoding error:nil];
     
     if (result) {
         NSLog(@"ok");
@@ -494,8 +494,25 @@
     return [self str:str isInArray:array begin:array.count end:array.count];
 }
 
+//0...2
 - (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array begin:(NSInteger)b end:(NSInteger)e
 {
+    
+        NSInteger index = (e+b)/2;      //2-0/2=1
+    
+        NSString *str1 = array[index];
+        NSComparisonResult result = [str compare:str1];
+        if (result == NSOrderedSame) {
+            return YES;
+        }
+        if (result == NSOrderedAscending) {
+            return [self str:str isInArray:array begin:0 end:index];
+        }
+        return [self str:str isInArray:array begin:index+1 end:array.count];
+    
+    
+    
+    
     for (NSInteger i = b; i < e; i++) {
         @autoreleasepool{
             NSString *str1 = array[i];
@@ -513,6 +530,29 @@
     [array addObject:str];
     return NO;
 }
+
+
+//- (BOOL)str:(NSString *)str isInArray:(NSMutableArray *)array begin:(NSInteger)b end:(NSInteger)e
+//{
+//    for (NSInteger i = b; i < e; i++) {
+//        @autoreleasepool{
+//            NSString *str1 = array[i];
+//            NSComparisonResult result = [str compare:str1];
+//            if (result == NSOrderedSame) {
+//                return YES;
+//            }
+//            if (result == NSOrderedAscending) {
+//                [array insertObject:str atIndex:i];
+//                return NO;
+//            }
+//        }
+//    }
+//    _runOverCount++;
+//    [array addObject:str];
+//    return NO;
+//}
+
+
 
 
 
