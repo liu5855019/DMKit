@@ -616,8 +616,6 @@
 			children = (
 				64DD8011205CF98E0002B91E /* ShowLogVC.h */,
 				64DD8012205CF98E0002B91E /* ShowLogVC.m */,
-				64DD800F205CF22D0002B91E /* DBManager.h */,
-				64DD800E205CF22D0002B91E /* DBManager.m */,
 			);
 			path = LogVC;
 			sourceTree = "<group>";
@@ -754,6 +752,8 @@
 			children = (
 				44CC09981F56B35E00B26FC4 /* Common.h */,
 				44CC09991F56B3A000B26FC4 /* DMDefine.h */,
+				64DD800F205CF22D0002B91E /* DBManager.h */,
+				64DD800E205CF22D0002B91E /* DBManager.m */,
 				442E5C511F579D5500D1D8A6 /* DMTools.h */,
 				442E5C521F579D5500D1D8A6 /* DMTools.m */,
 				44FFFB0B1F5E325D00CFE63F /* UserInfo.h */,

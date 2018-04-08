@@ -75,5 +75,9 @@
     [self hide];
 }
 
+-(void)dealloc{
+    MyLog(@" Game Over ... ");
+}
+
 @end
 
