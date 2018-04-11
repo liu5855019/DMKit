@@ -26,8 +26,16 @@
     
     [self.window makeKeyAndVisible];
     
+    [DMExceptionTool start];
+    
     return YES;
 }
+
+
+
+
+
+
 
 
 - (void)applicationWillResignActive:(UIApplication *)application {

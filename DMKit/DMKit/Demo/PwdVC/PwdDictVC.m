@@ -66,29 +66,29 @@
     [btn1 addTarget:self action:@selector(clickBtn1) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
 
-    
+
     _stateLab = [UILabel new];
     [self.view addSubview:_stateLab];
     _stateLab.textColor = [UIColor greenColor];
     _stateLab.numberOfLines = 0;
-    
-    
+
+
     [_stateLab mas_makeConstraints:^(MASConstraintMaker *make) {
         make.left.right.mas_equalTo(0);
         make.centerY.mas_equalTo(0);
     }];
-    
+
     _stateLab.text = @"1111";
-    
-    
-    
-    
-    
+
+
+
+
+
     _dateDatas = [NSMutableArray array];
-    
+
     _abcDatas = @[@"a",@"b",@"c",@"d",@"e",@"f",@"g",@"h",@"i",@"j",@"k",@"l",@"m",@"n",@"o",@"p",@"q",@"r",@"s",@"t",@"u",@"v",@"w",@"x",@"y",@"z",@"A",@"B",@"C",@"D",@"E",@"F",@"G",@"H",@"I",@"J",@"K",@"L",@"M",@"N",@"O",@"P",@"Q",@"R",@"S",@"T",@"U",@"V",@"W",@"X",@"Y",@"Z"];
     
-    //_abcDatas = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",];
+    _abcDatas = @[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",];
     
     [self createLink];
 }
@@ -190,59 +190,50 @@
 
 - (void)createLink
 {
-    __weak typeof(self) weakSelf = self;
-    _link = [CADisplayLink displayLinkWithTarget:weakSelf selector:@selector(linkAction:)];
+    WeakObj(self);
+    _link = [CADisplayLink displayLinkWithBlock:^{
+        if (selfWeak.usedTime - selfWeak.oldUsedTime >= 1)
+        {
+            selfWeak.countOfSecond = (selfWeak.currentIndex - selfWeak.oldCountIndex)/(selfWeak.usedTime - selfWeak.oldUsedTime);
+            selfWeak.oldUsedTime = selfWeak.usedTime;
+            selfWeak.oldCountIndex = selfWeak.currentIndex;
+        }
+        
+        if (selfWeak.oldIndex != selfWeak.currentIndex) {
+            double time = [selfWeak.start timeIntervalSinceNow];
+            time = -time;
+            selfWeak.usedTime = time;
+
+            selfWeak.progress = (CGFloat)selfWeak.currentIndex/selfWeak.allCount * 100;
+
+            selfWeak.remainTime = time * selfWeak.allCount / selfWeak.currentIndex - time;
+            selfWeak.oldIndex = selfWeak.currentIndex;
+        }
+
+        selfWeak.stateLab.text = [NSString stringWithFormat:@"\t总计: %ld  \
+                          \n\t进行到: %ld---\t%.2f%%   \
+                          \n\t算法折中: %ld \
+                          \n\t算法结束: %ld \
+                          \n\t重复个数: %ld   \
+                          \n\t每秒处理个数: %.2f \
+                          \n\t预计剩余时间: %.2fs \
+                          \n\t每秒处理个数: %.2f \
+                          \n\t预计剩余时间: %.2fs \
+                          \n\t已用时间: %.2fs ",
+                          selfWeak.allCount,
+                          selfWeak.currentIndex,
+                          selfWeak.progress,
+                          selfWeak.currentIndex - selfWeak.runOverCount,
+                          selfWeak.runOverCount,
+                          selfWeak.repeatCount,
+                          selfWeak.currentIndex/selfWeak.usedTime,
+                          selfWeak.remainTime,
+                          selfWeak.countOfSecond,
+                          (selfWeak.allCount - selfWeak.currentIndex)/selfWeak.countOfSecond,
+                          selfWeak.usedTime];
+    }];
     [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
 }
-
-- (void)linkAction:(CADisplayLink *)link
-{
-    if ( _usedTime - _oldUsedTime >= 1)
-    {
-        _countOfSecond = (_currentIndex - _oldCountIndex)/(_usedTime - _oldUsedTime);
-        _oldUsedTime = _usedTime;
-        _oldCountIndex = _currentIndex;
-    }
-    
-    if (_oldIndex != _currentIndex) {
-        double time = [_start timeIntervalSinceNow];
-        time = -time;
-        _usedTime = time;
-        
-        _progress = (CGFloat)_currentIndex/_allCount * 100;
-        
-        _remainTime = time * _allCount / _currentIndex - time;
-        _oldIndex = _currentIndex;
-    }
-
-    _stateLab.text = [NSString stringWithFormat:@"\t总计: %ld  \
-                      \n\t进行到: %ld---\t%.2f%%   \
-                      \n\t算法折中: %ld \
-                      \n\t算法结束: %ld \
-                      \n\t重复个数: %ld   \
-                      \n\t每秒处理个数: %.2f \
-                      \n\t预计剩余时间: %.2fs \
-                      \n\t每秒处理个数: %.2f \
-                      \n\t预计剩余时间: %.2fs \
-                      \n\t已用时间: %.2fs ",
-                      _allCount,
-                      _currentIndex,
-                      _progress,
-                      _currentIndex - _runOverCount,
-                      _runOverCount,
-                      _repeatCount,
-                      _currentIndex/_usedTime,
-                      _remainTime,
-                      _countOfSecond,
-                      (_allCount - _currentIndex)/_countOfSecond,
-                      _usedTime];
-    
-}
-
-
-
-
-
 
 #pragma mark - abc3 + commonDate
 
@@ -570,6 +561,7 @@
     MyLog(@" Game Over ... ");
     
     [_link invalidate];
+    _link = nil;
 }
 
 @end

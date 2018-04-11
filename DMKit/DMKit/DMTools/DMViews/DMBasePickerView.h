@@ -18,4 +18,6 @@
 
 - (void)hide;
 
+@property (nonatomic , copy) void (^hideAction)(void);
+
 @end

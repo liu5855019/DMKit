@@ -17,6 +17,8 @@
     CGRect _downRect;
 }
 
+@property (nonatomic , strong) CADisplayLink *link;
+
 @end
 
 @implementation DMBasePickerView
@@ -36,9 +38,22 @@
         _picker.backgroundColor = [UIColor whiteColor];
         
         [super setHidden:YES];
+        
+        [self createLink];
     }
     return self;
 }
+
+
+- (void)createLink
+{
+    WeakObj(self);
+    _link = [CADisplayLink displayLinkWithBlock:^{
+        
+    }];
+    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+}
+
 
 
 - (void)setHidden:(BOOL)hidden
@@ -48,7 +63,6 @@
     }else{
         [self show];
     }
-    
 }
 
 - (void)show
@@ -62,12 +76,15 @@
 - (void)hide
 {
     WeakObj(self);
+    if (_hideAction) {
+        _hideAction();
+    }
+    
     [UIView animateWithDuration:0.3 animations:^{
         selfWeak.picker.frame = _downRect;
     } completion:^(BOOL finished) {
         [super setHidden:YES];
     }];
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
@@ -75,7 +92,10 @@
     [self hide];
 }
 
--(void)dealloc{
+- (void)dealloc
+{
+    [_link invalidate];
+    _link = nil;
     MyLog(@" Game Over ... ");
 }
 
