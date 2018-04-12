@@ -6,7 +6,7 @@
 //  Copyright © 2018年 呆木出品. All rights reserved.
 //
 
-#import "ExceptionTool.h"
+#import "DMExceptionTool.h"
 #import <execinfo.h>
 
 @implementation DMExceptionTool
@@ -21,7 +21,20 @@
         
         //系统异常捕获
         NSSetUncaughtExceptionHandler(&uncaught_exception_handle);
+        
+        [self checkFilesAndUpload];
     }
+}
+
+#pragma mark - File
+
++ (NSString *)getDirPath
+{
+    NSString *dirPath = [DMTools filePathInDocuntsWithFile:@"Log"];
+    
+    [DMTools createDirectory:dirPath];
+    
+    return dirPath;
 }
 
 + (void)saveCrash:(NSString *)crash
@@ -29,26 +42,111 @@
     NSString *deviceType = [DMTools getDeviceType];
     NSString *deviceName = [[UIDevice currentDevice] name];
     NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
+    NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
+    NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSString *appVersion = kAppVerison;
     NSString *appBuild = kAppBuild;
     NSString *timeStr = [[NSDate date] getStringWithFormat:@"yyyyMMddHHmmss"];
     
-    NSString *result = [NSString stringWithFormat:@"DeviceName:%@\nDeviceType:%@\nSystemVersion:%@\nAppVersion:%@\nAppBuild:%@\nTime:%@\n\nCrashInfo:\n%@",
+    NSString *result = [NSString stringWithFormat:@"DeviceName:%@\nDeviceType:%@\nSystemVersion:%@\nAppName:%@\nBundleID:%@\nAppVersion:%@\nAppBuild:%@\nTime:%@\n\nCrashInfo:\n%@",
                         deviceName,
                         deviceType,
                         systemVersion,
+                        appName,
+                        bundleID,
                         appVersion,
                         appBuild,
                         timeStr,
                         crash];
-    NSString *dirPath = [DMTools filePathInDocuntsWithFile:@"Log"];
-    if (![DMTools directoryExist:dirPath]) {
-        [DMTools createDirectory:dirPath];
-    }
+    
+    NSString *dirPath = [DMExceptionTool getDirPath];
+    
     NSString *filePath = [NSString stringWithFormat:@"%@/%@.log",dirPath,timeStr];
     
     [result writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
+
++ (void)checkFilesAndUpload
+{
+    NSString *dirPath = [self getDirPath];
+    NSError *err = nil;
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:&err];
+    
+    if (err) {
+        NSLog(@"%@",err);
+    } else {
+        for (NSString *fileName in files) {
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
+            if ([DMTools fileExist:filePath]) {
+                [self uploadFile:fileName];
+            }
+        }
+    }
+}
+
++ (void)uploadFile:(NSString *)fileName
+{
+    NSString *dirPath = [self getDirPath];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
+    
+    NSString *info = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+    NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
+    
+    NSDictionary *para = @{
+                           @"app_name":bundleID,
+                           @"error_info":info
+                           };
+    
+    NSString *url = @"http://192.168.100.101:80/add";
+    
+    [self postWithUrl:url para:para success:^(id responseObject) {
+        NSLog(@"%@",responseObject);
+    } failure:^(NSError *error) {
+        NSLog(@"%@",error);
+    }];
+}
+
++ (void)postWithUrl:(NSString *)url
+               para:(id)para
+            success:(void (^)(id responseObject))success
+            failure:(void(^)(NSError *error))failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:url parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSError *error;
+        // 得到字典
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        
+        if (error)
+        {
+            NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            MAIN(^{
+                if (success) {
+                    success(result);
+                }
+            });
+        }
+        else
+        {
+            MAIN(^{
+                if (success) {
+                    success(dict);
+                }
+            });
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        MAIN(^{
+            if (failure) {
+                failure(error);
+            }
+        });
+    }];
+}
+
 
 #pragma mark - Signal  信号出错
 
