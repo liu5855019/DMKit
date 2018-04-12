@@ -78,6 +78,7 @@
 		4433CE11207C86FB00F69B45 /* DMExceptionTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4433CE10207C86FB00F69B45 /* DMExceptionTool.m */; };
 		444097041FFF568F0013F4C4 /* SocketServerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 444097031FFF568F0013F4C4 /* SocketServerVC.m */; };
 		4445250A200301B10008CC0D /* DMItemsView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44452508200301B00008CC0D /* DMItemsView.m */; };
+		4447F2F5207EFD760022AB1A /* CrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4447F2F4207EFD760022AB1A /* CrashVC.m */; };
 		444D4A182018221700A5AD8D /* DMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444D4A172018221700A5AD8D /* DMAlertView.m */; };
 		444FE2D1206CCB0900311720 /* JoDes.m in Sources */ = {isa = PBXBuildFile; fileRef = 444FE2CF206CCB0800311720 /* JoDes.m */; };
 		445D77FA20173A830080309C /* NSObject+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D77F920173A830080309C /* NSObject+DMTools.m */; };
@@ -262,6 +263,8 @@
 		444097031FFF568F0013F4C4 /* SocketServerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketServerVC.m; sourceTree = "<group>"; };
 		44452508200301B00008CC0D /* DMItemsView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMItemsView.m; sourceTree = "<group>"; };
 		44452509200301B10008CC0D /* DMItemsView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMItemsView.h; sourceTree = "<group>"; };
+		4447F2F3207EFD760022AB1A /* CrashVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CrashVC.h; sourceTree = "<group>"; };
+		4447F2F4207EFD760022AB1A /* CrashVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CrashVC.m; sourceTree = "<group>"; };
 		444D4A162018221600A5AD8D /* DMAlertView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMAlertView.h; sourceTree = "<group>"; };
 		444D4A172018221700A5AD8D /* DMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAlertView.m; sourceTree = "<group>"; };
 		444FE2CF206CCB0800311720 /* JoDes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoDes.m; sourceTree = "<group>"; };
@@ -606,6 +609,15 @@
 			path = PwdVC;
 			sourceTree = "<group>";
 		};
+		4447F2F2207EFD380022AB1A /* Crash */ = {
+			isa = PBXGroup;
+			children = (
+				4447F2F3207EFD760022AB1A /* CrashVC.h */,
+				4447F2F4207EFD760022AB1A /* CrashVC.m */,
+			);
+			path = Crash;
+			sourceTree = "<group>";
+		};
 		444FE2CD206C74F200311720 /* ColliderVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -728,6 +740,7 @@
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				4447F2F2207EFD380022AB1A /* Crash */,
 				444FE2CE206C750B00311720 /* LogVC */,
 				444FE2CD206C74F200311720 /* ColliderVC */,
 				44335F15206A37A900ABB9FE /* PwdVC */,
@@ -964,6 +977,7 @@
 				442E5BB01F579AA900D1D8A6 /* SDWebImageDecoder.m in Sources */,
 				64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */,
 				4433CE11207C86FB00F69B45 /* DMExceptionTool.m in Sources */,
+				4447F2F5207EFD760022AB1A /* CrashVC.m in Sources */,
 				4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */,
 				44CC09871F56A6B900B26FC4 /* ViewController.m in Sources */,
 				442E5C261F579AC400D1D8A6 /* ViewController+MASAdditions.m in Sources */,

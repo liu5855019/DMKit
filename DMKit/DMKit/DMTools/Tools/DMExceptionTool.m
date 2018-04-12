@@ -9,6 +9,10 @@
 #import "DMExceptionTool.h"
 #import <execinfo.h>
 
+
+static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollapseInfo";
+
+
 @implementation DMExceptionTool
 
 + (void)start
@@ -30,6 +34,8 @@
 
 + (NSString *)getDirPath
 {
+    NSLog(@"Thread : %@",[NSThread currentThread]);
+    
     NSString *dirPath = [DMTools filePathInDocuntsWithFile:@"Log"];
     
     [DMTools createDirectory:dirPath];
@@ -68,24 +74,30 @@
 
 + (void)checkFilesAndUpload
 {
-    NSString *dirPath = [self getDirPath];
-    NSError *err = nil;
-    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:&err];
-    
-    if (err) {
-        NSLog(@"%@",err);
-    } else {
-        for (NSString *fileName in files) {
-            NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
-            if ([DMTools fileExist:filePath]) {
-                [self uploadFile:fileName];
+    BACK((^{
+        NSLog(@"正在检查crash日志...");
+        NSString *dirPath = [self getDirPath];
+        NSError *err = nil;
+        NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:&err];
+        
+        if (err) {
+            NSLog(@"%@",err);
+        } else {
+            for (NSString *fileName in files) {
+                NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
+                if ([DMTools fileExist:filePath]) {
+                    [self uploadFile:fileName];
+                    return;
+                }
             }
         }
-    }
+        NSLog(@"未发现crash日志.");
+    }));
 }
 
 + (void)uploadFile:(NSString *)fileName
 {
+    NSLog(@"发现crash日志,正在上传...");
     NSString *dirPath = [self getDirPath];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
     
@@ -96,56 +108,18 @@
                            @"app_name":bundleID,
                            @"error_info":info
                            };
-    
-    NSString *url = @"http://192.168.100.101:80/add";
-    
-    [self postWithUrl:url para:para success:^(id responseObject) {
+
+    [self postWithUrl:kUploadCrashUrl para:para success:^(id responseObject) {
         NSLog(@"%@",responseObject);
+        if ([responseObject isEqualToString:@"success"]) {
+            [DMTools deleteFileAtPath:filePath];
+            [self checkFilesAndUpload];
+        }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
     }];
 }
 
-+ (void)postWithUrl:(NSString *)url
-               para:(id)para
-            success:(void (^)(id responseObject))success
-            failure:(void(^)(NSError *error))failure
-{
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    manager.requestSerializer = [AFJSONRequestSerializer serializer];
-    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
-    [manager POST:url parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        NSError *error;
-        // 得到字典
-        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
-        
-        if (error)
-        {
-            NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
-            MAIN(^{
-                if (success) {
-                    success(result);
-                }
-            });
-        }
-        else
-        {
-            MAIN(^{
-                if (success) {
-                    success(dict);
-                }
-            });
-        }
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        MAIN(^{
-            if (failure) {
-                failure(error);
-            }
-        });
-    }];
-}
 
 
 #pragma mark - Signal  信号出错
@@ -219,6 +193,38 @@ void uncaught_exception_handle(NSException *exception)
     [DMExceptionTool saveCrash:exceptionInfo];
 }
 
+#pragma mark - NetTool
 
++ (void)postWithUrl:(NSString *)url
+               para:(id)para
+            success:(void (^)(id responseObject))success
+            failure:(void(^)(NSError *error))failure
+{
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    manager.requestSerializer = [AFJSONRequestSerializer serializer];
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    [manager POST:url parameters:para progress:nil success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        NSError *error;
+        // 得到字典
+        NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:&error];
+        
+        if (error) {
+            NSString *result = [[NSString alloc] initWithData:responseObject encoding:NSUTF8StringEncoding];
+            if (success) {
+                success(result);
+            }
+        } else {
+            if (success) {
+                success(dict);
+            }
+        }
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        if (failure) {
+            failure(error);
+        }
+    }];
+}
 
 @end
