@@ -10,6 +10,10 @@
 
 @interface DMPickerVC ()
 
+@property (nonatomic , strong) DMPickerView *dmPV;
+
+
+
 @end
 
 @implementation DMPickerVC
@@ -20,20 +24,46 @@
     self.mainTitleLabel.text = @"Test DMPicker";
     
     UIButton *btn1 = [UIButton new];
-    [btn1 setTitle:@"ShowDMPicker" forState:UIControlStateNormal];
-    btn1.frame = CGRectMake(50, 100, 100, 50);
+    [btn1 setTitle:@"DMPicker" forState:UIControlStateNormal];
+    [btn1 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    btn1.frame = CGRectMake(50, 150, 150, 50);
     [btn1 addTarget:self action:@selector(clickBtn1) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:btn1];
     
+    UIButton *btn2 = [UIButton new];
+    [btn2 setTitle:@"DMBasePicker" forState:UIControlStateNormal];
+    [btn2 setTitleColor:[UIColor blueColor] forState:UIControlStateNormal];
+    btn2.frame = CGRectMake(50, 250, 150, 50);
+    [btn2 addTarget:self action:@selector(clickBtn2) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:btn2];
     
-    
+}
+
+- (DMPickerView *)dmPV
+{
+    if (_dmPV == nil) {
+        _dmPV = [[DMPickerView alloc] initWithBGView:self.view];
+        _dmPV.didSelectedIndex = ^(NSInteger index) {
+            NSLog(@"已经选中: %ld",index);
+        };
+        
+        _dmPV.datas = @[@1,@"data1",@"data2",@"data3",@"data4",@"data5"];
+    }
+    return _dmPV;
 }
 
 - (void)clickBtn1
 {
+    [self.dmPV show];
+}
+
+- (void)clickBtn2
+{
     
 }
 
-
+-(void)dealloc{
+    MyLog(@" Game Over ... ");
+}
 
 @end

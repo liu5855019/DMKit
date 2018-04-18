@@ -17,6 +17,7 @@
 #import "PwdVC.h"
 #import "PwdDictVC.h"
 #import "ShowLogVC.h"
+#import "CrashVC.h"
 
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
@@ -46,10 +47,10 @@
                @"ColliderVC",
                @"PwdVC",
                @"PwdDictVC",
-               @"ShowLogVC"];
+               @"ShowLogVC",
+               @"CrashVC"];
 
 }
-
 
 
 #pragma mark - TableView
@@ -85,7 +86,7 @@
     
     return cell;
 }
--(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     if (indexPath.row == 0) {

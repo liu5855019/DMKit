@@ -14,8 +14,12 @@
 
 - (instancetype)initWithBGView:(UIView *)view;
 
+- (instancetype)initWithBGView:(UIView *)view isHasBtn:(BOOL)hasBtn;
+
 - (void)show;
 
 - (void)hide;
+
+@property (nonatomic , copy) void (^hideAction)(void);
 
 @end

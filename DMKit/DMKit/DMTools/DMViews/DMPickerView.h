@@ -10,7 +10,7 @@
 
 @interface DMPickerView : DMBasePickerView
 
-@property (nonatomic , copy) NSArray *datas;
+@property (nonatomic , copy) NSArray <NSString *>*datas;
 
 @property (nonatomic , copy) void (^didSelectedIndex)(NSInteger index);
 

@@ -186,9 +186,4 @@
 }
 
 
-- (void)dealloc
-{
-    NSLog(@"%@ -- over",self);
-}
-
 @end

@@ -17,6 +17,8 @@
     CGRect _downRect;
 }
 
+@property (nonatomic , strong) CADisplayLink *link;
+
 @end
 
 @implementation DMBasePickerView
@@ -36,10 +38,41 @@
         _picker.backgroundColor = [UIColor whiteColor];
         
         [super setHidden:YES];
+        
+        [self createLink];
     }
     return self;
 }
 
+#pragma mark - link
+
+- (void)createLink
+{
+    WeakObj(self);
+    _link = [CADisplayLink displayLinkWithBlock:^{
+        selfWeak.backgroundColor = [selfWeak anySubViewScrolling:selfWeak.picker] ? [[UIColor redColor] colorWithAlphaComponent:0.1]: kGetColorRGBA(0, 0, 0, 0.1);
+    }];
+    [_link addToRunLoop:[NSRunLoop mainRunLoop] forMode:NSRunLoopCommonModes];
+}
+
+//检查当前是否有滚动
+- (BOOL)anySubViewScrolling:(UIView *)view
+{
+    if ([view isKindOfClass:[UIScrollView class]]) {
+        UIScrollView *scrollView = (UIScrollView *)view;
+        if (scrollView.dragging || scrollView.decelerating) {
+            return YES;
+        }
+    }
+    
+    for (UIView *theSubView in view.subviews) {
+        if ([self anySubViewScrolling:theSubView]) {
+            return YES;
+        }
+    }
+    
+    return NO;
+}
 
 - (void)setHidden:(BOOL)hidden
 {
@@ -48,7 +81,6 @@
     }else{
         [self show];
     }
-    
 }
 
 - (void)show
@@ -62,17 +94,27 @@
 - (void)hide
 {
     WeakObj(self);
+    if (_hideAction) {
+        _hideAction();
+    }
+    
     [UIView animateWithDuration:0.3 animations:^{
         selfWeak.picker.frame = _downRect;
     } completion:^(BOOL finished) {
         [super setHidden:YES];
     }];
-    
 }
 
 - (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event
 {
     [self hide];
+}
+
+- (void)dealloc
+{
+    [_link invalidate];
+    _link = nil;
+    MyLog(@" Game Over ... ");
 }
 
 @end
