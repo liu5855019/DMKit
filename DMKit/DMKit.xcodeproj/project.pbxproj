@@ -112,6 +112,8 @@
 		64E6BA061FE94D0100CAAFCF /* UIViewController+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */; };
 		64E6BA071FE94D0100CAAFCF /* UINavigationBar+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA021FE94D0100CAAFCF /* UINavigationBar+DMTools.m */; };
 		64E6BA081FE94D0100CAAFCF /* NSArray+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E6BA041FE94D0100CAAFCF /* NSArray+DMTools.m */; };
+		64E766BD2088C1DA008B25F8 /* VisionDebugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E766BC2088C1DA008B25F8 /* VisionDebugVC.m */; };
+		64E766C02088C502008B25F8 /* VisionDebugCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 64E766BF2088C502008B25F8 /* VisionDebugCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -332,6 +334,10 @@
 		64E6BA031FE94D0100CAAFCF /* UINavigationBar+DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UINavigationBar+DMTools.h"; sourceTree = "<group>"; };
 		64E6BA041FE94D0100CAAFCF /* NSArray+DMTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSArray+DMTools.m"; sourceTree = "<group>"; };
 		64E6BA051FE94D0100CAAFCF /* UIViewController+DMTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+DMTools.h"; sourceTree = "<group>"; };
+		64E766BB2088C1DA008B25F8 /* VisionDebugVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionDebugVC.h; sourceTree = "<group>"; };
+		64E766BC2088C1DA008B25F8 /* VisionDebugVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisionDebugVC.m; sourceTree = "<group>"; };
+		64E766BE2088C502008B25F8 /* VisionDebugCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = VisionDebugCell.h; sourceTree = "<group>"; };
+		64E766BF2088C502008B25F8 /* VisionDebugCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = VisionDebugCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -740,6 +746,7 @@
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				64E766BA2088C1A0008B25F8 /* Vision */,
 				4447F2F2207EFD380022AB1A /* Crash */,
 				444FE2CE206C750B00311720 /* LogVC */,
 				444FE2CD206C74F200311720 /* ColliderVC */,
@@ -831,6 +838,17 @@
 				4496FFC1207B21B70008A89F /* CADisplayLink+DMTools.m */,
 			);
 			path = DMCategory;
+			sourceTree = "<group>";
+		};
+		64E766BA2088C1A0008B25F8 /* Vision */ = {
+			isa = PBXGroup;
+			children = (
+				64E766BB2088C1DA008B25F8 /* VisionDebugVC.h */,
+				64E766BC2088C1DA008B25F8 /* VisionDebugVC.m */,
+				64E766BE2088C502008B25F8 /* VisionDebugCell.h */,
+				64E766BF2088C502008B25F8 /* VisionDebugCell.m */,
+			);
+			path = Vision;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -949,6 +967,7 @@
 				442E5BF31F579AB200D1D8A6 /* MJRefreshBackGifFooter.m in Sources */,
 				64E6BA081FE94D0100CAAFCF /* NSArray+DMTools.m in Sources */,
 				6485BA031FE9593100EFB5A8 /* BaseNavigationController.m in Sources */,
+				64E766BD2088C1DA008B25F8 /* VisionDebugVC.m in Sources */,
 				442E5C1E1F579AC400D1D8A6 /* MASConstraint.m in Sources */,
 				6485BA061FE95AEB00EFB5A8 /* RootVC.m in Sources */,
 				442E5BAD1F579AA900D1D8A6 /* NSData+ImageContentType.m in Sources */,
@@ -960,6 +979,7 @@
 				442E5BB41F579AA900D1D8A6 /* SDWebImagePrefetcher.m in Sources */,
 				442E5C341F579AD500D1D8A6 /* FMDatabase.m in Sources */,
 				442E5C361F579AD500D1D8A6 /* FMDatabasePool.m in Sources */,
+				64E766C02088C502008B25F8 /* VisionDebugCell.m in Sources */,
 				442E5C4B1F579AE400D1D8A6 /* AFURLRequestSerialization.m in Sources */,
 				4445250A200301B10008CC0D /* DMItemsView.m in Sources */,
 				442E5BB11F579AA900D1D8A6 /* SDWebImageDownloader.m in Sources */,
