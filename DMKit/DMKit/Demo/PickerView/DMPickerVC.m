@@ -42,7 +42,7 @@
 - (DMPickerView *)dmPV
 {
     if (_dmPV == nil) {
-        _dmPV = [[DMPickerView alloc] initWithBGView:self.view];
+        _dmPV = [[DMPickerView alloc] initWithBGView:self.view isHasBtn:YES];
         _dmPV.didSelectedIndex = ^(NSInteger index) {
             NSLog(@"已经选中: %ld",index);
         };
