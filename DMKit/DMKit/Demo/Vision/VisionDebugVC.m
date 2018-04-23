@@ -150,27 +150,36 @@
             
             CGRect rect = CGRectMake(x,y,w,h);
             
-            //标出最大矩形位置
-            UIImage *img = [selfWeak drawLineInImg:oImg rect:rect];
-            [selfWeak.subImgs addObject:img];
+            //标出矩形位置
+            [selfWeak.subImgs addObject:[oImg drawLineWithRect:rect lineColor:[UIColor redColor] lineWidth:3]];
+            //剪切矩形
+            UIImage *subImg = [oImg cutWithRect:rect];
+            [selfWeak.subImgs addObject:subImg];
+            
+            //处理图片
+            [selfWeak.subImgs addObjectsFromArray:[subImg process]];
         }
         
-        
+        MAIN(^{
+            [selfWeak.tabV reloadData];
+        });
     }];
+    
+    
     request.reportCharacterBoxes = YES;
     //如果UIImage 是使用CIImage生成的, 则 uiimg.cgimg == null
     //如果UIImage 是使用CGImgage生成的, 则 uiimg.ciimg == nil
     CIImage *ciImg = oImg.CIImage;
-    CGImageRef ref = ciImg.CGImage;
     
-    NSData *data = UIImagePNGRepresentation(oImg);
-    UIImage *tmpImg = [UIImage imageWithData:data];
-    ref = tmpImg.CGImage;
+    CIContext *context = [CIContext context];
+    CGImageRef ref = [context createCGImage:ciImg fromRect:ciImg.extent];
     
     VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCGImage:ref options:@{}];
     
     [handler performRequests:@[request] error:nil];
 }
+
+
 
 
 #pragma mark -
@@ -252,7 +261,7 @@
     //绘制颜色区域
     UIBezierPath *path = [UIBezierPath bezierPathWithRect:CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, rect.size.height)];
     [[UIColor redColor] setStroke];
-    [path setLineWidth:5];
+    [path setLineWidth:2];
     [path stroke];
 
    

@@ -81,6 +81,7 @@
 		4447F2F5207EFD760022AB1A /* CrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4447F2F4207EFD760022AB1A /* CrashVC.m */; };
 		444D4A182018221700A5AD8D /* DMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444D4A172018221700A5AD8D /* DMAlertView.m */; };
 		444FE2D1206CCB0900311720 /* JoDes.m in Sources */ = {isa = PBXBuildFile; fileRef = 444FE2CF206CCB0800311720 /* JoDes.m */; };
+		445BAC42208DADC10065F39F /* UIImage+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 445BAC41208DADC10065F39F /* UIImage+DMTools.m */; };
 		445D77FA20173A830080309C /* NSObject+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D77F920173A830080309C /* NSObject+DMTools.m */; };
 		446781172011879C004E461F /* UILabel+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 446781162011879C004E461F /* UILabel+DMTools.m */; };
 		44728E5820109A7800A8C236 /* ImagePickerTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 44728E5620109A7800A8C236 /* ImagePickerTool.m */; };
@@ -271,6 +272,8 @@
 		444D4A172018221700A5AD8D /* DMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAlertView.m; sourceTree = "<group>"; };
 		444FE2CF206CCB0800311720 /* JoDes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoDes.m; sourceTree = "<group>"; };
 		444FE2D0206CCB0800311720 /* JoDes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoDes.h; sourceTree = "<group>"; };
+		445BAC40208DADC10065F39F /* UIImage+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+DMTools.h"; sourceTree = "<group>"; };
+		445BAC41208DADC10065F39F /* UIImage+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DMTools.m"; sourceTree = "<group>"; };
 		445D77F820173A830080309C /* NSObject+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DMTools.h"; sourceTree = "<group>"; };
 		445D77F920173A830080309C /* NSObject+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "NSObject+DMTools.m"; sourceTree = "<group>"; };
 		446781152011879C004E461F /* UILabel+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UILabel+DMTools.h"; sourceTree = "<group>"; };
@@ -836,6 +839,8 @@
 				446781162011879C004E461F /* UILabel+DMTools.m */,
 				4496FFC0207B21B70008A89F /* CADisplayLink+DMTools.h */,
 				4496FFC1207B21B70008A89F /* CADisplayLink+DMTools.m */,
+				445BAC40208DADC10065F39F /* UIImage+DMTools.h */,
+				445BAC41208DADC10065F39F /* UIImage+DMTools.m */,
 			);
 			path = DMCategory;
 			sourceTree = "<group>";
@@ -933,6 +938,7 @@
 				442E5BF61F579AB200D1D8A6 /* MJRefreshGifHeader.m in Sources */,
 				64B8CDF21FF154A9003AA245 /* DMWebView.m in Sources */,
 				442E5BFB1F579AB200D1D8A6 /* NSBundle+MJRefresh.m in Sources */,
+				445BAC42208DADC10065F39F /* UIImage+DMTools.m in Sources */,
 				442E5B891F579AA100D1D8A6 /* UIView+Toast.m in Sources */,
 				442E5BB31F579AA900D1D8A6 /* SDWebImageManager.m in Sources */,
 				442E5C251F579AC400D1D8A6 /* View+MASAdditions.m in Sources */,
