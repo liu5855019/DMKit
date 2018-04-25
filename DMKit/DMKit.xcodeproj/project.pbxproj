@@ -95,6 +95,8 @@
 		44913C4E1FFE1076008EB55E /* AVFoundationVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44913C4D1FFE1076008EB55E /* AVFoundationVC.m */; };
 		44913C521FFE1E55008EB55E /* SocketClientVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44913C511FFE1E55008EB55E /* SocketClientVC.m */; };
 		4496FFC2207B21B70008A89F /* CADisplayLink+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4496FFC1207B21B70008A89F /* CADisplayLink+DMTools.m */; };
+		4498E0C2209078D900979156 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4498E0C1209078D800979156 /* CoreImage.framework */; };
+		4498E0C4209078E400979156 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4498E0C3209078E400979156 /* CoreGraphics.framework */; };
 		44CC09811F56A6B900B26FC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09801F56A6B900B26FC4 /* main.m */; };
 		44CC09841F56A6B900B26FC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09831F56A6B900B26FC4 /* AppDelegate.m */; };
 		44CC09871F56A6B900B26FC4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09861F56A6B900B26FC4 /* ViewController.m */; };
@@ -300,6 +302,8 @@
 		44913C511FFE1E55008EB55E /* SocketClientVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SocketClientVC.m; sourceTree = "<group>"; };
 		4496FFC0207B21B70008A89F /* CADisplayLink+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "CADisplayLink+DMTools.h"; sourceTree = "<group>"; };
 		4496FFC1207B21B70008A89F /* CADisplayLink+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+DMTools.m"; sourceTree = "<group>"; };
+		4498E0C1209078D800979156 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
+		4498E0C3209078E400979156 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		44CC097C1F56A6B900B26FC4 /* DMKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44CC09801F56A6B900B26FC4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		44CC09821F56A6B900B26FC4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -348,6 +352,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4498E0C4209078E400979156 /* CoreGraphics.framework in Frameworks */,
+				4498E0C2209078D900979156 /* CoreImage.framework in Frameworks */,
 				442E5C501F579B1B00D1D8A6 /* libsqlite3.tbd in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -600,6 +606,8 @@
 		442E5C4E1F579B1A00D1D8A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4498E0C3209078E400979156 /* CoreGraphics.framework */,
+				4498E0C1209078D800979156 /* CoreImage.framework */,
 				442E5C4F1F579B1B00D1D8A6 /* libsqlite3.tbd */,
 			);
 			name = Frameworks;

@@ -109,12 +109,16 @@
         [selfWeak.subImgs addObject:img];
         
         
-        [selfWeak cutTextImg:img];
+        [selfWeak.subImgs addObjectsFromArray:[img process]];
+        //[selfWeak.subImgs addObject:img];
         
         
         MAIN(^{
             [selfWeak.tabV reloadData];
         });
+        
+        [selfWeak cutTextImg:selfWeak.subImgs.lastObject];
+
     }];
     
     VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCGImage:_currentImg.CGImage options:@{}];
@@ -141,8 +145,10 @@
         NSLog(@"找到%ld组文字",result.count);
         
         CGSize size = oImg.size;
+        
+        UIImage *resultImg = oImg;
         for (VNTextObservation *text in result) {
-            //在图中选中最大的矩形
+            //在图中选中矩形
             CGFloat w = text.boundingBox.size.width * size.width;
             CGFloat h = text.boundingBox.size.height * size.height;
             CGFloat x = text.boundingBox.origin.x * size.width;
@@ -151,13 +157,41 @@
             CGRect rect = CGRectMake(x,y,w,h);
             
             //标出矩形位置
-            [selfWeak.subImgs addObject:[oImg drawLineWithRect:rect lineColor:[UIColor redColor] lineWidth:3]];
-            //剪切矩形
-            UIImage *subImg = [oImg cutWithRect:rect];
-            [selfWeak.subImgs addObject:subImg];
+            resultImg = [resultImg drawLineWithRect:rect lineColor:[UIColor redColor] lineWidth:3];
+            [selfWeak.subImgs addObject:resultImg];
+//            //剪切矩形
+//            UIImage *subImg = [oImg cutWithRect:rect];
+//            [selfWeak.subImgs addObject:subImg];
+//
+//            //处理图片
+//            [selfWeak.subImgs addObjectsFromArray:[subImg process]];
+//
+//            subImg = selfWeak.subImgs.lastObject;
+//            CGSize subSize = subImg.size;
+            NSLog(@"字数: %ld ",text.characterBoxes.count);
+            for (int i = 0 ; i < text.characterBoxes.count ; i ++) {
+                CGRect box = [text.characterBoxes[i] boundingBox];
+
+                w = box.size.width * size.width;
+                h = box.size.height * size.height;
+                x = box.origin.x * size.width;
+                y = size.height - box.origin.y * size.height - h;
+
+                CGRect subRect = CGRectMake(x,y, w, h);
+                resultImg = [resultImg drawLineWithRect:subRect lineColor:[UIColor blueColor] lineWidth:2];
+                [selfWeak.subImgs addObject:resultImg];
+                NSLog(@"%d ...",i);
+            }
             
-            //处理图片
-            [selfWeak.subImgs addObjectsFromArray:[subImg process]];
+            
+            NSLog(@"处理完一条");
+            
+            MAIN(^{
+            
+                [selfWeak.tabV reloadData];
+                NSLog(@"刷新了列表");
+            });
+            
         }
         
         MAIN(^{
@@ -167,14 +201,8 @@
     
     
     request.reportCharacterBoxes = YES;
-    //如果UIImage 是使用CIImage生成的, 则 uiimg.cgimg == null
-    //如果UIImage 是使用CGImgage生成的, 则 uiimg.ciimg == nil
-    CIImage *ciImg = oImg.CIImage;
     
-    CIContext *context = [CIContext context];
-    CGImageRef ref = [context createCGImage:ciImg fromRect:ciImg.extent];
-    
-    VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCGImage:ref options:@{}];
+    VNImageRequestHandler *handler = [[VNImageRequestHandler alloc] initWithCGImage:oImg.dm_CGImage options:@{}];
     
     [handler performRequests:@[request] error:nil];
 }
@@ -223,7 +251,7 @@
     
     ciImg = [ciImg imageByApplyingFilter:@"CIPerspectiveCorrection" withInputParameters:para];
     
-    return [UIImage imageWithCIImage:ciImg];
+    return [UIImage imageWithCGImage:[[CIContext context] createCGImage:ciImg fromRect:ciImg.extent]];
 }
 
 //填充img区域

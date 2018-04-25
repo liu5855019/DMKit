@@ -10,6 +10,13 @@
 
 @interface UIImage (DMTools)
 
+#pragma mark - create
+
++ (UIImage *)dm_imageWithCIImage:(CIImage *)ciImage;
+
+
+
+
 /** 解决 create img with CIImage 的时候 , cgimg = NULL问题 */
 - (CGImageRef)dm_CGImage;
 /** 结果 create img with CGImage 的时候 , ciimg = nil 问题 */
