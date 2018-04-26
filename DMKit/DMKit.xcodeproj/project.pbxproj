@@ -81,6 +81,8 @@
 		4447F2F5207EFD760022AB1A /* CrashVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4447F2F4207EFD760022AB1A /* CrashVC.m */; };
 		444D4A182018221700A5AD8D /* DMAlertView.m in Sources */ = {isa = PBXBuildFile; fileRef = 444D4A172018221700A5AD8D /* DMAlertView.m */; };
 		444FE2D1206CCB0900311720 /* JoDes.m in Sources */ = {isa = PBXBuildFile; fileRef = 444FE2CF206CCB0800311720 /* JoDes.m */; };
+		445771A220917C2B0080C6BE /* ImageDebugVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 445771A120917C2B0080C6BE /* ImageDebugVC.m */; };
+		445771A52091C2260080C6BE /* UIColor+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 445771A42091C2260080C6BE /* UIColor+DMTools.m */; };
 		445BAC42208DADC10065F39F /* UIImage+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 445BAC41208DADC10065F39F /* UIImage+DMTools.m */; };
 		445D77FA20173A830080309C /* NSObject+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 445D77F920173A830080309C /* NSObject+DMTools.m */; };
 		446781172011879C004E461F /* UILabel+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 446781162011879C004E461F /* UILabel+DMTools.m */; };
@@ -274,6 +276,10 @@
 		444D4A172018221700A5AD8D /* DMAlertView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMAlertView.m; sourceTree = "<group>"; };
 		444FE2CF206CCB0800311720 /* JoDes.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JoDes.m; sourceTree = "<group>"; };
 		444FE2D0206CCB0800311720 /* JoDes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JoDes.h; sourceTree = "<group>"; };
+		445771A020917C2B0080C6BE /* ImageDebugVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDebugVC.h; sourceTree = "<group>"; };
+		445771A120917C2B0080C6BE /* ImageDebugVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDebugVC.m; sourceTree = "<group>"; };
+		445771A32091C2260080C6BE /* UIColor+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIColor+DMTools.h"; sourceTree = "<group>"; };
+		445771A42091C2260080C6BE /* UIColor+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIColor+DMTools.m"; sourceTree = "<group>"; };
 		445BAC40208DADC10065F39F /* UIImage+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIImage+DMTools.h"; sourceTree = "<group>"; };
 		445BAC41208DADC10065F39F /* UIImage+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIImage+DMTools.m"; sourceTree = "<group>"; };
 		445D77F820173A830080309C /* NSObject+DMTools.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "NSObject+DMTools.h"; sourceTree = "<group>"; };
@@ -655,6 +661,15 @@
 			path = LogVC;
 			sourceTree = "<group>";
 		};
+		4457719F20917BF80080C6BE /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				445771A020917C2B0080C6BE /* ImageDebugVC.h */,
+				445771A120917C2B0080C6BE /* ImageDebugVC.m */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
 		447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */ = {
 			isa = PBXGroup;
 			children = (
@@ -757,6 +772,7 @@
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				4457719F20917BF80080C6BE /* Image */,
 				64E766BA2088C1A0008B25F8 /* Vision */,
 				4447F2F2207EFD380022AB1A /* Crash */,
 				444FE2CE206C750B00311720 /* LogVC */,
@@ -849,6 +865,8 @@
 				4496FFC1207B21B70008A89F /* CADisplayLink+DMTools.m */,
 				445BAC40208DADC10065F39F /* UIImage+DMTools.h */,
 				445BAC41208DADC10065F39F /* UIImage+DMTools.m */,
+				445771A32091C2260080C6BE /* UIColor+DMTools.h */,
+				445771A42091C2260080C6BE /* UIColor+DMTools.m */,
 			);
 			path = DMCategory;
 			sourceTree = "<group>";
@@ -952,6 +970,7 @@
 				442E5C251F579AC400D1D8A6 /* View+MASAdditions.m in Sources */,
 				442E5BF21F579AB200D1D8A6 /* MJRefreshAutoStateFooter.m in Sources */,
 				442E5BAE1F579AA900D1D8A6 /* SDImageCache.m in Sources */,
+				445771A52091C2260080C6BE /* UIColor+DMTools.m in Sources */,
 				442E5BB21F579AA900D1D8A6 /* SDWebImageDownloaderOperation.m in Sources */,
 				442E5BF41F579AB200D1D8A6 /* MJRefreshBackNormalFooter.m in Sources */,
 				442E5C211F579AC400D1D8A6 /* MASViewAttribute.m in Sources */,
@@ -1039,6 +1058,7 @@
 				442E5C1F1F579AC400D1D8A6 /* MASConstraintMaker.m in Sources */,
 				442E5BB71F579AA900D1D8A6 /* UIImage+MultiFormat.m in Sources */,
 				442E5BB91F579AA900D1D8A6 /* UIImageView+HighlightedWebCache.m in Sources */,
+				445771A220917C2B0080C6BE /* ImageDebugVC.m in Sources */,
 				442E5BB61F579AA900D1D8A6 /* UIImage+GIF.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

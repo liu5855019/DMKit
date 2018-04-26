@@ -29,8 +29,33 @@
 }
 
 
++ (UIImage *)imageWithColor:(UIColor *)color
+{
+    return [self imageWithColor:color size:CGSizeMake(1, 1)];
+}
 
++ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size
+{
+    return [self imageWithColor:color size:size scale:1.0];
+}
 
++ (UIImage *)imageWithColor:(UIColor *)color size:(CGSize)size scale:(CGFloat)scale
+{
+    CGFloat alpha;
+    [color getValueR:nil G:nil B:nil A:&alpha];
+    
+    UIGraphicsBeginImageContextWithOptions(size, alpha == 1, scale);
+    
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    CGContextSetFillColorWithColor(context, [color CGColor]);
+    CGContextFillRect(context, CGRectMake(0, 0, size.width, size.height));
+    UIImage *newImg = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    
+    return newImg;
+}
+
+/** 解决 create img with CIImage 的时候 , cgimg = NULL问题 */
 - (CGImageRef)dm_CGImage
 {
     if (self.CGImage) {
@@ -42,6 +67,7 @@
     return NULL;
 }
 
+/** 结果 create img with CGImage 的时候 , ciimg = nil 问题 */
 - (CIImage *)dm_CIImage
 {
     if (self.CIImage) {
@@ -50,6 +76,17 @@
     return [[CIImage alloc] initWithImage:self];
 }
 
+/** 返回一个CGImage创建的UIImage  ps:如果本身就是cg创建的返回自己, 否则重新创建 */
+- (UIImage *)imageCreateWithCGImage
+{
+    if (self.CGImage) {
+        return self;
+    }
+    if (self.CIImage) {
+        return [UIImage dm_imageWithCIImage:self.CIImage];
+    }
+    return self;
+}
 
 // 在矩形上划线
 - (UIImage *)drawLineWithRect:(CGRect)rect lineColor:(UIColor *)lineColor lineWidth:(CGFloat)lineWidth

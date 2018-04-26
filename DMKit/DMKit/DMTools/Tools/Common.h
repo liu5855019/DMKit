@@ -49,6 +49,7 @@
 #import "UILabel+DMTools.h"
 #import "UIView+DMTools.h"
 #import "UIImage+DMTools.h"
+#import "UIColor+DMTools.h"
 
 #import "CADisplayLink+DMTools.h"
 

@@ -19,6 +19,7 @@
 #import "ShowLogVC.h"
 #import "CrashVC.h"
 #import "VisionDebugVC.h"
+#import "ImageDebugVC.h"
 
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
@@ -50,7 +51,8 @@
                @"PwdDictVC",
                @"ShowLogVC",
                @"CrashVC",
-               @"VisionDebugVC"];
+               @"VisionDebugVC",
+               @"ImageDebugVC"];
 
 }
 
