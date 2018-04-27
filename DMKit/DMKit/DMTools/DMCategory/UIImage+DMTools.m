@@ -24,7 +24,7 @@
     UIImage *newImg = [UIImage imageWithCGImage:imgRef];
     
     CGImageRelease(imgRef);
-    
+
     return newImg;
 }
 

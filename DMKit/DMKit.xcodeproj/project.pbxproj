@@ -91,6 +91,9 @@
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
+		44826AB72092D0F10012436B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44826AB62092D0F10012436B /* Security.framework */; };
+		44826ABC2092D2B20012436B /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 44826AB92092D2B20012436B /* FCUUID.m */; };
+		44826AC02092D3DB0012436B /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 44826ABF2092D3DA0012436B /* UICKeyChainStore.m */; };
 		4483398D205B63CC00B0840B /* ColliderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4483398C205B63CC00B0840B /* ColliderVC.m */; };
 		44833990205B900800B0840B /* ColliderTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 4483398F205B900800B0840B /* ColliderTool.m */; };
 		44910913201576280053E438 /* SortVersionCodeVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 44910912201576280053E438 /* SortVersionCodeVC.m */; };
@@ -296,6 +299,11 @@
 		44779B241FF6455000908F50 /* UIView+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+DMTools.m"; sourceTree = "<group>"; };
 		447E71B41FF4C731001D5A60 /* DMSegmentViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMSegmentViewVC.h; sourceTree = "<group>"; };
 		447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMSegmentViewVC.m; sourceTree = "<group>"; };
+		44826AB62092D0F10012436B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		44826AB82092D2B10012436B /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
+		44826AB92092D2B20012436B /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
+		44826ABE2092D3DA0012436B /* UICKeyChainStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UICKeyChainStore.h; sourceTree = "<group>"; };
+		44826ABF2092D3DA0012436B /* UICKeyChainStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UICKeyChainStore.m; sourceTree = "<group>"; };
 		4483398B205B63CC00B0840B /* ColliderVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColliderVC.h; sourceTree = "<group>"; };
 		4483398C205B63CC00B0840B /* ColliderVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ColliderVC.m; sourceTree = "<group>"; };
 		4483398E205B900800B0840B /* ColliderTool.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ColliderTool.h; sourceTree = "<group>"; };
@@ -358,6 +366,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				44826AB72092D0F10012436B /* Security.framework in Frameworks */,
 				4498E0C4209078E400979156 /* CoreGraphics.framework in Frameworks */,
 				4498E0C2209078D900979156 /* CoreImage.framework in Frameworks */,
 				442E5C501F579B1B00D1D8A6 /* libsqlite3.tbd in Frameworks */,
@@ -612,6 +621,7 @@
 		442E5C4E1F579B1A00D1D8A6 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				44826AB62092D0F10012436B /* Security.framework */,
 				4498E0C3209078E400979156 /* CoreGraphics.framework */,
 				4498E0C1209078D800979156 /* CoreImage.framework */,
 				442E5C4F1F579B1B00D1D8A6 /* libsqlite3.tbd */,
@@ -677,6 +687,17 @@
 				447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */,
 			);
 			path = DMSegmentViewVC;
+			sourceTree = "<group>";
+		};
+		44826AAF2092C9780012436B /* FCUUID */ = {
+			isa = PBXGroup;
+			children = (
+				44826AB82092D2B10012436B /* FCUUID.h */,
+				44826AB92092D2B20012436B /* FCUUID.m */,
+				44826ABE2092D3DA0012436B /* UICKeyChainStore.h */,
+				44826ABF2092D3DA0012436B /* UICKeyChainStore.m */,
+			);
+			path = FCUUID;
 			sourceTree = "<group>";
 		};
 		44913C4B1FFE1076008EB55E /* AVFoundation */ = {
@@ -747,6 +768,7 @@
 		44CC09961F56B28900B26FC4 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				44826AAF2092C9780012436B /* FCUUID */,
 				442E5C3A1F579AE400D1D8A6 /* AFNetworking */,
 				442E5C271F579AD500D1D8A6 /* fmdb */,
 				442E5C031F579AC400D1D8A6 /* Masonry */,
@@ -1029,6 +1051,7 @@
 				442E5BBA1F579AA900D1D8A6 /* UIImageView+WebCache.m in Sources */,
 				442E5BB01F579AA900D1D8A6 /* SDWebImageDecoder.m in Sources */,
 				64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */,
+				44826ABC2092D2B20012436B /* FCUUID.m in Sources */,
 				4433CE11207C86FB00F69B45 /* DMExceptionTool.m in Sources */,
 				4447F2F5207EFD760022AB1A /* CrashVC.m in Sources */,
 				4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */,
@@ -1054,6 +1077,7 @@
 				442E5C241F579AC400D1D8A6 /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				44833990205B900800B0840B /* ColliderTool.m in Sources */,
 				44CC09811F56A6B900B26FC4 /* main.m in Sources */,
+				44826AC02092D3DB0012436B /* UICKeyChainStore.m in Sources */,
 				442E5BF71F579AB200D1D8A6 /* MJRefreshNormalHeader.m in Sources */,
 				442E5C1F1F579AC400D1D8A6 /* MASConstraintMaker.m in Sources */,
 				442E5BB71F579AA900D1D8A6 /* UIImage+MultiFormat.m in Sources */,

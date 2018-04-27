@@ -43,33 +43,33 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
     return dirPath;
 }
 
++ (NSString *)getFilePathWithFileName:(NSString *)fileName
+{
+    return [NSString stringWithFormat:@"%@/%@",[self getDirPath],fileName];
+}
+
 + (void)saveCrash:(NSString *)crash
 {
-    NSString *deviceType = [DMTools getDeviceType];
-    NSString *deviceName = [[UIDevice currentDevice] name];
-    NSString *systemVersion = [[UIDevice currentDevice] systemVersion];
     NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
-    NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
-    NSString *appVersion = kAppVerison;
-    NSString *appBuild = kAppBuild;
-    NSString *timeStr = [[NSDate date] getStringWithFormat:@"yyyyMMddHHmmss"];
-    
-    NSString *result = [NSString stringWithFormat:@"DeviceName:%@\nDeviceType:%@\nSystemVersion:%@\nAppName:%@\nBundleID:%@\nAppVersion:%@\nAppBuild:%@\nTime:%@\n\nCrashInfo:\n%@",
-                        deviceName,
-                        deviceType,
-                        systemVersion,
-                        appName,
-                        bundleID,
-                        appVersion,
-                        appBuild,
-                        timeStr,
-                        crash];
+    NSDictionary *para = @{
+                           @"deviceType":[DMTools getDeviceType],
+                           @"deviceName":[[UIDevice currentDevice] name],
+                           @"systemVersion":[[UIDevice currentDevice] systemVersion],
+                           @"appName":appName ? appName : @"",
+                           @"bundleID":[[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"],
+                           @"appVersion": kAppVerison,
+                           @"appBuild":kAppBuild,
+                           @"time":[[NSDate date] getStringWithFormat:yyyyMMddHHmmss],
+                           @"info":crash
+                           };
+
+    NSString *json = [DMTools getJsonFromDictOrArray:para];
     
     NSString *dirPath = [DMExceptionTool getDirPath];
     
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@.log",dirPath,timeStr];
+    NSString *filePath = [NSString stringWithFormat:@"%@/%@.log",dirPath,[FCUUID uuid]];
     
-    [result writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    [json writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 + (void)checkFilesAndUpload
@@ -101,14 +101,32 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
     NSString *dirPath = [self getDirPath];
     NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
     
-    NSString *info = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-    NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
+    NSString *json = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     
+    NSDictionary *para = [DMTools getDictOrArrayFromJsonStr:json];
+    
+//    if (para) {
+//        <#statements#>
+//    }
+   
+
+    
+}
+
+
++ (void)uploadWithErrorcode:(NSString *)code
+                       info:(NSString *)info
+                       desc:(NSString *)desc
+                 happenTime:(NSDate *)time
+                     remark:(NSString *)remark
+                   filePath:(NSString *)filePath
+{
+    NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSDictionary *para = @{
                            @"app_name":bundleID,
                            @"error_info":info
                            };
-
+    
     [self postWithUrl:kUploadCrashUrl para:para success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         if ([responseObject isEqualToString:@"success"]) {
@@ -119,6 +137,7 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
         NSLog(@"%@",error);
     }];
 }
+
 
 
 
@@ -174,6 +193,7 @@ void SignalExceptionHandler(int signal)
     
     NSLog(@"%@",mustr);
     [DMExceptionTool saveCrash:mustr];
+    exit(0);
 }
 
 
