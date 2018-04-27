@@ -12,8 +12,29 @@
 
 static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollapseInfo";
 
+@interface DMExceptionTool ()
+
+@property (nonatomic , assign) BOOL isUploading;
+
+@end
+
 
 @implementation DMExceptionTool
+
++ (instancetype)shareTool
+{
+    static DMExceptionTool *exceptionTool;
+    if (exceptionTool) {
+        return exceptionTool;
+    }
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        if (!exceptionTool) {
+            exceptionTool = [[self alloc] init];
+        }
+    });
+    return exceptionTool;
+}
 
 + (void)start
 {
@@ -28,6 +49,15 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
         
         [self checkFilesAndUpload];
     }
+}
+
++ (BOOL)isUploading
+{
+    return [[self shareTool] isUploading];
+}
++ (void)setIsUploading:(BOOL)isUploading
+{
+    return [[self shareTool] setIsUploading:isUploading];
 }
 
 #pragma mark - File
@@ -48,7 +78,14 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
     return [NSString stringWithFormat:@"%@/%@",[self getDirPath],fileName];
 }
 
-+ (void)saveCrash:(NSString *)crash
+#pragma mark - save
++ (void)sendInfo:(NSString *)info code:(NSString *)code desc:(NSString *)desc
+{
+    [self saveCrash:info code:code desc:desc];
+    [self checkFilesAndUpload];
+}
+
++ (void)saveCrash:(NSString *)crash code:(NSString *)code desc:(NSString *)desc
 {
     NSString *appName = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleDisplayName"];
     NSDictionary *para = @{
@@ -60,7 +97,9 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
                            @"appVersion": kAppVerison,
                            @"appBuild":kAppBuild,
                            @"time":[[NSDate date] getStringWithFormat:yyyyMMddHHmmss],
-                           @"info":crash
+                           @"info":crash,
+                           @"code":code,
+                           @"desc":desc
                            };
 
     NSString *json = [DMTools getJsonFromDictOrArray:para];
@@ -72,9 +111,15 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
     [json writeToFile:filePath atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
+#pragma mark - upload
+
 + (void)checkFilesAndUpload
 {
+    if ([self isUploading]) {
+        return;
+    }
     BACK((^{
+        [self setIsUploading:YES];
         NSLog(@"正在检查crash日志...");
         NSString *dirPath = [self getDirPath];
         NSError *err = nil;
@@ -92,49 +137,61 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollaps
             }
         }
         NSLog(@"未发现crash日志.");
+        [self setIsUploading:NO];
     }));
 }
 
 + (void)uploadFile:(NSString *)fileName
 {
     NSLog(@"发现crash日志,正在上传...");
-    NSString *dirPath = [self getDirPath];
-    NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
+    
+    NSString *filePath = [self getFilePathWithFileName:fileName];
     
     NSString *json = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     
     NSDictionary *para = [DMTools getDictOrArrayFromJsonStr:json];
     
-//    if (para) {
-//        <#statements#>
-//    }
-   
-
-    
+    if (para) {
+        [self uploadWithErrorcode:para[@"code"] info:json desc:para[@"desc"] happenTime:para[@"time"] remark:@"" filePath:filePath];
+    } else {
+        [DMTools deleteFileAtPath:filePath];
+        [self checkFilesAndUpload];
+    }
 }
 
 
 + (void)uploadWithErrorcode:(NSString *)code
                        info:(NSString *)info
                        desc:(NSString *)desc
-                 happenTime:(NSDate *)time
+                 happenTime:(NSString *)time
                      remark:(NSString *)remark
                    filePath:(NSString *)filePath
 {
     NSString *bundleID = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
     NSDictionary *para = @{
-                           @"app_name":bundleID,
-                           @"error_info":info
+                           @"app_name":bundleID.length  ? bundleID : @"(null)",
+                           @"error_code":code.length? code : @"(null)",
+                           @"error_info":info.length ? info : @"(null)",
+                           @"error_desc":desc.length ? desc : @"(null)",
+                           @"happen_time":time.length ? time : [[NSDate date] getStringWithDetailFormatter],
+                           @"remark":remark.length ? remark :@"(null)"
                            };
     
     [self postWithUrl:kUploadCrashUrl para:para success:^(id responseObject) {
         NSLog(@"%@",responseObject);
         if ([responseObject isEqualToString:@"success"]) {
-            [DMTools deleteFileAtPath:filePath];
+            if (filePath.length) {
+                BOOL result = [DMTools deleteFileAtPath:filePath];
+                NSLog(@"删除文件: %@",result ? @"成功" : @"失败");
+            }
+            [self setIsUploading:NO];
             [self checkFilesAndUpload];
+        } else {
+            [self setIsUploading:NO];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
+        [self setIsUploading:NO];
     }];
 }
 
@@ -192,7 +249,7 @@ void SignalExceptionHandler(int signal)
     free(strs);
     
     NSLog(@"%@",mustr);
-    [DMExceptionTool saveCrash:mustr];
+    [DMExceptionTool saveCrash:mustr code:@"000000000001" desc:@"信号量导致崩溃"];
     exit(0);
 }
 
@@ -210,7 +267,8 @@ void uncaught_exception_handle(NSException *exception)
     NSString *exceptionInfo = [NSString stringWithFormat:@"Exception reason：%@\nException name：%@\nException stack：%@",name, reason, stackArray];
     NSLog(@"%@", exceptionInfo);
     
-    [DMExceptionTool saveCrash:exceptionInfo];
+    [DMExceptionTool saveCrash:exceptionInfo code:@"000000000000" desc:@"异常崩溃"];
+    exit(0);
 }
 
 #pragma mark - NetTool

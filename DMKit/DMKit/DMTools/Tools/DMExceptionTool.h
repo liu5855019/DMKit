@@ -12,4 +12,7 @@
 
 + (void)start;
 
+/** 发送信息 */
++ (void)sendInfo:(NSString *)info code:(NSString *)code desc:(NSString *)desc;
+
 @end
