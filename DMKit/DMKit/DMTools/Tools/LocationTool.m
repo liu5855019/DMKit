@@ -112,7 +112,6 @@
     }
     [self performSelector:@selector(stop) withObject:nil afterDelay:self.collectTime];
     _isCollect = YES;//标记正在定位
-    
 }
 
 #pragma mark - << Action >>
@@ -173,10 +172,11 @@
             if (selfWeak.didUpdateAddr) {
                 selfWeak.didUpdateAddr(locationStr,location,placemark);
             }
-        }
-        NSLog(@"停止更新");
-        if (selfWeak.didEndUpdate) {
-            selfWeak.didEndUpdate();
+        } else {
+            NSLog(@"停止更新");
+            if (selfWeak.didEndUpdate) {
+                selfWeak.didEndUpdate();
+            }
         }
     }];
 }

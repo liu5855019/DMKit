@@ -7,13 +7,19 @@
 //
 
 #import "ImageDebugVC.h"
-#import "VisionDebugCell.h"
+#import "ImageDebugCell.h"
+#import "YYFPSLabel.h"
+
 
 @interface ImageDebugVC () <UITableViewDelegate , UITableViewDataSource>
 
 @property (nonatomic , strong) UITableView *tabV;
 
 @property (nonatomic , strong) NSMutableArray *images;
+
+@property (nonatomic, strong) YYFPSLabel *fpsLabel;
+
+@property (nonatomic , strong) ImagePickerTool *tool;
 
 @end
 
@@ -28,13 +34,157 @@
     
     [self.view addSubview:self.tabV];
     
-    [self testUIimgCGimgCIimg];
+    
+    
+    
+    _fpsLabel = [YYFPSLabel new];
+    [_fpsLabel sizeToFit];
+    _fpsLabel.y = 100;
+    _fpsLabel.x = 10;
+    _fpsLabel.alpha = 1;
+    [self.view addSubview:_fpsLabel];
+    
+    
+    WeakObj(self);
+    BACK(^{
+//        [selfWeak testUIimgCGimgCIimg];
+//
+//        [selfWeak testImageFps];
+        
+        [selfWeak testImageInfo];
+        
+        [selfWeak testColors];
+//        [selfWeak testImageOrientation];
+    });
+}
+
+- (ImagePickerTool *)tool
+{
+    if (_tool == nil) {
+        _tool = [[ImagePickerTool alloc] initWithViewController:self isCamera:YES];
+    }
+    return _tool;
+}
+
+- (void)testColors
+{
+    UIImage *img = kLoadImage(@"001",@"png");
+    [_images addObject:img];
+    
+    
+//    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceGray();
+//    CGContextRef context = CGBitmapContextCreate(nil, img.size.width, img.size.height, 8, 0, colorSpace, kCGImageAlphaNone);
+//    CGColorSpaceRelease(colorSpace);
+//    CGContextDrawImage(context, CGRectMake(0, 0, img.size.width, img.size.height), img.CGImage);
+//    CGImageRef imgRef = CGBitmapContextCreateImage(context);
+//    UIImage *grayImg = [UIImage imageWithCGImage:imgRef];
+//    CGImageRelease(imgRef);
+//    CGContextRelease(context);
+//    [_images addObject:grayImg];
+    
+    
+    
+    
+    const int RED = 1;
+    const int GREEN = 2;
+    const int BLUE = 3;
+    
+    
+    CGRect imageRect = CGRectMake(0,0, img.size.width * img.scale, img.size.height * img.scale);
+    int width = imageRect.size.width;
+    int height = imageRect.size.height;
+    
+    // the pixels will be painted to this array
+    size_t memSize = width * height * sizeof(uint32_t);
+    uint32_t *pixels = (uint32_t *) malloc(memSize);
+    // clear the pixels so any transparency is preserved
+    memset(pixels,0,memSize);
+    
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    
+    // create a context with RGBA pixels
+    CGContextRef context = CGBitmapContextCreate(pixels, width, height,8, width * sizeof(uint32_t), colorSpace, kCGBitmapByteOrder32Little | kCGImageAlphaPremultipliedLast);
+
+    CGContextDrawImage(context,CGRectMake(0,0, width, height), img.CGImage);
+    
+    for(int y = 0; y < height; y++) {
+        for(int x = 0; x < width; x++) {
+            uint8_t *rgbaPixel = (uint8_t*) &pixels[y * width];
+            
+            uint32_t gray = 0.3 * rgbaPixel[RED] +0.59 * rgbaPixel[GREEN] +0.11 * rgbaPixel[BLUE];
+            
+            // set the pixels to gray
+            rgbaPixel[RED] = gray;
+            rgbaPixel[GREEN] = gray;
+            rgbaPixel[BLUE] = gray;
+        }
+    }
+    
+    // create a new CGImageRef from our context with the modified pixels
+    CGImageRef imageRef = CGBitmapContextCreateImage(context);
+    
+    // we're done with the context, color space, and pixels
+    CGContextRelease(context);
+    CGColorSpaceRelease(colorSpace);
+    free(pixels);
+    
+    // make a new UIImage to return
+    UIImage *resultUIImage = [UIImage imageWithCGImage:imageRef scale:img.scale orientation:UIImageOrientationUp];
+    
+    // we're done with image now too
+    CGImageRelease(imageRef);
+    
+    [_images addObject:resultUIImage];
+    
+    
+    
+    
+    
+    
+
+    WeakObj(self);
+    MAIN(^{
+        [selfWeak.tabV reloadData];
+    });
+}
+
+- (void)testImageOrientation
+{
+    NSString *path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/001.png";
+    UIImage *img1 =  [UIImage imageWithContentsOfFile:path];
+    
+    [_images addObject:img1];
+    
+    NSLog(@"%@ %ld",img1,(long)img1.imageOrientation);
+    
+    
+    UIImage *img2 = [UIImage imageWithCGImage:img1.CGImage scale:img1.scale orientation:UIImageOrientationLeft];
+    [_images addObject:img2];
+    NSLog(@"%@ %ld",img2,(long)img2.imageOrientation);
+    
+    
+    
+    path = @"/Users/xianwangdoudianzixinxiyouxiangongsi/Desktop/002.png";
+    UIImage *img3 =  [UIImage imageWithContentsOfFile:path];
+    [_images addObject:img3];
+    NSLog(@"%@ %ld",img3,(long)img3.imageOrientation);
+    
+    WeakObj(self);
+    MAIN(^{
+        [selfWeak.tabV reloadData];
+    });
+}
+
+- (void)changeImage:(UIImage *)img
+{
+    
+    
 }
 
 
 - (void)testUIimgCGimgCIimg
 {
-    UIImage *img = [UIImage imageWithColor:kRandomColor size:CGSizeMake(100, 100)];
+    UIImage *img = [UIImage imageWithColor:kRandomColor size:CGSizeMake(200, 200)];
     
     [_images addObject:img];
     
@@ -88,7 +238,61 @@
         NSLog(@"cgimg >> uiimg >> data  失败!");
     }
     
-    [_tabV reloadData];
+    WeakObj(self);
+    MAIN(^{
+        [selfWeak.tabV reloadData];
+    });
+}
+
+- (void)testImageFps
+{
+    UIColor *color1 = kRandomColor;
+    UIColor *color2 = kRandomColor;
+    
+    //create from CIImage
+    for (int i = 0; i < 20; i++) {
+        UIImage *img = [UIImage imageWithColor:color1 size:CGSizeMake(200, 200)];
+        CIImage *ciImg = [CIImage imageWithCGImage:img.dm_CGImage];
+        img = [UIImage imageWithCIImage:ciImg];
+        [_images addObject:img];
+    }
+    
+    //create from CGImage
+    for (int i = 0; i < 20; i++) {
+        [_images addObject:[UIImage imageWithColor:color2 size:CGSizeMake(200, 200)]];
+    }
+    
+    WeakObj(self);
+    MAIN(^{
+        [selfWeak.tabV reloadData];
+    });
+}
+
+
+- (void)testImageInfo
+{
+    UIColor *color = kRandomColor;
+    
+    UIImage *img = [UIImage imageWithColor:color size:CGSizeMake(200, 200) scale:3];
+    [_images addObject:img];
+    NSLog(@"%@ , scale: %f",img,img.scale); 
+    
+    img = [UIImage imageWithColor:color size:CGSizeMake(200, 200) scale:2];
+    [_images addObject:img];
+    NSLog(@"%@ , scale: %f",img,img.scale);
+    
+    img = [UIImage imageWithColor:color size:CGSizeMake(200, 200) scale:1];
+    [_images addObject:img];
+    NSLog(@"%@ , scale: %f",img,img.scale);
+    
+    img = [UIImage imageWithColor:color size:CGSizeMake(200, 200) scale:0.1];
+    [_images addObject:img];
+    NSLog(@"%@ , scale: %f",img,img.scale);
+    
+    WeakObj(self);
+    MAIN(^{
+        [selfWeak.tabV reloadData];
+    });
 }
 
 
@@ -105,7 +309,7 @@
         _tabV.rowHeight = UITableViewAutomaticDimension;
         _tabV.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         
-        [_tabV registerClass:[VisionDebugCell class] forCellReuseIdentifier:@"VisionDebugCell"];
+        [_tabV registerClass:[ImageDebugCell class] forCellReuseIdentifier:@"ImageDebugCell"];
     }
     return _tabV;
 }
@@ -120,7 +324,7 @@
 }
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    VisionDebugCell *cell = [tableView dequeueReusableCellWithIdentifier:@"VisionDebugCell"];
+    ImageDebugCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ImageDebugCell"];
     
     cell.img = _images[indexPath.row];
     
@@ -130,6 +334,11 @@
 {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return kScreenW;
 }
 
 

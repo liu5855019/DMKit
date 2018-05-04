@@ -91,6 +91,7 @@
 		44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */; };
 		44779B251FF6455000908F50 /* UIView+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 44779B241FF6455000908F50 /* UIView+DMTools.m */; };
 		447E71B61FF4C731001D5A60 /* DMSegmentViewVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */; };
+		447F500C209C5BFF003AAB32 /* 001.png in Resources */ = {isa = PBXBuildFile; fileRef = 447F500B209C5BFF003AAB32 /* 001.png */; };
 		44826AB72092D0F10012436B /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44826AB62092D0F10012436B /* Security.framework */; };
 		44826ABC2092D2B20012436B /* FCUUID.m in Sources */ = {isa = PBXBuildFile; fileRef = 44826AB92092D2B20012436B /* FCUUID.m */; };
 		44826AC02092D3DB0012436B /* UICKeyChainStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 44826ABF2092D3DA0012436B /* UICKeyChainStore.m */; };
@@ -102,6 +103,9 @@
 		4496FFC2207B21B70008A89F /* CADisplayLink+DMTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 4496FFC1207B21B70008A89F /* CADisplayLink+DMTools.m */; };
 		4498E0C2209078D900979156 /* CoreImage.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4498E0C1209078D800979156 /* CoreImage.framework */; };
 		4498E0C4209078E400979156 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4498E0C3209078E400979156 /* CoreGraphics.framework */; };
+		44C07426209411A500D0555D /* ImageDebugCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C07425209411A500D0555D /* ImageDebugCell.m */; };
+		44C0742A20941BF400D0555D /* YYFPSLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 44C0742920941BF400D0555D /* YYFPSLabel.m */; };
+		44C0742C20943F8400D0555D /* timg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 44C0742B20943F8400D0555D /* timg.jpg */; };
 		44CC09811F56A6B900B26FC4 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09801F56A6B900B26FC4 /* main.m */; };
 		44CC09841F56A6B900B26FC4 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09831F56A6B900B26FC4 /* AppDelegate.m */; };
 		44CC09871F56A6B900B26FC4 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 44CC09861F56A6B900B26FC4 /* ViewController.m */; };
@@ -299,6 +303,7 @@
 		44779B241FF6455000908F50 /* UIView+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIView+DMTools.m"; sourceTree = "<group>"; };
 		447E71B41FF4C731001D5A60 /* DMSegmentViewVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMSegmentViewVC.h; sourceTree = "<group>"; };
 		447E71B51FF4C731001D5A60 /* DMSegmentViewVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMSegmentViewVC.m; sourceTree = "<group>"; };
+		447F500B209C5BFF003AAB32 /* 001.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = 001.png; sourceTree = "<group>"; };
 		44826AB62092D0F10012436B /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		44826AB82092D2B10012436B /* FCUUID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FCUUID.h; sourceTree = "<group>"; };
 		44826AB92092D2B20012436B /* FCUUID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FCUUID.m; sourceTree = "<group>"; };
@@ -318,6 +323,11 @@
 		4496FFC1207B21B70008A89F /* CADisplayLink+DMTools.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "CADisplayLink+DMTools.m"; sourceTree = "<group>"; };
 		4498E0C1209078D800979156 /* CoreImage.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreImage.framework; path = System/Library/Frameworks/CoreImage.framework; sourceTree = SDKROOT; };
 		4498E0C3209078E400979156 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		44C07424209411A500D0555D /* ImageDebugCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ImageDebugCell.h; sourceTree = "<group>"; };
+		44C07425209411A500D0555D /* ImageDebugCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ImageDebugCell.m; sourceTree = "<group>"; };
+		44C0742820941BF400D0555D /* YYFPSLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = YYFPSLabel.h; sourceTree = "<group>"; };
+		44C0742920941BF400D0555D /* YYFPSLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = YYFPSLabel.m; sourceTree = "<group>"; };
+		44C0742B20943F8400D0555D /* timg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = timg.jpg; sourceTree = "<group>"; };
 		44CC097C1F56A6B900B26FC4 /* DMKit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DMKit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		44CC09801F56A6B900B26FC4 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		44CC09821F56A6B900B26FC4 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -676,6 +686,8 @@
 			children = (
 				445771A020917C2B0080C6BE /* ImageDebugVC.h */,
 				445771A120917C2B0080C6BE /* ImageDebugVC.m */,
+				44C07424209411A500D0555D /* ImageDebugCell.h */,
+				44C07425209411A500D0555D /* ImageDebugCell.m */,
 			);
 			path = Image;
 			sourceTree = "<group>";
@@ -720,6 +732,15 @@
 			path = Socket;
 			sourceTree = "<group>";
 		};
+		44C0742720941BF400D0555D /* YYFPSLabel */ = {
+			isa = PBXGroup;
+			children = (
+				44C0742820941BF400D0555D /* YYFPSLabel.h */,
+				44C0742920941BF400D0555D /* YYFPSLabel.m */,
+			);
+			path = YYFPSLabel;
+			sourceTree = "<group>";
+		};
 		44CC09731F56A6B900B26FC4 = {
 			isa = PBXGroup;
 			children = (
@@ -751,6 +772,8 @@
 		44CC097F1F56A6B900B26FC4 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				447F500B209C5BFF003AAB32 /* 001.png */,
+				44C0742B20943F8400D0555D /* timg.jpg */,
 				44CC09821F56A6B900B26FC4 /* AppDelegate.h */,
 				44CC09831F56A6B900B26FC4 /* AppDelegate.m */,
 				44CC09851F56A6B900B26FC4 /* ViewController.h */,
@@ -768,6 +791,7 @@
 		44CC09961F56B28900B26FC4 /* Others */ = {
 			isa = PBXGroup;
 			children = (
+				44C0742720941BF400D0555D /* YYFPSLabel */,
 				44826AAF2092C9780012436B /* FCUUID */,
 				442E5C3A1F579AE400D1D8A6 /* AFNetworking */,
 				442E5C271F579AD500D1D8A6 /* fmdb */,
@@ -966,7 +990,9 @@
 				44CC098F1F56A6B900B26FC4 /* LaunchScreen.storyboard in Resources */,
 				44CC098C1F56A6B900B26FC4 /* Assets.xcassets in Resources */,
 				442E5BF91F579AB200D1D8A6 /* MJRefresh.bundle in Resources */,
+				447F500C209C5BFF003AAB32 /* 001.png in Resources */,
 				442E5C391F579AD500D1D8A6 /* Info.plist in Resources */,
+				44C0742C20943F8400D0555D /* timg.jpg in Resources */,
 				44CC098A1F56A6B900B26FC4 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -998,6 +1024,7 @@
 				442E5C211F579AC400D1D8A6 /* MASViewAttribute.m in Sources */,
 				442E5BBB1F579AA900D1D8A6 /* UIView+WebCacheOperation.m in Sources */,
 				442E5C4C1F579AE400D1D8A6 /* AFURLResponseSerialization.m in Sources */,
+				44C07426209411A500D0555D /* ImageDebugCell.m in Sources */,
 				442B906A206B9030009B6AC3 /* PwdDictVC.m in Sources */,
 				442E5BEC1F579AB200D1D8A6 /* MJRefreshBackFooter.m in Sources */,
 				442E5BB51F579AA900D1D8A6 /* UIButton+WebCache.m in Sources */,
@@ -1031,6 +1058,7 @@
 				442E5C381F579AD500D1D8A6 /* FMResultSet.m in Sources */,
 				442E5C351F579AD500D1D8A6 /* FMDatabaseAdditions.m in Sources */,
 				442E5BF81F579AB200D1D8A6 /* MJRefreshStateHeader.m in Sources */,
+				44C0742A20941BF400D0555D /* YYFPSLabel.m in Sources */,
 				442E5BB41F579AA900D1D8A6 /* SDWebImagePrefetcher.m in Sources */,
 				442E5C341F579AD500D1D8A6 /* FMDatabase.m in Sources */,
 				442E5C361F579AD500D1D8A6 /* FMDatabasePool.m in Sources */,

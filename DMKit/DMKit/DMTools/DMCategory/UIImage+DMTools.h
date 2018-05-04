@@ -23,6 +23,8 @@
 
 #pragma mark - property
 
+/** 是否含有alpha通道 //此处参考了yykit */
+- (BOOL)hasAlphaChannel;
 
 /** 解决 create img with CIImage 的时候 , cgimg = NULL问题 */
 - (CGImageRef)dm_CGImage;
@@ -38,6 +40,14 @@
 
 /** 裁剪矩形图片 */
 - (UIImage *)cutWithRect:(CGRect)rect;
+
+/** 按比例重置图片Size */
+- (UIImage *)reSizeWithScale:(CGFloat)scale;
+
+/** 重置图片size */
+- (UIImage *)reSize:(CGSize)size;
+
+- (UIImage *)reSize:(CGSize)size contentMode:(UIViewContentMode)contentMode;
 
 
 - (NSArray *)process;

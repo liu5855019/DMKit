@@ -10,7 +10,7 @@
 #import <execinfo.h>
 
 
-static NSString * const kUploadCrashUrl = @"http://192.168.100.101:80/addCollapseInfo";
+static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addCollapseInfo";
 
 @interface DMExceptionTool ()
 
