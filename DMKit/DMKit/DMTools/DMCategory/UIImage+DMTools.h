@@ -32,6 +32,8 @@
 - (CIImage *)dm_CIImage;
 /** 返回一个CGImage创建的UIImage  ps:如果本身就是cg创建的返回自己, 否则重新创建 */
 - (UIImage *)imageCreateWithCGImage;
+/** 返回灰度图 */
+- (UIImage *)grayImage;
 
 
 #pragma mark - draw

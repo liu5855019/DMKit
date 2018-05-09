@@ -103,6 +103,61 @@
     return self;
 }
 
+/** 返回灰度图 */
+- (UIImage *)grayImage
+{
+    const int RED = 0;
+    const int GREEN = 1;
+    const int BLUE = 2;
+    //const int ALPHA = 3;
+    
+    CGSize imgSize = CGSizeMake(self.size.width * self.scale, self.size.height * self.scale);
+    
+    //申请存储空间
+    size_t memSize = imgSize.width * imgSize.height * sizeof(uint32_t);
+    uint32_t *pixels = malloc(memSize);
+    memset(pixels, 0, memSize);
+    
+    
+    //创建 context
+    //顺序  +   rgba  = rgba kCGImageByteOrder32Big | kCGImageAlphaPremultipliedLast 
+    CGColorSpaceRef colorSpace = CGColorSpaceCreateDeviceRGB();
+    CGContextRef context = CGBitmapContextCreate(pixels, imgSize.width, imgSize.height, 8, imgSize.width * sizeof(uint32_t),colorSpace, kCGBitmapByteOrder32Big | kCGImageAlphaPremultipliedLast);
+    
+    
+    CGContextDrawImage(context, CGRectMake(0, 0, imgSize.width, imgSize.height), self.dm_CGImage);
+    // 读取 修改色值
+    for (int y = 0; y < imgSize.height; y++) {
+        for (int x = 0; x < imgSize.width; x++) {
+            uint8_t *rgbaPixel = (uint8_t *)&pixels[y*(int)imgSize.width + x];
+            
+            //uint8_t a = rgbaPixel[ALPHA];
+            uint8_t r = rgbaPixel[RED];
+            uint8_t g = rgbaPixel[GREEN];
+            uint8_t b = rgbaPixel[BLUE];
+            //NSLog(@"r:%hhu - g:%hhu - b:%hhu - a:%hhu",r,g,b,a);
+            
+            uint8_t gray = 0.3*r + 0.59*g + 0.11*b;
+            
+            rgbaPixel[RED] = gray;
+            rgbaPixel[GREEN] = gray;
+            rgbaPixel[BLUE] = gray;
+        }
+    }
+    
+    CGImageRef imgRef = CGBitmapContextCreateImage(context);
+    UIImage *newImg = [UIImage imageWithCGImage:imgRef scale:self.scale orientation:UIImageOrientationUp];
+    
+    //释放空间
+    CGColorSpaceRelease(colorSpace);
+    CGContextRelease(context);
+    free(pixels);
+    CGImageRelease(imgRef);
+    
+    
+    return newImg;
+}
+
 #pragma mark - draw
 
 // 在矩形上划线
