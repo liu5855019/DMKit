@@ -412,6 +412,39 @@
     return [numberArray copy];
 }
 
+/** 获取两个坐标的距离 */
++ (double)getMeterWithCoord2D:(CLLocationCoordinate2D)coor1
+                      Coord2D:(CLLocationCoordinate2D)coor2
+{
+    double EARTH_RADIUS = 6371393.0;//m 地球半径 平均值，米
+    double pi = 3.1415926535897931;
+    //用haversine公式计算球面两点间的距离。
+    //经纬度转换成弧度
+    
+    double y1 = coor1.latitude * pi / 180;
+    double x1 = coor1.longitude * pi / 180;
+    double y2 = coor2.latitude * pi / 180;
+    double x2 = coor2.longitude * pi / 180;
+    
+    //差值
+    double vLon = fabs(x1 - x2);
+    double vLat = fabs(y1 - y2);
+    
+    
+    //h is the great circle distance in radians, great circle就是一个球体上的切面，它的圆心即是球心的一个周长最大的圆。
+    double h = [self haverSin:vLat] + cos(y1) * cos(y2) * [self haverSin:vLon];
+    
+    double distance = 2 * EARTH_RADIUS * asin(sqrt(h));
+    
+    return distance;
+}
+
++ (double)haverSin:(double)theta
+{
+    double v = sin(theta / 2);
+    return v * v;
+}
+
 #pragma mark - << NSUserDefults >>
 
 /** 存储用户偏好设置 到 NSUserDefults */

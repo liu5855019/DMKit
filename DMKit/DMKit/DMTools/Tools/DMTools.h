@@ -72,6 +72,9 @@
 /** 根据起始数字 终点数字 和 持续时间 返回 每秒60次的播放数组 */
 + (NSArray *)getNumsWithFrom:(CGFloat)from To:(CGFloat)to Time:(CGFloat)time;
 
+/** 获取两个坐标的距离 */ 
++ (double)getMeterWithCoord2D:(CLLocationCoordinate2D)coor1
+                      Coord2D:(CLLocationCoordinate2D)coor2;
 
 #pragma mark - << NSUserDefults >>
 
