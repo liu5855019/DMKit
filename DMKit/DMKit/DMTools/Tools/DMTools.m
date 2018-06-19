@@ -586,6 +586,18 @@
     return  [imageData writeToFile:filePath atomically:YES];
 }
 
+/** 修正文件乱码 */
++ (void)fixTextFile:(NSString *)oFile toFile:(NSString *)toFile
+{
+    NSData *data = [NSData dataWithContentsOfFile:oFile];
+    
+    NSStringEncoding encoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    
+    NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:encoding];
+    
+    [str writeToFile:toFile atomically:YES encoding:NSUTF8StringEncoding error:nil];
+}
+
 #pragma mark - << String >>
 
 /** 字符串是否是空 */

@@ -135,6 +135,9 @@
 /** 给出image和文件名,存储到Doc/Photos文件夹下 */
 + (BOOL)writeImage:(UIImage *)image toFile:(NSString *)fileName;
 
+/** 修正文件乱码 */
++ (void)fixTextFile:(NSString *)oFile toFile:(NSString *)toFile;
+
 #pragma mark - << String >>
 
 /** 字符串是否是空 */
