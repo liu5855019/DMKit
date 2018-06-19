@@ -73,6 +73,7 @@
 #import "DMAlertView.h"
 #import "DMBasePickerView.h"
 #import "DMPickerView.h"
+#import "DMShowBigImageView.h"
 
 
 

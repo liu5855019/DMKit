@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4409680720D8DA9100CE0DB2 /* DMShowBigImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409680620D8DA9000CE0DB2 /* DMShowBigImageView.m */; };
 		442230452057630E003E2DCC /* DMBasePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442230442057630E003E2DCC /* DMBasePickerView.m */; };
 		44223048205763B5003E2DCC /* DMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44223047205763B5003E2DCC /* DMPickerView.m */; };
 		4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4422304F20576BB7003E2DCC /* DMPickerVC.m */; };
@@ -223,6 +224,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		4409680520D8DA9000CE0DB2 /* DMShowBigImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMShowBigImageView.h; sourceTree = "<group>"; };
+		4409680620D8DA9000CE0DB2 /* DMShowBigImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShowBigImageView.m; sourceTree = "<group>"; };
 		442230432057630E003E2DCC /* DMBasePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMBasePickerView.h; sourceTree = "<group>"; };
 		442230442057630E003E2DCC /* DMBasePickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMBasePickerView.m; sourceTree = "<group>"; };
 		44223046205763B5003E2DCC /* DMPickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMPickerView.h; sourceTree = "<group>"; };
@@ -1386,6 +1389,8 @@
 				442230442057630E003E2DCC /* DMBasePickerView.m */,
 				44223046205763B5003E2DCC /* DMPickerView.h */,
 				44223047205763B5003E2DCC /* DMPickerView.m */,
+				4409680520D8DA9000CE0DB2 /* DMShowBigImageView.h */,
+				4409680620D8DA9000CE0DB2 /* DMShowBigImageView.m */,
 			);
 			path = DMViews;
 			sourceTree = "<group>";
@@ -1680,6 +1685,7 @@
 				4464E63D20A298E80007AB0A /* RACBehaviorSubject.m in Sources */,
 				4464E63420A298E80007AB0A /* NSObject+RACSelectorSignal.m in Sources */,
 				4464E62B20A298E80007AB0A /* NSFileHandle+RACSupport.m in Sources */,
+				4409680720D8DA9100CE0DB2 /* DMShowBigImageView.m in Sources */,
 				44779B1F1FF62E0B00908F50 /* NSString+DMTools.m in Sources */,
 				4464E64C20A298E80007AB0A /* RACGroupedSignal.m in Sources */,
 				442E5BEB1F579AB200D1D8A6 /* MJRefreshAutoFooter.m in Sources */,
