@@ -74,6 +74,7 @@
 #import "DMBasePickerView.h"
 #import "DMPickerView.h"
 #import "DMShowBigImageView.h"
+#import "DMShadowView.h"
 
 
 

@@ -12,6 +12,7 @@
 		44223048205763B5003E2DCC /* DMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44223047205763B5003E2DCC /* DMPickerView.m */; };
 		4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4422304F20576BB7003E2DCC /* DMPickerVC.m */; };
 		442B906A206B9030009B6AC3 /* PwdDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B9069206B9030009B6AC3 /* PwdDictVC.m */; };
+		442C997D20D9EF45002B7778 /* DMShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442C997B20D9EF45002B7778 /* DMShadowView.m */; };
 		442E5B891F579AA100D1D8A6 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B881F579AA100D1D8A6 /* UIView+Toast.m */; };
 		442E5BAC1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8C1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m */; };
 		442E5BAD1F579AA900D1D8A6 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8E1F579AA900D1D8A6 /* NSData+ImageContentType.m */; };
@@ -234,6 +235,8 @@
 		4422304F20576BB7003E2DCC /* DMPickerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMPickerVC.m; sourceTree = "<group>"; };
 		442B9068206B9030009B6AC3 /* PwdDictVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwdDictVC.h; sourceTree = "<group>"; };
 		442B9069206B9030009B6AC3 /* PwdDictVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdDictVC.m; sourceTree = "<group>"; };
+		442C997B20D9EF45002B7778 /* DMShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShadowView.m; sourceTree = "<group>"; };
+		442C997C20D9EF45002B7778 /* DMShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMShadowView.h; sourceTree = "<group>"; };
 		442E5B871F579AA100D1D8A6 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		442E5B881F579AA100D1D8A6 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		442E5B8B1F579AA900D1D8A6 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -1391,6 +1394,8 @@
 				44223047205763B5003E2DCC /* DMPickerView.m */,
 				4409680520D8DA9000CE0DB2 /* DMShowBigImageView.h */,
 				4409680620D8DA9000CE0DB2 /* DMShowBigImageView.m */,
+				442C997C20D9EF45002B7778 /* DMShadowView.h */,
+				442C997B20D9EF45002B7778 /* DMShadowView.m */,
 			);
 			path = DMViews;
 			sourceTree = "<group>";
@@ -1644,6 +1649,7 @@
 				64E6B9FC1FE930AE00CAAFCF /* DMSegmentView.m in Sources */,
 				4464E64720A298E80007AB0A /* RACEagerSequence.m in Sources */,
 				4464E67E20A298E80007AB0A /* UITextView+RACSignalSupport.m in Sources */,
+				442C997D20D9EF45002B7778 /* DMShadowView.m in Sources */,
 				44826ABC2092D2B20012436B /* FCUUID.m in Sources */,
 				4433CE11207C86FB00F69B45 /* DMExceptionTool.m in Sources */,
 				4447F2F5207EFD760022AB1A /* CrashVC.m in Sources */,

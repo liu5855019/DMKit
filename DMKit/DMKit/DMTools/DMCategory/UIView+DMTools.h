@@ -26,5 +26,12 @@
 /** 根据类名加载xib ---> View */
 + (__kindof UIView *) viewWithXibClassName:(NSString *)className;
 
+/** 增加默认阴影 */
+- (void)addBCShaadow;
+
+/** 增加指定颜色阴影 */
+- (void)addBCShaadowWith:(UIColor *)color;
+
+
 
 @end

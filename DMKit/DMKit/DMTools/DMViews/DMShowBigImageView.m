@@ -65,7 +65,7 @@
     CGRect rect = CGRectMake((kScreenW - imageViewW) / 2 , (kGetH(self) - imageViewH) / 2, imageViewW, imageViewH);
     
     WeakObj(self);
-    [UIView animateWithDuration:kBigImageAnimationTime animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         selfWeak.imgV.frame = rect;
         selfWeak.alpha = 1;
     }];
@@ -74,7 +74,7 @@
 -(void)closeImageView
 {
     WeakObj(self);
-    [UIView animateWithDuration:kBigImageAnimationTime animations:^{
+    [UIView animateWithDuration:0.25 animations:^{
         selfWeak.imgV.frame = [selfWeak.originIV convertRect:selfWeak.originIV.bounds toView:[UIApplication sharedApplication].keyWindow];
         selfWeak.alpha = 0;
     } completion:^(BOOL finished) {

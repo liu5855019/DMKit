@@ -118,6 +118,31 @@
 }
 
 
+/** 增加默认阴影 */
+- (void)addBCShaadow
+{
+    self.layer.borderColor = [UIColor whiteColor].CGColor;
+    self.backgroundColor = [UIColor whiteColor];
+    self.layer.borderWidth = 1;
+    self.layer.shadowColor = [UIColor colorWithRed:74/255.0f green:112/255.0f blue:189/255.0f alpha:1.0].CGColor;
+    self.layer.shadowRadius = 5;
+    self.layer.shadowOpacity = 0.25;
+    self.layer.shadowOffset = CGSizeMake(-2, 2);
+    self.clipsToBounds = false;
+}
+
+/** 增加指定颜色阴影 */
+- (void)addBCShaadowWith:(UIColor *)color
+{
+    self.layer.borderColor = color.CGColor;
+    self.layer.borderWidth = 1;
+    self.layer.shadowColor = color.CGColor;
+    self.layer.shadowRadius = 5;
+    self.layer.shadowOpacity = 0.25;
+    self.layer.shadowOffset = CGSizeMake(-2, 2);
+    self.clipsToBounds = false;
+}
+
 
 
 @end
