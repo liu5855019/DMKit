@@ -13,6 +13,7 @@
 		4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4422304F20576BB7003E2DCC /* DMPickerVC.m */; };
 		442B906A206B9030009B6AC3 /* PwdDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B9069206B9030009B6AC3 /* PwdDictVC.m */; };
 		442C997D20D9EF45002B7778 /* DMShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442C997B20D9EF45002B7778 /* DMShadowView.m */; };
+		442C999C20DA38E5002B7778 /* DMLanguageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 442C999A20DA38E4002B7778 /* DMLanguageTool.m */; };
 		442E5B891F579AA100D1D8A6 /* UIView+Toast.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B881F579AA100D1D8A6 /* UIView+Toast.m */; };
 		442E5BAC1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8C1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m */; };
 		442E5BAD1F579AA900D1D8A6 /* NSData+ImageContentType.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5B8E1F579AA900D1D8A6 /* NSData+ImageContentType.m */; };
@@ -237,6 +238,8 @@
 		442B9069206B9030009B6AC3 /* PwdDictVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdDictVC.m; sourceTree = "<group>"; };
 		442C997B20D9EF45002B7778 /* DMShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShadowView.m; sourceTree = "<group>"; };
 		442C997C20D9EF45002B7778 /* DMShadowView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMShadowView.h; sourceTree = "<group>"; };
+		442C999A20DA38E4002B7778 /* DMLanguageTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMLanguageTool.m; sourceTree = "<group>"; };
+		442C999B20DA38E5002B7778 /* DMLanguageTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMLanguageTool.h; sourceTree = "<group>"; };
 		442E5B871F579AA100D1D8A6 /* UIView+Toast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Toast.h"; sourceTree = "<group>"; };
 		442E5B881F579AA100D1D8A6 /* UIView+Toast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Toast.m"; sourceTree = "<group>"; };
 		442E5B8B1F579AA900D1D8A6 /* MKAnnotationView+WebCache.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MKAnnotationView+WebCache.h"; sourceTree = "<group>"; };
@@ -1373,6 +1376,8 @@
 				44728E5620109A7800A8C236 /* ImagePickerTool.m */,
 				4433CE0F207C86FB00F69B45 /* DMExceptionTool.h */,
 				4433CE10207C86FB00F69B45 /* DMExceptionTool.m */,
+				442C999B20DA38E5002B7778 /* DMLanguageTool.h */,
+				442C999A20DA38E4002B7778 /* DMLanguageTool.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -1544,6 +1549,7 @@
 				4464E67620A298E80007AB0A /* UIRefreshControl+RACCommandSupport.m in Sources */,
 				4464E65220A298E80007AB0A /* RACMulticastConnection.m in Sources */,
 				442E5BB21F579AA900D1D8A6 /* SDWebImageDownloaderOperation.m in Sources */,
+				442C999C20DA38E5002B7778 /* DMLanguageTool.m in Sources */,
 				4464E65120A298E80007AB0A /* RACKVOTrampoline.m in Sources */,
 				442E5BF41F579AB200D1D8A6 /* MJRefreshBackNormalFooter.m in Sources */,
 				4464E63F20A298E80007AB0A /* RACChannel.m in Sources */,

@@ -79,9 +79,19 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
 }
 
 #pragma mark - save
-+ (void)sendInfo:(NSString *)info code:(NSString *)code desc:(NSString *)desc
++ (void)sendInfo:(id)info code:(NSString *)code desc:(NSString *)desc
 {
-    [self saveCrash:info code:code desc:desc];
+    NSString *crash = @"";
+    if ([info isKindOfClass:[NSString class]]) {
+        crash = info;
+    } else if ([info isKindOfClass:[NSDictionary class]] ||
+               [info isKindOfClass:[NSArray class]]) {
+        crash = [DMTools getJsonFromDictOrArray:info];
+    } else if (info) {
+        crash = [NSString stringWithFormat:@"%@",info];
+    }
+    
+    [self saveCrash:crash code:code desc:desc];
     [self checkFilesAndUpload];
 }
 
