@@ -16,7 +16,7 @@
 
 @interface DMLanguageTool()
 
-@property(nonatomic , copy) NSBundle *bundle;
+@property(nonatomic , strong) NSBundle *bundle;
 
 @end
 
@@ -56,15 +56,13 @@
         return [_bundle localizedStringForKey:key value:nil table:@"Localizable"];
     }
     return NSLocalizedString(key, nil);
-    
 }
 
 - (void)setType:(LanguageType)type
 {
     _type = type;
     
-    NSString *path = [[NSBundle mainBundle] pathForResource:[self stringWithType:_type] ofType:@"lproj"];
-    self.bundle = [NSBundle bundleWithPath:path];
+    self.bundle = [self bundleWithType:type];
     
     [[NSUserDefaults standardUserDefaults] setObject:[@(_type) stringValue] forKey:LANGUAGE_SET];
     [[NSUserDefaults standardUserDefaults] synchronize];
@@ -73,17 +71,17 @@
     
 }
 
-- (NSString *)stringWithType:(LanguageType)type
+- (NSBundle *)bundleWithType:(LanguageType)type
 {
     if (type == LT_ZH_HANS) {
-        return @"zh-Hans";
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"zh-Hans" ofType:@"lproj"];
+        return [NSBundle bundleWithPath:path];
     } else if (type == LT_EN) {
-        return @"en";
+        NSString *path = [[NSBundle mainBundle] pathForResource:@"en" ofType:@"lproj"];
+        return [NSBundle bundleWithPath:path];
     }
     return nil;
 }
-
-
 
 @end
 
