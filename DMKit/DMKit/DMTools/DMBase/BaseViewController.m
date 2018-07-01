@@ -21,7 +21,7 @@
     self.view.backgroundColor = [UIColor whiteColor];
 }
 
--(UILabel *)mainTitleLabel
+- (UILabel *)mainTitleLabel
 {
     if (_mainTitleLabel == nil) {
         _mainTitleLabel = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenW *0.4, 30)];

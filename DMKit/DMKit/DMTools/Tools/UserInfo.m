@@ -13,7 +13,7 @@ static NSString * const kTourist = @"tourist";              ///<游客token
 
 @interface UserInfo ()
 
-@property (nonatomic , assign) CGFloat scale;
+@property (nonatomic , assign) CGFloat scaleH;
 @property (nonatomic , assign) CGFloat scaleW;
 
 @end
@@ -143,10 +143,10 @@ static NSString * const kTourist = @"tourist";              ///<游客token
 
 -(CGFloat)screenScaleH
 {
-    if (_scale == 0) {
-        _scale = kScreenH / 667.0f;
+    if (_scaleH == 0) {
+        _scaleH = kScreenH / 667.0f;
     }
-    return _scale;
+    return _scaleH;
 }
 
 -(CGFloat)screenScaleW

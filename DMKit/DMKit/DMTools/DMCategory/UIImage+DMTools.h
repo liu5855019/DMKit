@@ -54,6 +54,7 @@
 
 - (NSArray *)process;
 
+- (UIImage *)writeTexts:(NSArray <NSString *>*)texts;
 
 
 

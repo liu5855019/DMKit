@@ -419,5 +419,49 @@
 //    return rect;
 //}
 
+- (UIImage *)writeTexts:(NSArray <NSString *>*)texts
+{
+    if (texts.count < 1) {
+        return self;
+    }
+    
+    //缩放基数是960来的
+    UIFont *font=[UIFont fontWithName:@"Arial-BoldItalicMT" size:30 * self.size.width / 960.0];
+    //设置水印字体
+    NSDictionary* dict = @{
+                           NSFontAttributeName:font,
+                           NSForegroundColorAttributeName:[UIColor redColor]
+                           };
+    UIGraphicsBeginImageContext(self.size);
+    [self drawInRect:CGRectMake(0, 0, self.size.width, self.size.height)];
+    
+    float border = 16; //边框宽度
+    border = border * self.size.width / 960.0; //按比例缩放
+    
+    float textSpace = 16; //行间距
+    textSpace = textSpace * self.size.width / 960.0; //按比例缩放
+    
+    float textBeginHeight = self.size.height - textSpace; //开始写的左下角总高度
+    
+    //写入
+    for (int i = (int)texts.count-1; i >= 0; i--) {
+        NSString *str = texts[i];
+        CGSize strSize = [str boundingRectWithSize:CGSizeMake(self.size.width - 2 * border, CGFLOAT_MAX) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dict context:nil].size;
+        //NSLog(@"w:%f---h:%f",strSize.width,strSize.height);
+        
+        CGRect rect = CGRectMake(border, textBeginHeight-strSize.height, strSize.width, strSize.height);
+        
+        [str drawWithRect:rect options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading attributes:dict context:nil];
+        
+        textBeginHeight -= (textSpace + strSize.height);
+    }
+    
+    UIImage *newImage=UIGraphicsGetImageFromCurrentImageContext();
+    
+    UIGraphicsEndImageContext();
+    
+    return newImage;
+}
+
 
 @end
