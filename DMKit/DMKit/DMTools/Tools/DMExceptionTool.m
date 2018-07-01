@@ -9,12 +9,17 @@
 #import "DMExceptionTool.h"
 #import <execinfo.h>
 
+#define kLogDir @"Log/Log"
+#define kCrashDir @"Log/Crash"
+
 
 static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addCollapseInfo";
 
 @interface DMExceptionTool ()
 
 @property (nonatomic , assign) BOOL isUploading;
+
+@property (nonatomic , strong) NSFileHandle *fileHandle;
 
 @end
 
@@ -47,6 +52,8 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
         //系统异常捕获
         NSSetUncaughtExceptionHandler(&uncaught_exception_handle);
         
+        [self startLogger];
+        
         [self checkFilesAndUpload];
     }
 }
@@ -55,28 +62,57 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
 {
     return [[self shareTool] isUploading];
 }
+
 + (void)setIsUploading:(BOOL)isUploading
 {
     return [[self shareTool] setIsUploading:isUploading];
 }
 
-#pragma mark - File
-
-+ (NSString *)getDirPath
++ (void)startLogger
 {
-    NSLog(@"Thread : %@",[NSThread currentThread]);
+    NSLog(@"%@",[[NSDate date] getStringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSSSSS"]);
+    NSString *dirPath = [self getLogDirPath];
+    NSString *filePath1 = [NSString stringWithFormat:@"%@/%@.log",dirPath,[FCUUID uuid]];
+    [@"" writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:NULL];
+    NSFileHandle *handle = [NSFileHandle fileHandleForWritingAtPath:filePath1];
+    if (handle) {
+        [[self shareTool] setFileHandle:handle];
+    } else {
+        NSLog(@"生成handle失败");
+    }
     
-    NSString *dirPath = [DMTools filePathInDocuntsWithFile:@"Log"];
+    NSError *err = nil;
+    NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:&err];
     
-    [DMTools createDirectory:dirPath];
-    
-    return dirPath;
+    if (err) {
+        NSLog(@"%@",err);
+    } else {
+        for (NSString *fileName in files) {
+            NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
+            if (![filePath isEqualToString:filePath1] && [DMTools fileExist:filePath]) {
+                [self uploadFile:fileName];
+                
+                NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
+                
+                [DMExceptionTool sendInfo:content code:@"000000000003" desc:@"上报日志"];
+                
+                [DMTools deleteFileAtPath:filePath];
+            }
+        }
+    }
 }
 
-+ (NSString *)getFilePathWithFileName:(NSString *)fileName
++ (void)writeLog:(NSString *)log
 {
-    return [NSString stringWithFormat:@"%@/%@",[self getDirPath],fileName];
+    NSFileHandle *handle = [[DMExceptionTool shareTool] fileHandle];
+    if (handle) {
+        [handle seekToEndOfFile];
+        [handle writeData:[log dataUsingEncoding:NSUTF8StringEncoding]];
+    } else {
+        NSLog(@"no handle");
+    }
 }
+
 
 #pragma mark - save
 + (void)sendInfo:(NSString *)info code:(NSString *)code desc:(NSString *)desc
@@ -104,7 +140,7 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
 
     NSString *json = [DMTools getJsonFromDictOrArray:para];
     
-    NSString *dirPath = [DMExceptionTool getDirPath];
+    NSString *dirPath = [DMExceptionTool getCrashDirPath];
     
     NSString *filePath = [NSString stringWithFormat:@"%@/%@.log",dirPath,[FCUUID uuid]];
     
@@ -121,7 +157,7 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
     BACK((^{
         [self setIsUploading:YES];
         NSLog(@"正在检查crash日志...");
-        NSString *dirPath = [self getDirPath];
+        NSString *dirPath = [self getCrashDirPath];
         NSError *err = nil;
         NSArray *files = [[NSFileManager defaultManager] contentsOfDirectoryAtPath:dirPath error:&err];
         
@@ -145,7 +181,7 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
 {
     NSLog(@"发现crash日志,正在上传...");
     
-    NSString *filePath = [self getFilePathWithFileName:fileName];
+    NSString *filePath = [self getCrashPathWithFileName:fileName];
     
     NSString *json = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
     
@@ -197,6 +233,37 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
 
 
 
+#pragma mark - File
+
+//获取文件夹路径
++ (NSString *)getDirPath:(NSString *)file
+{
+    
+    NSString *dirPath = [DMTools filePathInDocuntsWithFile:file];
+    BOOL result = [DMTools createDirectory:dirPath];
+    NSLog(@"创建文件夹 %@ : %@",file,result ? @"成功" : @"失败");
+    return dirPath;
+}
+
++ (NSString *)getLogDirPath
+{
+    return [self getDirPath:kLogDir];
+}
+
++ (NSString *)getCrashDirPath
+{
+    return [self getDirPath:kCrashDir];
+}
+
++ (NSString *)getLogPathWithFileName:(NSString *)fileName
+{
+    return [NSString stringWithFormat:@"%@/%@",[self getLogDirPath],fileName];
+}
+
++ (NSString *)getCrashPathWithFileName:(NSString *)fileName
+{
+    return [NSString stringWithFormat:@"%@/%@",[self getCrashDirPath],fileName];
+}
 
 #pragma mark - Signal  信号出错
 

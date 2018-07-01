@@ -18,6 +18,10 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     
+    [DMExceptionTool start];
+    
+    DMLog(@"app在%d状态下启动",application.applicationState);
+    
     RootVC *vc = [RootVC new];
     
     BaseNavigationController *navc = [[BaseNavigationController alloc] initWithRootViewController:vc];
@@ -26,7 +30,7 @@
     
     [self.window makeKeyAndVisible];
     
-    [DMExceptionTool start];
+    DMLog(@"app 启动完成");
     
     return YES;
 }
