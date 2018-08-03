@@ -336,7 +336,9 @@
 {
     NSUInteger dataLength = contentData.length;
     
-    ivData.length != 16 ? NSLog(@"推荐iv长度为16字节") : NSLog(@"");
+    if (ivData.length != 16) {
+        NSLog(@"推荐iv长度为16字节");
+    }
     
     void const *ivBytes = ivData.bytes;
     void const *contentBytes = contentData.bytes;

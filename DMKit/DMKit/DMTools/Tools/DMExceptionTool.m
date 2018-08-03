@@ -13,6 +13,7 @@
 #define kCrashDir @"Log/Crash"
 
 
+
 static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addCollapseInfo";
 
 @interface DMExceptionTool ()
@@ -70,7 +71,6 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
 
 + (void)startLogger
 {
-    NSLog(@"%@",[[NSDate date] getStringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSSSSS"]);
     NSString *dirPath = [self getLogDirPath];
     NSString *filePath1 = [NSString stringWithFormat:@"%@/%@.log",dirPath,[FCUUID uuid]];
     [@"" writeToFile:filePath1 atomically:YES encoding:NSUTF8StringEncoding error:NULL];
@@ -90,12 +90,10 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
         for (NSString *fileName in files) {
             NSString *filePath = [NSString stringWithFormat:@"%@/%@",dirPath,fileName];
             if (![filePath isEqualToString:filePath1] && [DMTools fileExist:filePath]) {
-                [self uploadFile:fileName];
-                
                 NSString *content = [NSString stringWithContentsOfFile:filePath encoding:NSUTF8StringEncoding error:nil];
-                
-                [DMExceptionTool sendInfo:content code:@"000000000003" desc:@"上报日志"];
-                
+                if ([content rangeOfString:kNeedUoloadID].length) {
+                    [DMExceptionTool sendInfo:content code:@"000000000003" desc:@"上报日志"];
+                }
                 [DMTools deleteFileAtPath:filePath];
             }
         }
@@ -147,7 +145,7 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
                            @"code":code,
                            @"desc":desc
                            };
-
+    
     NSString *json = [DMTools getJsonFromDictOrArray:para];
     
     NSString *dirPath = [DMExceptionTool getCrashDirPath];
@@ -248,10 +246,11 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
 //获取文件夹路径
 + (NSString *)getDirPath:(NSString *)file
 {
-    
     NSString *dirPath = [DMTools filePathInDocuntsWithFile:file];
     BOOL result = [DMTools createDirectory:dirPath];
-    NSLog(@"创建文件夹 %@ : %@",file,result ? @"成功" : @"失败");
+    if (!result) {
+        NSLog(@"创建文件夹 %@ : %@",file,@"失败");
+    }
     return dirPath;
 }
 
@@ -326,6 +325,8 @@ void SignalExceptionHandler(int signal)
     free(strs);
     
     NSLog(@"%@",mustr);
+    DMLog(@"%@",mustr);
+    DMLog(kNeedUoloadID);
     [DMExceptionTool saveCrash:mustr code:@"000000000001" desc:@"信号量导致崩溃"];
     exit(0);
 }
@@ -343,6 +344,9 @@ void uncaught_exception_handle(NSException *exception)
     NSString *name = [exception name];
     NSString *exceptionInfo = [NSString stringWithFormat:@"Exception reason：%@\nException name：%@\nException stack：%@",name, reason, stackArray];
     NSLog(@"%@", exceptionInfo);
+    
+    DMLog(@"%@",exceptionInfo);
+    DMLog(kNeedUoloadID);
     
     [DMExceptionTool saveCrash:exceptionInfo code:@"000000000000" desc:@"异常崩溃"];
     exit(0);

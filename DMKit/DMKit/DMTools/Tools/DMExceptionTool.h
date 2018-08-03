@@ -7,10 +7,11 @@
 //
 
 #define DMLog(...) do{\
-                    NSLog(__VA_ARGS__);\
-                    [DMExceptionTool writeLog:[NSString stringWithFormat:@"%@ %s 第%d行 :%@\n",[[NSDate date] getStringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSS"],__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__]]];\
-                    }while(0)
+NSLog(__VA_ARGS__);\
+[DMExceptionTool writeLog:[NSString stringWithFormat:@"%@ %s 第%d行 :%@\n",[[NSDate date] getStringWithFormat:@"yyyy-MM-dd HH:mm:ss.SSS"],__func__,__LINE__,[NSString stringWithFormat:__VA_ARGS__]]];\
+}while(0)
 
+static NSString * const kNeedUoloadID = @"-- need uoload id --";
 
 
 #import <Foundation/Foundation.h>
