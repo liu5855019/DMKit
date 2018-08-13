@@ -54,7 +54,8 @@
                @"CrashVC",
                @"VisionDebugVC",
                @"ImageDebugVC",
-               @"RacVC"];
+               @"RacVC",
+               @"KunVC"];
     
 }
 

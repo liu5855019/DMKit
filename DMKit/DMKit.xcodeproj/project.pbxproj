@@ -210,6 +210,12 @@
 		44CC098C1F56A6B900B26FC4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 44CC098B1F56A6B900B26FC4 /* Assets.xcassets */; };
 		44CC098F1F56A6B900B26FC4 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 44CC098D1F56A6B900B26FC4 /* LaunchScreen.storyboard */; };
 		44FFFB0D1F5E325D00CFE63F /* UserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 44FFFB0C1F5E325D00CFE63F /* UserInfo.m */; };
+		644B04EA2122519D001E7D43 /* KunShopVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B04DF2122519D001E7D43 /* KunShopVC.m */; };
+		644B04EB2122519D001E7D43 /* KunShopCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B04E02122519D001E7D43 /* KunShopCell.m */; };
+		644B04EC2122519D001E7D43 /* KunModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B04E42122519D001E7D43 /* KunModel.m */; };
+		644B04ED2122519D001E7D43 /* KunVM.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B04E62122519D001E7D43 /* KunVM.m */; };
+		644B04EE2122519D001E7D43 /* KunVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B04E82122519D001E7D43 /* KunVC.m */; };
+		644B04EF2122519D001E7D43 /* KunCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 644B04E92122519D001E7D43 /* KunCell.m */; };
 		6485BA001FE9591300EFB5A8 /* BaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485B9FF1FE9591300EFB5A8 /* BaseViewController.m */; };
 		6485BA031FE9593100EFB5A8 /* BaseNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485BA021FE9593100EFB5A8 /* BaseNavigationController.m */; };
 		6485BA061FE95AEB00EFB5A8 /* RootVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 6485BA051FE95AEB00EFB5A8 /* RootVC.m */; };
@@ -643,6 +649,18 @@
 		44CC099A1F56B40400B26FC4 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
 		44FFFB0B1F5E325D00CFE63F /* UserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserInfo.h; sourceTree = "<group>"; };
 		44FFFB0C1F5E325D00CFE63F /* UserInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserInfo.m; sourceTree = "<group>"; };
+		644B04DC2122519D001E7D43 /* KunVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KunVC.h; sourceTree = "<group>"; };
+		644B04DD2122519D001E7D43 /* KunCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KunCell.h; sourceTree = "<group>"; };
+		644B04DF2122519D001E7D43 /* KunShopVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KunShopVC.m; sourceTree = "<group>"; };
+		644B04E02122519D001E7D43 /* KunShopCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KunShopCell.m; sourceTree = "<group>"; };
+		644B04E12122519D001E7D43 /* KunShopVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KunShopVC.h; sourceTree = "<group>"; };
+		644B04E22122519D001E7D43 /* KunShopCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KunShopCell.h; sourceTree = "<group>"; };
+		644B04E42122519D001E7D43 /* KunModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KunModel.m; sourceTree = "<group>"; };
+		644B04E52122519D001E7D43 /* KunVM.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KunVM.h; sourceTree = "<group>"; };
+		644B04E62122519D001E7D43 /* KunVM.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KunVM.m; sourceTree = "<group>"; };
+		644B04E72122519D001E7D43 /* KunModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KunModel.h; sourceTree = "<group>"; };
+		644B04E82122519D001E7D43 /* KunVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KunVC.m; sourceTree = "<group>"; };
+		644B04E92122519D001E7D43 /* KunCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KunCell.m; sourceTree = "<group>"; };
 		6485B9FE1FE9591300EFB5A8 /* BaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseViewController.h; sourceTree = "<group>"; };
 		6485B9FF1FE9591300EFB5A8 /* BaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseViewController.m; sourceTree = "<group>"; };
 		6485BA011FE9593000EFB5A8 /* BaseNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BaseNavigationController.h; sourceTree = "<group>"; };
@@ -1327,6 +1345,41 @@
 			path = DMTools;
 			sourceTree = "<group>";
 		};
+		644B04DB2122519D001E7D43 /* Kun */ = {
+			isa = PBXGroup;
+			children = (
+				644B04DC2122519D001E7D43 /* KunVC.h */,
+				644B04DD2122519D001E7D43 /* KunCell.h */,
+				644B04DE2122519D001E7D43 /* Shop */,
+				644B04E32122519D001E7D43 /* VM */,
+				644B04E82122519D001E7D43 /* KunVC.m */,
+				644B04E92122519D001E7D43 /* KunCell.m */,
+			);
+			path = Kun;
+			sourceTree = "<group>";
+		};
+		644B04DE2122519D001E7D43 /* Shop */ = {
+			isa = PBXGroup;
+			children = (
+				644B04DF2122519D001E7D43 /* KunShopVC.m */,
+				644B04E02122519D001E7D43 /* KunShopCell.m */,
+				644B04E12122519D001E7D43 /* KunShopVC.h */,
+				644B04E22122519D001E7D43 /* KunShopCell.h */,
+			);
+			path = Shop;
+			sourceTree = "<group>";
+		};
+		644B04E32122519D001E7D43 /* VM */ = {
+			isa = PBXGroup;
+			children = (
+				644B04E42122519D001E7D43 /* KunModel.m */,
+				644B04E52122519D001E7D43 /* KunVM.h */,
+				644B04E62122519D001E7D43 /* KunVM.m */,
+				644B04E72122519D001E7D43 /* KunModel.h */,
+			);
+			path = VM;
+			sourceTree = "<group>";
+		};
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
@@ -1344,6 +1397,7 @@
 				447E71B71FF4C89B001D5A60 /* DMSegmentViewVC */,
 				6485BA041FE95AEB00EFB5A8 /* RootVC.h */,
 				6485BA051FE95AEB00EFB5A8 /* RootVC.m */,
+				644B04DB2122519D001E7D43 /* Kun */,
 			);
 			path = Demo;
 			sourceTree = "<group>";
@@ -1596,6 +1650,7 @@
 				4483398D205B63CC00B0840B /* ColliderVC.m in Sources */,
 				4464E65020A298E80007AB0A /* RACKVOProxy.m in Sources */,
 				4464E62A20A298E80007AB0A /* NSEnumerator+RACSequenceAdditions.m in Sources */,
+				644B04EA2122519D001E7D43 /* KunShopVC.m in Sources */,
 				4464E64520A298E80007AB0A /* RACDynamicSequence.m in Sources */,
 				442E5BF31F579AB200D1D8A6 /* MJRefreshBackGifFooter.m in Sources */,
 				4464E62920A298E80007AB0A /* NSDictionary+RACSequenceAdditions.m in Sources */,
@@ -1621,6 +1676,7 @@
 				442E5C351F579AD500D1D8A6 /* FMDatabaseAdditions.m in Sources */,
 				442E5BF81F579AB200D1D8A6 /* MJRefreshStateHeader.m in Sources */,
 				44C0742A20941BF400D0555D /* YYFPSLabel.m in Sources */,
+				644B04EE2122519D001E7D43 /* KunVC.m in Sources */,
 				4464E62820A298E80007AB0A /* NSData+RACSupport.m in Sources */,
 				442E5BB41F579AA900D1D8A6 /* SDWebImagePrefetcher.m in Sources */,
 				4464E67320A298E80007AB0A /* UIDatePicker+RACSignalSupport.m in Sources */,
@@ -1681,6 +1737,7 @@
 				442E5BFC1F579AB200D1D8A6 /* UIScrollView+MJExtension.m in Sources */,
 				4464E65320A298E80007AB0A /* RACPassthroughSubscriber.m in Sources */,
 				4464E63120A298E80007AB0A /* NSObject+RACKVOWrapper.m in Sources */,
+				644B04ED2122519D001E7D43 /* KunVM.m in Sources */,
 				4464E66620A298E80007AB0A /* RACTestScheduler.m in Sources */,
 				442E5BFD1F579AB200D1D8A6 /* UIScrollView+MJRefresh.m in Sources */,
 				442E5BF11F579AB200D1D8A6 /* MJRefreshAutoNormalFooter.m in Sources */,
@@ -1688,6 +1745,7 @@
 				64E6BA061FE94D0100CAAFCF /* UIViewController+DMTools.m in Sources */,
 				4464E66B20A298E80007AB0A /* RACValueTransformer.m in Sources */,
 				4464E64020A298E80007AB0A /* RACCommand.m in Sources */,
+				644B04EF2122519D001E7D43 /* KunCell.m in Sources */,
 				4464E66220A298E80007AB0A /* RACSubscriber.m in Sources */,
 				4464E63A20A298E80007AB0A /* NSURLConnection+RACSupport.m in Sources */,
 				442E5BAF1F579AA900D1D8A6 /* SDWebImageCompat.m in Sources */,
@@ -1712,11 +1770,13 @@
 				44CC09811F56A6B900B26FC4 /* main.m in Sources */,
 				44826AC02092D3DB0012436B /* UICKeyChainStore.m in Sources */,
 				4464E63220A298E80007AB0A /* NSObject+RACLifting.m in Sources */,
+				644B04EB2122519D001E7D43 /* KunShopCell.m in Sources */,
 				4464E63C20A298E80007AB0A /* RACArraySequence.m in Sources */,
 				4464E63320A298E80007AB0A /* NSObject+RACPropertySubscribing.m in Sources */,
 				442E5BF71F579AB200D1D8A6 /* MJRefreshNormalHeader.m in Sources */,
 				442E5C1F1F579AC400D1D8A6 /* MASConstraintMaker.m in Sources */,
 				442E5BB71F579AA900D1D8A6 /* UIImage+MultiFormat.m in Sources */,
+				644B04EC2122519D001E7D43 /* KunModel.m in Sources */,
 				4464E62620A298E80007AB0A /* MKAnnotationView+RACSignalSupport.m in Sources */,
 				442E5BB91F579AA900D1D8A6 /* UIImageView+HighlightedWebCache.m in Sources */,
 				4464E67120A298E80007AB0A /* UIControl+RACSignalSupport.m in Sources */,
