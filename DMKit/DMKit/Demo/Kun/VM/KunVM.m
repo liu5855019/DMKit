@@ -8,7 +8,14 @@
 
 #import "KunVM.h"
 
+#define kKunShop @"kunshop"
+#define kKunOwn @"kunown"
+#define kKunData @"kundata"
+
+
 @interface KunVM ()
+
+@property (nonatomic , assign) long long index;
 
 @end
 
@@ -39,13 +46,43 @@
     [_ownList addObject:[KunModel modelWithDict:kun.dictionary]];
     kun.leave++;
     kun.costMoney = kun.initMoney;
-    for (int i = 2; i < kun.leave; i++) {
+    for (int i = 1; i < kun.leave; i++) {
         kun.costMoney = kun.costMoney * kun.ratio;
     }
 }
 
+- (void)mergeKun:(KunModel *)kun
+{
+    for (KunModel *model in _ownList) {
+        if (!model.running &&
+            [model.name isEqualToString:kun.name] &&
+            model != kun) {
+            [self mergeKun:kun andKun:model];
+            return;
+        }
+    }
+    NSLog(@"没有可以合并的kun");
+}
 
-
+- (void)mergeKun:(KunModel *)kun andKun:(KunModel *)kun1
+{
+    [_ownList removeObject:kun];
+    [_ownList removeObject:kun1];
+    
+    NSInteger nameid = [kun.name integerValue];
+    nameid += 1;
+    NSString *name = [NSString stringWithFormat:@"%ld",(long)nameid];
+    for (KunModel *model in _shopList) {
+        if ([model.name isEqualToString:name]) {
+            [_ownList addObject:[KunModel modelWithDict:model.dictionary]];
+            if (!model.enable) {
+                model.enable = YES;
+                NSLog(@"您已解锁kun : %@",model);
+            }
+            break;
+        }
+    }
+}
 
 - (void)readFromFile
 {
@@ -59,10 +96,36 @@
 
 - (void)writeToFile
 {
-    
+    NSMutableArray *muarray = [NSMutableArray array];
+    for (KunModel *kun in _shopList) {
+        [muarray addObject:kun.dictionary];
+    }
+    NSString *json = [DMTools getJsonFromDictOrArray:muarray];
+    NSString *path = [DMTools filePathInDocuntsWithFile:kKunShop];
+    [json writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
 }
 
 
+- (void)update
+{
+    _index++;
+    
+    if (_index % 1 == 0) {
+        [self updateMoney];
+    }
+}
+
+- (void)updateMoney
+{
+    long long money = 0;
+    
+    for (KunModel *kun in _ownList) {
+        if (kun.running) {
+            money += kun.outputMoney;
+        }
+    }
+    _money += money;
+}
 
 #pragma mark - create
 

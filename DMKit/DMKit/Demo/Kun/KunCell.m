@@ -93,16 +93,27 @@
     _kun = kun;
     
     _nameLab.text = kun.name;
+    if (kun.running) {
+        [_runBtn setTitleColor:[UIColor lightGrayColor] forState:UIControlStateNormal];
+        _mergeBtn.hidden = YES;
+    } else {
+        [_runBtn setTitleColor:[UIColor orangeColor] forState:UIControlStateNormal];
+        _mergeBtn.hidden = NO;
+    }
 }
 
 - (void)clickMergeBtn
 {
-    
+    if (_mergeAction) {
+        _mergeAction(_indexPath);
+    }
 }
 
 - (void)clickRunBtn
 {
-    
+    if (_runAction) {
+        _runAction(_indexPath);
+    }
 }
 
 @end

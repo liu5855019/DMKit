@@ -12,5 +12,9 @@
 @interface KunCell : UITableViewCell
 
 @property (nonatomic , strong) KunModel *kun;
+@property (nonatomic , strong) NSIndexPath *indexPath;
+
+@property (nonatomic , copy) void (^runAction)(NSIndexPath *path);
+@property (nonatomic , copy) void (^mergeAction)(NSIndexPath *path);
 
 @end

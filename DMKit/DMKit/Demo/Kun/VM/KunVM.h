@@ -16,6 +16,12 @@
 @property (nonatomic , copy) NSArray *shopList;
 @property (nonatomic , strong) NSMutableArray *ownList;
 
+
+
 - (void)buy:(KunModel *)kun;
+- (void)mergeKun:(KunModel *)kun;
+
+- (void)update; 
+- (void)writeToFile;
 
 @end

@@ -19,6 +19,11 @@
 
 @property (nonatomic , strong) UITableView *tabV;
 
+@property (nonatomic , strong) UILabel *headerLab;
+
+@property (nonatomic) dispatch_source_t timer;
+
+
 
 @end
 
@@ -32,6 +37,16 @@
     self.navigationItem.rightBarButtonItem = self.rightItem;
     
     [self.view addSubview:self.tabV];
+    _headerLab.text = [NSString stringWithFormat:@"  %lld",_vm.money];
+    
+    [self startTimer];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
+    
+    [self.tabV reloadData];
 }
 
 - (KunVM *)vm
@@ -61,8 +76,13 @@
         _tabV.dataSource = self;
         _tabV.estimatedRowHeight = 60;
         _tabV.rowHeight = UITableViewAutomaticDimension;
-        _tabV.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
         
+        _headerLab = [[UILabel alloc] initWithFrame:CGRectMake(0, 0, kScreenW, 50)];
+        _headerLab.textColor = [UIColor purpleColor];
+        _headerLab.font = kFont(17);
+        _tabV.tableHeaderView = _headerLab;
+        _tabV.tableFooterView = [[UIView alloc] init];
+
         [_tabV registerClass:[KunCell class] forCellReuseIdentifier:@"KunCell"];
         
     }
@@ -82,6 +102,20 @@
     KunCell *cell = [tableView dequeueReusableCellWithIdentifier:@"KunCell"];
     
     cell.kun = self.vm.ownList[indexPath.row];
+    cell.indexPath = indexPath;
+    
+    WeakObj(self);
+    cell.runAction = ^(NSIndexPath *path) {
+        KunModel *kun = selfWeak.vm.ownList[path.row];
+        kun.running = !kun.running;
+        [selfWeak.tabV reloadData];
+    };
+    
+    cell.mergeAction = ^(NSIndexPath *path) {
+        KunModel *kun = selfWeak.vm.ownList[path.row];
+        [selfWeak.vm mergeKun:kun];
+        [selfWeak.tabV reloadData];
+    };
     
     return cell;
 }
@@ -92,6 +126,36 @@
 }
 
 
+#pragma mark - timer
+-(void)startTimer
+{
+    //获取一个并行队列 (默认优先级队列)
+    dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0);
+    //创建 timer
+    dispatch_source_t timer = dispatch_source_create(DISPATCH_SOURCE_TYPE_TIMER, 0, 0, queue);
+    _timer = timer;
+    //设置timer间隔和精度
+    //interval:间隔 (纳秒),配合NSEC_PER_SEC用就是秒
+    //leeway:精度 ,最高精度当然就传0。
+    dispatch_source_set_timer(timer, DISPATCH_TIME_NOW, 1 * NSEC_PER_SEC, 0 * NSEC_PER_SEC);
+    //设置回调
+    WeakObj(self);
+    dispatch_source_set_event_handler(timer, ^{
+        MAIN((^{
+            [selfWeak.vm update];
+            selfWeak.headerLab.text = [NSString stringWithFormat:@"  %lld",selfWeak.vm.money];
+        }));
+    });
+    dispatch_resume(_timer);
+}
+-(void)stopTimer
+{
+    dispatch_cancel(_timer);
+}
+
+
+
+#pragma mark - action
 
 -(void)clickRightItem
 {
@@ -106,5 +170,9 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)dealloc
+{
+    [self.vm writeToFile];
+}
 
 @end

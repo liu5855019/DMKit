@@ -1349,11 +1349,11 @@
 			isa = PBXGroup;
 			children = (
 				644B04DC2122519D001E7D43 /* KunVC.h */,
+				644B04E82122519D001E7D43 /* KunVC.m */,
 				644B04DD2122519D001E7D43 /* KunCell.h */,
+				644B04E92122519D001E7D43 /* KunCell.m */,
 				644B04DE2122519D001E7D43 /* Shop */,
 				644B04E32122519D001E7D43 /* VM */,
-				644B04E82122519D001E7D43 /* KunVC.m */,
-				644B04E92122519D001E7D43 /* KunCell.m */,
 			);
 			path = Kun;
 			sourceTree = "<group>";
@@ -1372,10 +1372,10 @@
 		644B04E32122519D001E7D43 /* VM */ = {
 			isa = PBXGroup;
 			children = (
-				644B04E42122519D001E7D43 /* KunModel.m */,
 				644B04E52122519D001E7D43 /* KunVM.h */,
 				644B04E62122519D001E7D43 /* KunVM.m */,
 				644B04E72122519D001E7D43 /* KunModel.h */,
+				644B04E42122519D001E7D43 /* KunModel.m */,
 			);
 			path = VM;
 			sourceTree = "<group>";
