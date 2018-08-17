@@ -331,7 +331,7 @@
 
 
 #pragma mark - aes
-/** 使用的是aes ,自动根据key长度计算aes128,aes192,aes256 **iv长度推荐16字节** CBC加密模式, 数据块128位 */
+/** 使用的是aes ,自动根据key长度计算aesKeySize128,aesKeySize192,aesKeySize256 **iv长度推荐16字节** CBC加密模式, 数据块128位 */
 + (NSData *)aesWithData:(NSData *)contentData key:(NSData *)keyData iv:(NSData *)ivData operation:(CCOperation)operation
 {
     NSUInteger dataLength = contentData.length;
@@ -355,13 +355,9 @@
         keyLength = kCCKeySizeAES256;
     }
     
-    
-    
     size_t operationSize = dataLength + kCCBlockSizeAES128;
     void *operationBytes = malloc(operationSize);
     size_t actualOutSize = 0;
-    
-    
     
     CCCryptorStatus cryptStatus = CCCrypt(operation,
                                           kCCAlgorithmAES,
@@ -374,7 +370,6 @@
                                           operationBytes,
                                           operationSize,
                                           &actualOutSize);
-    
     
     if (cryptStatus == kCCSuccess) {
         return [NSData dataWithBytesNoCopy:operationBytes length:actualOutSize];

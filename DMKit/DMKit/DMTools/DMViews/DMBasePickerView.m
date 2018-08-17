@@ -163,6 +163,7 @@
 - (void)show
 {
     [super setHidden:NO];
+    [self.superview bringSubviewToFront:self];
     WeakObj(self);
     [UIView animateWithDuration:0.3 animations:^{
         selfWeak.picker.frame = _upRect;
