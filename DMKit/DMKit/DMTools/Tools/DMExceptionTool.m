@@ -231,10 +231,18 @@ static NSString * const kUploadCrashUrl = @"http://192.168.100.212:8090/addColla
             [self setIsUploading:NO];
             [self checkFilesAndUpload];
         } else {
+            if (filePath.length) {
+                BOOL result = [DMTools deleteFileAtPath:filePath];
+                NSLog(@"删除文件: %@",result ? @"成功" : @"失败");
+            }
             [self setIsUploading:NO];
         }
     } failure:^(NSError *error) {
         NSLog(@"%@",error);
+        if (filePath.length) {
+            BOOL result = [DMTools deleteFileAtPath:filePath];
+            NSLog(@"删除文件: %@",result ? @"成功" : @"失败");
+        }
         [self setIsUploading:NO];
     }];
 }

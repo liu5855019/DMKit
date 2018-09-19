@@ -133,11 +133,14 @@
     if (navigationType == UIWebViewNavigationTypeLinkClicked) {
         if (_didClickLink) {
             _didClickLink(request.URL);
+            return NO;
+        } else {
+            return YES;
         }
-        return NO;
     }
     return YES;
 }
+
 - (void)webViewDidStartLoad:(UIWebView *)webView
 {
 

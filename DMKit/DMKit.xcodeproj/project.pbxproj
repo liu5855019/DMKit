@@ -11,6 +11,7 @@
 		442230452057630E003E2DCC /* DMBasePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442230442057630E003E2DCC /* DMBasePickerView.m */; };
 		44223048205763B5003E2DCC /* DMPickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 44223047205763B5003E2DCC /* DMPickerView.m */; };
 		4422305020576BB7003E2DCC /* DMPickerVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 4422304F20576BB7003E2DCC /* DMPickerVC.m */; };
+		4427AE802152695100D8F1A4 /* DMWKWebView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4427AE7E2152695000D8F1A4 /* DMWKWebView.m */; };
 		442B906A206B9030009B6AC3 /* PwdDictVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 442B9069206B9030009B6AC3 /* PwdDictVC.m */; };
 		442C997D20D9EF45002B7778 /* DMShadowView.m in Sources */ = {isa = PBXBuildFile; fileRef = 442C997B20D9EF45002B7778 /* DMShadowView.m */; };
 		442C999C20DA38E5002B7778 /* DMLanguageTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 442C999A20DA38E4002B7778 /* DMLanguageTool.m */; };
@@ -240,6 +241,8 @@
 		44223047205763B5003E2DCC /* DMPickerView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMPickerView.m; sourceTree = "<group>"; };
 		4422304E20576BB7003E2DCC /* DMPickerVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMPickerVC.h; sourceTree = "<group>"; };
 		4422304F20576BB7003E2DCC /* DMPickerVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DMPickerVC.m; sourceTree = "<group>"; };
+		4427AE7E2152695000D8F1A4 /* DMWKWebView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMWKWebView.m; sourceTree = "<group>"; };
+		4427AE7F2152695100D8F1A4 /* DMWKWebView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMWKWebView.h; sourceTree = "<group>"; };
 		442B9068206B9030009B6AC3 /* PwdDictVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PwdDictVC.h; sourceTree = "<group>"; };
 		442B9069206B9030009B6AC3 /* PwdDictVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PwdDictVC.m; sourceTree = "<group>"; };
 		442C997B20D9EF45002B7778 /* DMShadowView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShadowView.m; sourceTree = "<group>"; };
@@ -1455,6 +1458,8 @@
 				4409680620D8DA9000CE0DB2 /* DMShowBigImageView.m */,
 				442C997C20D9EF45002B7778 /* DMShadowView.h */,
 				442C997B20D9EF45002B7778 /* DMShadowView.m */,
+				4427AE7F2152695100D8F1A4 /* DMWKWebView.h */,
+				4427AE7E2152695000D8F1A4 /* DMWKWebView.m */,
 			);
 			path = DMViews;
 			sourceTree = "<group>";
@@ -1605,6 +1610,7 @@
 				442E5BB21F579AA900D1D8A6 /* SDWebImageDownloaderOperation.m in Sources */,
 				442C999C20DA38E5002B7778 /* DMLanguageTool.m in Sources */,
 				4464E65120A298E80007AB0A /* RACKVOTrampoline.m in Sources */,
+				4427AE802152695100D8F1A4 /* DMWKWebView.m in Sources */,
 				442E5BF41F579AB200D1D8A6 /* MJRefreshBackNormalFooter.m in Sources */,
 				4464E63F20A298E80007AB0A /* RACChannel.m in Sources */,
 				442E5C211F579AC400D1D8A6 /* MASViewAttribute.m in Sources */,
