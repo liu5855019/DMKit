@@ -15,5 +15,10 @@
 
 - (id)dm_objectAtIndex:(NSUInteger)index;
 
+/** 归类函数:返回归类排序结果 block:用于类似通讯录的排序 */
+- (NSMutableArray *)classifyWithKey:(NSString *)key block:(void (^)(NSMutableArray *keys , NSMutableArray *valueArrays))block;
+
+- (BOOL)hasString:(NSString *)string;
+
 
 @end

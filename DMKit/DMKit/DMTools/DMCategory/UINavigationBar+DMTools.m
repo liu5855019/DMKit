@@ -27,7 +27,7 @@ static char *navAlphaKey = "navAlphaKey";
 {
     CGFloat alpha = MAX(MIN(navAlpha, 1), 0);// 必须在 0~1的范围
     
-    UIView *barBackground = self.subviews[0];
+    UIView *barBackground = self.subviews.dm_firstObject;
     if (self.translucent == NO || [self backgroundImageForBarMetrics:UIBarMetricsDefault] != nil) {
         barBackground.alpha = alpha;
         
