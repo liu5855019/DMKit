@@ -68,7 +68,6 @@
 		442E5C361F579AD500D1D8A6 /* FMDatabasePool.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C2D1F579AD500D1D8A6 /* FMDatabasePool.m */; };
 		442E5C371F579AD500D1D8A6 /* FMDatabaseQueue.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C2F1F579AD500D1D8A6 /* FMDatabaseQueue.m */; };
 		442E5C381F579AD500D1D8A6 /* FMResultSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C321F579AD500D1D8A6 /* FMResultSet.m */; };
-		442E5C391F579AD500D1D8A6 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 442E5C331F579AD500D1D8A6 /* Info.plist */; };
 		442E5C481F579AE400D1D8A6 /* AFHTTPSessionManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C3C1F579AE400D1D8A6 /* AFHTTPSessionManager.m */; };
 		442E5C491F579AE400D1D8A6 /* AFNetworkReachabilityManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C3F1F579AE400D1D8A6 /* AFNetworkReachabilityManager.m */; };
 		442E5C4A1F579AE400D1D8A6 /* AFSecurityPolicy.m in Sources */ = {isa = PBXBuildFile; fileRef = 442E5C411F579AE400D1D8A6 /* AFSecurityPolicy.m */; };
@@ -233,6 +232,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0AA0902E21B6800F000B0E5C /* DMKitConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMKitConfig.h; sourceTree = "<group>"; };
 		4409680520D8DA9000CE0DB2 /* DMShowBigImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMShowBigImageView.h; sourceTree = "<group>"; };
 		4409680620D8DA9000CE0DB2 /* DMShowBigImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMShowBigImageView.m; sourceTree = "<group>"; };
 		442230432057630E003E2DCC /* DMBasePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMBasePickerView.h; sourceTree = "<group>"; };
@@ -362,7 +362,6 @@
 		442E5C301F579AD500D1D8A6 /* FMDB.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMDB.h; sourceTree = "<group>"; };
 		442E5C311F579AD500D1D8A6 /* FMResultSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FMResultSet.h; sourceTree = "<group>"; };
 		442E5C321F579AD500D1D8A6 /* FMResultSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FMResultSet.m; sourceTree = "<group>"; };
-		442E5C331F579AD500D1D8A6 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		442E5C3B1F579AE400D1D8A6 /* AFHTTPSessionManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFHTTPSessionManager.h; sourceTree = "<group>"; };
 		442E5C3C1F579AE400D1D8A6 /* AFHTTPSessionManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFHTTPSessionManager.m; sourceTree = "<group>"; };
 		442E5C3D1F579AE400D1D8A6 /* AFNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetworking.h; sourceTree = "<group>"; };
@@ -924,7 +923,6 @@
 				442E5C301F579AD500D1D8A6 /* FMDB.h */,
 				442E5C311F579AD500D1D8A6 /* FMResultSet.h */,
 				442E5C321F579AD500D1D8A6 /* FMResultSet.m */,
-				442E5C331F579AD500D1D8A6 /* Info.plist */,
 			);
 			path = fmdb;
 			sourceTree = "<group>";
@@ -1421,6 +1419,7 @@
 			children = (
 				44CC09981F56B35E00B26FC4 /* Common.h */,
 				44CC09991F56B3A000B26FC4 /* DMDefine.h */,
+				0AA0902E21B6800F000B0E5C /* DMKitConfig.h */,
 				64DD800F205CF22D0002B91E /* DBManager.h */,
 				64DD800E205CF22D0002B91E /* DBManager.m */,
 				442E5C511F579D5500D1D8A6 /* DMTools.h */,
@@ -1471,8 +1470,8 @@
 				44335F10206A17D600ABB9FE /* NSData+DMTools.m */,
 				44779B1D1FF62E0B00908F50 /* NSString+DMTools.h */,
 				44779B1E1FF62E0B00908F50 /* NSString+DMTools.m */,
-				64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */,
 				64E6BA051FE94D0100CAAFCF /* UIViewController+DMTools.h */,
+				64E6BA001FE94D0100CAAFCF /* UIViewController+DMTools.m */,
 				64E6BA021FE94D0100CAAFCF /* UINavigationBar+DMTools.m */,
 				64E6BA031FE94D0100CAAFCF /* UINavigationBar+DMTools.h */,
 				445D77F820173A830080309C /* NSObject+DMTools.h */,
@@ -1537,7 +1536,7 @@
 				TargetAttributes = {
 					44CC097B1F56A6B900B26FC4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = C945PF325Y;
+						DevelopmentTeam = C834GUTVBG;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1569,7 +1568,6 @@
 				44CC098C1F56A6B900B26FC4 /* Assets.xcassets in Resources */,
 				442E5BF91F579AB200D1D8A6 /* MJRefresh.bundle in Resources */,
 				447F500C209C5BFF003AAB32 /* 001.png in Resources */,
-				442E5C391F579AD500D1D8A6 /* Info.plist in Resources */,
 				44C0742C20943F8400D0555D /* timg.jpg in Resources */,
 				44CC098A1F56A6B900B26FC4 /* Main.storyboard in Resources */,
 			);
@@ -1927,7 +1925,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C945PF325Y;
+				DEVELOPMENT_TEAM = C834GUTVBG;
 				INFOPLIST_FILE = DMKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -1940,7 +1938,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C945PF325Y;
+				DEVELOPMENT_TEAM = C834GUTVBG;
 				INFOPLIST_FILE = DMKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

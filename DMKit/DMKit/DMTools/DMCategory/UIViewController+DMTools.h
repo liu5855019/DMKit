@@ -12,7 +12,7 @@
 
 @property (nonatomic , assign) CGFloat navAlpha;
 
-
+- (void)willDealloc;
 
 
 

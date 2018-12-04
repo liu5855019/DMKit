@@ -35,11 +35,11 @@
 }
 
 #pragma mark - MBHud
-- (MBProgressHUD *)mbHud{
+- (MBProgressHUD *)mbHud
+{
     if (_mbHud == nil) {
         _mbHud = [[MBProgressHUD alloc] initWithView:self.view];
         [self.view addSubview:_mbHud];
-        //_mbHud.label.text = kLocStr(@"登录中...");
     }
     return _mbHud;
 }

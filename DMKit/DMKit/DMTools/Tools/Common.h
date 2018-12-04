@@ -28,6 +28,7 @@
 
 //Tools
 #import "DMDefine.h"
+#import "DMKitConfig.h"
 #import "DMTools.h"
 #import "UserInfo.h"
 #import "LocationTool.h"
@@ -91,18 +92,6 @@ _Pragma("clang diagnostic ignored \"-Warc-performSelector-leaks\"") \
 Stuff; \
 _Pragma("clang diagnostic pop") \
 } while (0)
-
-
-
-#pragma mark - config
-
-
-
-/** 删除过期数据:过期时间(s) */
-#define kDeleteDatasTime (3*24*3600)
-//是否写入日志
-#define kIsInsertLogs 1
-
 
 
 

@@ -14,13 +14,16 @@ static char *vcAlphaKey = "vcAlphaKey";
 @implementation UIViewController (DMTools)
 
 
--(CGFloat)navAlpha {
+- (CGFloat)navAlpha
+{
     if (objc_getAssociatedObject(self, vcAlphaKey) == nil) {
         return 1;
     }
     return [objc_getAssociatedObject(self, vcAlphaKey) floatValue];
 }
--(void)setNavAlpha:(CGFloat)navAlpha {
+
+- (void)setNavAlpha:(CGFloat)navAlpha
+{
     CGFloat alpha = MAX(MIN(navAlpha, 1), 0);// 0~1
     self.navigationController.navigationBar.navAlpha = alpha;
     objc_setAssociatedObject(self, vcAlphaKey, @(alpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
@@ -69,5 +72,22 @@ static char *vcAlphaKey = "vcAlphaKey";
 //    objc_setAssociatedObject(self, vcTitleColorKey, navTitleColor, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 //
 //}
+
+
+
+- (void)willDealloc
+{
+    @weakify(self);
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(35 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        @strongify(self);
+        [self findMemoryLeak];
+    });
+}
+
+- (void)findMemoryLeak
+{
+    //[DMTools showToastAtWindow:[NSString stringWithFormat:@"发现内存泄漏: %@",NSStringFromClass([self class])]];
+    DMLog(@"发现内存泄漏: %@",NSStringFromClass([self class]));
+}
 
 @end
