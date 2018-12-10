@@ -24,7 +24,6 @@
 @property (nonatomic , strong) UIColor *titleColor;
 @property (nonatomic , strong) UIColor *selectedColor;
 
-@property (nonatomic , strong) UIScrollView *headerScroll;
 @property (nonatomic , strong) UIView *underLine;
 
 @property (nonatomic , strong) UIScrollView *bgScroll;
@@ -70,6 +69,8 @@
     [self setupHeaderViews];
     [self setupPages];
 }
+
+
 
 #pragma mark - << Action >>
 
@@ -239,11 +240,12 @@
         [button mas_makeConstraints:^(MASConstraintMaker *make) {
             CGSize size = kGetTextSize(title, selfWeak.titleFont);
             make.width.mas_equalTo(size.width + 1 + 2*selfWeak.titleSpaceW);
-            make.centerY.mas_equalTo(0);
+            make.top.bottom.mas_equalTo(0);
             
             if (i == 0) {
                 make.left.mas_equalTo(0);
-            }else{
+                make.height.mas_equalTo(_headerScroll.mas_height).priorityHigh();
+            } else {
                 UIView *aView = [_headerScroll viewWithTag:1000 + i - 1];
                 make.left.mas_equalTo(aView.mas_right);
             }
@@ -270,6 +272,11 @@
     CGPoint centre = _underLine.center;
     centre.x = w/2;
     _underLine.center = centre;
+}
+
+- (UIButton *)buttonWithTag:(NSInteger)tag
+{
+    return [_headerScroll viewWithTag:1000+tag];
 }
 
 

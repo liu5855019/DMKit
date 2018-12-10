@@ -21,4 +21,9 @@
                    showAction:(void(^)(NSInteger index))showAction;
 
 
+
+@property (nonatomic , strong) UIScrollView *headerScroll;
+
+- (UIButton *)buttonWithTag:(NSInteger)tag;
+
 @end
