@@ -80,43 +80,27 @@
             //无权限
             NSLog(@"照相服务没有打开");
             [DMTools showAlertWithTitle:nil andContent:@"照相机服务没有打开,是否前往打开?" andSureBlock:^{
-                
-                if ([[[UIDevice currentDevice] systemVersion] doubleValue]>=8.0) {
-                    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                        [[UIApplication sharedApplication] openURL:url];
-                    }
-                } else {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Photos"]];
+                NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                    [[UIApplication sharedApplication] openURL:url];
                 }
-                
             } andCancelBlock:nil andSureTitle:@"是" andCancelTitle:@"否" atVC:_vc];
-        }else{
+        } else {
             NSAssert(_vc, @"UIViewController for present cannot be nil");
             [_vc presentViewController:self.imagePicker animated:YES completion:nil];
         }
-    }else{//相册
-        
+    } else {//相册
         PHAuthorizationStatus status = [PHPhotoLibrary authorizationStatus];
         if (status == PHAuthorizationStatusRestricted ||
             status == PHAuthorizationStatusDenied) {
-            
             //无权限
-            
             [DMTools showAlertWithTitle:nil andContent:@"相册权限没有打开,是否前往打开?" andSureBlock:^{
-                
-                if ([[[UIDevice currentDevice] systemVersion] doubleValue]>=8.0) {
-                    NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                    if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                        [[UIApplication sharedApplication] openURL:url];
-                    }
-                } else {
-                    [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=Photos"]];
+                NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+                if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                    [[UIApplication sharedApplication] openURL:url];
                 }
-                
             } andCancelBlock:nil andSureTitle:@"是" andCancelTitle:@"否" atVC:_vc];
-            
-        }else{
+        } else {
             NSAssert(_vc, @"UIViewController for present cannot be nil");
             [_vc presentViewController:self.imagePicker animated:YES completion:nil];
         }

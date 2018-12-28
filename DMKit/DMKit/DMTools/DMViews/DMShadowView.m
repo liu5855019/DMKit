@@ -40,12 +40,20 @@
     self.cornerRadius = 6;
 }
 
-
 - (void)dm_setupLayouts
 {
     [_contentView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.top.left.bottom.right.mas_equalTo(0);
     }];
+}
+
+- (void)addSubview:(UIView *)view
+{
+    if (view == _contentView) {
+        [super addSubview:view];
+    } else {
+        [self.contentView addSubview:view];
+    }
 }
 
 #pragma mark - property

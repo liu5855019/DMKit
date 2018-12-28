@@ -72,16 +72,10 @@
     if ([CLLocationManager authorizationStatus] == kCLAuthorizationStatusDenied) { //定位服务没有打开
         NSLog(@"定位服务没有打开");
         [DMTools showAlertWithTitle:kLocStr(@"提示") andContent:kLocStr(@"定位服务没有打开,是否前往打开?") andSureBlock:^{
-            
-            if ([[[UIDevice currentDevice] systemVersion] doubleValue]>=8.0) {
-                NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
-                if ([[UIApplication sharedApplication] canOpenURL:url]) {
-                    [[UIApplication sharedApplication] openURL:url];
-                }
-            } else {
-                [[UIApplication sharedApplication] openURL:[NSURL URLWithString:@"prefs:root=LOCATION_SERVICES"]];
+            NSURL *url = [NSURL URLWithString:UIApplicationOpenSettingsURLString];
+            if ([[UIApplication sharedApplication] canOpenURL:url]) {
+                [[UIApplication sharedApplication] openURL:url];
             }
-            
         } andCancelBlock:nil andSureTitle:kLocStr(@"是") andCancelTitle:kLocStr(@"否") atVC:nil];
     }else{
         if(error){
