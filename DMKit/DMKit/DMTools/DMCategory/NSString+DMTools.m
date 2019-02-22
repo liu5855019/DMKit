@@ -185,5 +185,29 @@
     return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
 }
 
+#pragma mark - Des
+
+- (NSString *)desEncryptWithKey:(NSString *)key IV:(NSString *)iv
+{
+    NSData *contentData = [self dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *ivData = [iv dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *result = [contentData desEncryptWithKey:keyData IV:ivData];
+    
+    return [result base64EncodedStringWithOptions:NSDataBase64EncodingEndLineWithLineFeed];
+}
+
+- (NSString *)desDecryptWithKey:(NSString *)key IV:(NSString *)iv
+{
+    NSData *contentData = [[NSData alloc] initWithBase64EncodedString:self options:NSDataBase64DecodingIgnoreUnknownCharacters];
+    
+    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *ivData = [iv dataUsingEncoding:NSUTF8StringEncoding];
+    
+    NSData *result = [contentData desDecryptWithKey:keyData IV:ivData];
+    
+    return [[NSString alloc] initWithData:result encoding:NSUTF8StringEncoding];
+}
 
 @end

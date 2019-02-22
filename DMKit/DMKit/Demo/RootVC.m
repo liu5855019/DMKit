@@ -57,6 +57,32 @@
                @"RacVC",
                @"KunVC"];
     
+    [self testDeDes];
+    
+}
+
+- (void)testDes
+{
+    NSString *content = @"aaaaa";
+    NSString *key = @"1234567";
+    NSString *iv = @"";
+    
+    
+    NSString *result = [content desEncryptWithKey:key IV:iv];
+    
+    NSLog(@"%@",result);
+}
+
+- (void)testDeDes
+{
+    NSString *content = @"HHP/6bHpzQc=";
+    NSString *key = @"123456";
+    NSString *iv = @"";
+    
+    
+    NSString *result = [content desDecryptWithKey:key IV:iv];
+    
+    NSLog(@"%@",result);
 }
 
 

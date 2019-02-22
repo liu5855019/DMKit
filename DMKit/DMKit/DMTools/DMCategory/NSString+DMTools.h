@@ -51,11 +51,18 @@
 - (NSString *)hmacSHA512StringWithKey:(NSString *)key;
 
 
-#pragma mark - aes
+#pragma mark - Aes
 /** 使用的是aes , 自动根据key长度计算aes128,aes192,aes256 , **iv长度推荐16位** , CBC加密模式 , 数据块128位 , 加密结果使用base64输出 */
 - (NSString *)aesEncryptWithKey:(NSString *)key IV:(NSString *)iv;
 /** 使用的是aes , 先解base64后解密 , 自动根据key长度计算aes128,aes192,aes256 , **iv长度推荐16位** , CBC加密模式 , 数据块128位 */
 - (NSString *)aesDecryptWithKey:(NSString *)key IV:(NSString *)iv;
+
+
+#pragma mark - Des
+/** Des 加密 , 0<=key<=8,超过8位实际使用只有前8位 , 当iv长度 < 8的时候使用ecb(ecb不需要iv),其它使用cbc(就算长度大于了8位,实际使用只有前8位), */
+- (NSString *)desEncryptWithKey:(NSString *)key IV:(NSString *)iv;
+/** Des 解密 , 0<=key<=8,超过8位实际使用只有前8位 , 当iv长度 < 8的时候使用ecb(ecb不需要iv),其它使用cbc(就算长度大于了8位,实际使用只有前8位), */
+- (NSString *)desDecryptWithKey:(NSString *)key IV:(NSString *)iv;
 
 
 @end

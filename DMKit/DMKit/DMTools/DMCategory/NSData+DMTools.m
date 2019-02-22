@@ -330,7 +330,7 @@
 }
 
 
-#pragma mark - aes
+#pragma mark - Aes
 /** 使用的是aes ,自动根据key长度计算aesKeySize128,aesKeySize192,aesKeySize256 **iv长度推荐16字节** CBC加密模式, 数据块128位 */
 + (NSData *)aesWithData:(NSData *)contentData key:(NSData *)keyData iv:(NSData *)ivData operation:(CCOperation)operation
 {
@@ -372,7 +372,7 @@
                                           &actualOutSize);
     
     if (cryptStatus == kCCSuccess) {
-        return [NSData dataWithBytesNoCopy:operationBytes length:actualOutSize];
+        return [NSData dataWithBytesNoCopy:operationBytes length:actualOutSize freeWhenDone:YES];
     }
     free(operationBytes);
     return nil;
@@ -386,6 +386,51 @@
 - (NSData *)aesDecryptWithKey:(NSData *)key IV:(NSData *)iv
 {
     return [NSData aesWithData:self key:key iv:iv operation:kCCDecrypt];
+}
+
+#pragma mark - Des
+/** Des 加密解密 , 0<=key<=8,超过8位实际使用只有前8位 , 当iv长度 < 8的时候使用ecb(ecb不需要iv),其它使用cbc(就算长度大于了8位,实际使用只有前8位), */
++ (NSData *)desWithData:(NSData *)contentData key:(NSData *)keyData iv:(NSData *)ivData operation:(CCOperation)operation
+{
+    NSUInteger dataLength = contentData.length;
+    
+    void const *ivBytes = ivData.bytes;
+    void const *contentBytes = contentData.bytes;
+    void const *keyBytes = keyData.bytes;
+    
+    //生成输出需要的参数
+    size_t operationSize = dataLength + kCCBlockSizeDES;
+    void *operationBytes = malloc(operationSize);
+    size_t actualOutSize = 0;
+    
+    
+    CCCryptorStatus cryptStatus = CCCrypt(operation,
+                                          kCCAlgorithmDES,
+                                          ivData.length >=8 ? kCCOptionPKCS7Padding : kCCOptionPKCS7Padding|kCCOptionECBMode ,
+                                          keyBytes,
+                                          kCCKeySizeDES,
+                                          ivData.length >=8 ? ivBytes : NULL,
+                                          contentBytes,
+                                          dataLength,
+                                          operationBytes,
+                                          operationSize,
+                                          &actualOutSize);
+    
+    if (cryptStatus == kCCSuccess) {
+        return [NSData dataWithBytesNoCopy:operationBytes length:actualOutSize freeWhenDone:YES];
+    }
+    free(operationBytes);
+    return nil;
+}
+
+- (NSData *)desEncryptWithKey:(NSData *)key IV:(NSData *)iv
+{
+    return [NSData desWithData:self key:key iv:iv operation:kCCEncrypt];
+}
+
+- (NSData *)desDecryptWithKey:(NSData *)key IV:(NSData *)iv
+{
+    return [NSData desWithData:self key:key iv:iv operation:kCCDecrypt];
 }
 
 
