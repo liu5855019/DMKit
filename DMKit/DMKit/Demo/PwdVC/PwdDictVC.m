@@ -120,12 +120,11 @@
 //    });
     ///////////////////
     
-    //[self merge];
+//    [self merge];
     WeakObj(self);
     BACK(^{
         [selfWeak chaifen];
     });
-    
 }
 
 - (void)send
@@ -379,63 +378,87 @@
 
 - (void)chaifen
 {
-    NSString *mergePath = @"/Users/imac-03/Desktop/Ljl/WordList/弱口令合集/merge1.txt";
+    NSString *cutPath = @"/Users/daimu/Desktop/pwd/cut.txt";
     NSArray *paths = @[
-                       @"/Users/imac-03/Desktop/Ljl/WordList/弱口令合集/1.txt",
-                       @"/Users/imac-03/Desktop/Ljl/WordList/弱口令合集/2.txt"
+                       @"/Users/daimu/Desktop/pwd/1.txt",
+                       @"/Users/daimu/Desktop/pwd/2.txt",
+                       @"/Users/daimu/Desktop/pwd/3.txt"
                        ];
-    NSString *tmpDirPath = @"/Users/imac-03/Desktop/Ljl/WordList/tmp";
+    NSString *tmpDirPath = @"/Users/daimu/Desktop/pwd/tmp";
     
-    NSInteger countOfTmpFile = 10;
+    NSString *allPath = @"/Users/daimu/Desktop/pwd/all.txt";
+    
     
     
     // 1. 生成分割词数组
-    NSString *mergeStr = [NSString stringWithContentsOfFile:mergePath encoding:NSUTF8StringEncoding error:nil];
-    NSArray *mergeArr = [mergeStr componentsSeparatedByString:@"\n"];
-    NSMutableArray *waitArr = [NSMutableArray array];
-    for (float i = 1; i < countOfTmpFile; i++) {
-        NSInteger index = mergeArr.count * i / countOfTmpFile;
-        [waitArr addObject:mergeArr[index]];
-    }
+    NSString *cutStrs = [NSString stringWithContentsOfFile:cutPath encoding:NSUTF8StringEncoding error:nil];
+    NSArray *cutArr = [cutStrs componentsSeparatedByString:@"\n"];
+    
+    
     
     
     // 2. 拼接成最大的数组
     NSMutableArray *muarray = [NSMutableArray array];
-    for (NSString * path in paths) {
-        NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-        str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+//    for (NSString * path in paths) {
+//        NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+//        NSLog(@"create str");
+//        str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
+//        NSLog(@"replace str");
+//        NSArray *array = [str componentsSeparatedByString:@"\n"];
+//        NSLog(@"create array");
+//        [muarray addObjectsFromArray:array];
+//        NSLog(@"merge array");
+//    }
+    @autoreleasepool {
+        NSString *str = [NSString stringWithContentsOfFile:allPath encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"create str over");
+        
         NSArray *array = [str componentsSeparatedByString:@"\n"];
+        NSLog(@"create array over");
+        
         [muarray addObjectsFromArray:array];
     }
+    
     _allCount = muarray.count;
     _start = [NSDate date];
     
+    _runOverCount = 0;
+    
     //3. 拆分
-    for (int i = 0; i < waitArr.count; i++) {
-        NSString *waitStr = waitArr[i];
-        NSMutableArray *tmpArr = [NSMutableArray array];
-        for (NSInteger j = muarray.count-1; j>=0; j--) {
-            _runOverCount++;
-            
-            NSString *str = muarray[j];
-            if ([str compare:waitStr] == NSOrderedAscending) {
-                [tmpArr addObject:str];
-                [muarray removeObjectAtIndex:j];
-            }
-            _currentIndex = _allCount - muarray.count;
-        }
-        NSString *path = [NSString stringWithFormat:@"%@/%d.txt",tmpDirPath,i+1];
-        NSString *mergeStr = [tmpArr componentsJoinedByString:@"\n"];
-        
-        [mergeStr writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSMutableArray *resultArr = [NSMutableArray array];
+    for (int i = 0; i <= cutArr.count; i++) {
+        NSMutableArray *muarray1 = [NSMutableArray array];
+        [resultArr addObject:muarray1];
     }
     
+    for (NSInteger i = 0; i< muarray.count; i++) {
+        NSString *str = muarray[i];
+        int index = [self indexOfArr:cutArr str:str];
+        NSMutableArray *tmpArr = resultArr[index];
+        [tmpArr addObject:str];
+        _currentIndex++;
+    }
     
+    for (int i = 0; i< resultArr.count; i++) {
+        NSMutableArray *tmpArr = resultArr[i];
+        NSString *path = [NSString stringWithFormat:@"%@/%d.txt",tmpDirPath,i];
+        NSString *tmpStr = [tmpArr componentsJoinedByString:@"\n"];
+        BOOL result = [tmpStr writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
+        NSLog(@"create file %d : %@ ",result,path);
+    }
     
-    
-    
-    
-    
+}
+
+- (int)indexOfArr:(NSArray *)arr str:(NSString *)str
+{
+    for (int i = 0; i<arr.count; i++) {
+        _runOverCount++;
+        NSString *str1 = arr[i];
+        if ([str compare:str1] == NSOrderedAscending) {
+            return i;
+        }
+    }
+    return (int)arr.count;
 }
 
 
@@ -451,9 +474,9 @@
 
 - (void)merge
 {
-    NSString *inPath1 = @"/Users/imac-03/Desktop/Ljl/WordList/弱口令合集/merge1.txt"; //必须是排序好的文件的地址
-    NSString *inPath2 = @"/Users/imac-03/Desktop/Ljl/WordList/弱口令合集/2.txt";
-    NSString *outPath = @"/Users/imac-03/Desktop/Ljl/WordList/弱口令合集/merge1+2.txt";
+    NSString *inPath1 = @""; //必须是排序好的文件的地址
+    NSString *inPath2 = @"/Users/daimu/Desktop/pwd/1.txt";
+    NSString *outPath = @"/Users/daimu/Desktop/pwd/merge.txt";
     
     WeakObj(self);
     BACK(^{
