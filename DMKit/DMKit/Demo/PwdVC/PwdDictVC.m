@@ -126,11 +126,9 @@
 //        [selfWeak chaifen];
 //    });
     
-    WeakObj(self);
-    BACK(^{
-        [selfWeak sortFrom:17 endIndex:193 inDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/cutResult" outDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/sortResult"];
-    });
+    //[self sort];
     
+    [self cutRe];
     
 }
 
@@ -628,6 +626,84 @@
 
 #pragma mark - 对拆分后的文件逐个排序
 
+- (void)sort
+{
+    WeakObj(self);
+    BACK(^{
+        [selfWeak sortFrom:0 endIndex:16 inDir:@"/Users/daimu/Desktop/pwd/cutResult" outDir:@"/Users/daimu/Desktop/pwd/sortResult"];
+    });
+}
+
+- (void)cutRe
+{
+    WeakObj(self);
+    BACK(^{
+        [selfWeak cutReFrom:0 endIndex:193 inDir:@"/Users/daimu/Desktop/pwd/sortResult" outDir:@"/Users/daimu/Desktop/pwd/reResult"];
+    });
+}
+
+- (void)cutReFrom:(NSInteger)fromIndex
+        endIndex:(NSInteger)endIndex
+           inDir:(NSString *)inDir
+          outDir:(NSString *)outDir
+{
+    NSInteger i = fromIndex;
+    
+    while (i <= endIndex) {
+        NSLog(@"%ld ...",i);
+        NSString *inPath = [NSString stringWithFormat:@"%@/%ld.txt",inDir,i];
+        NSString *outPath = [NSString stringWithFormat:@"%@/%ld.txt",outDir,i];
+        
+        @autoreleasepool {
+            [self cutRePath:inPath OutPath:outPath];
+        }
+        
+        i++;
+    }
+}
+
+
+- (void)cutRePath:(NSString *)path OutPath:(NSString *)outPath
+{
+    NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSArray *array = [str componentsSeparatedByString:@"\n"];
+    _start = [NSDate date];
+    _allCount = array.count;
+    _oldUsedTime = 0;
+    _oldCountIndex = 0;
+    _currentIndex = 0;
+    
+    
+    NSMutableArray *muarray = [NSMutableArray array];
+    
+    for (int i = 0; i < array.count; i++) {
+        _currentIndex++;
+        _runOverCount++;
+        
+        NSString *str1 = [array dm_objectAtIndex:i-1];
+        NSString *str2 = [array dm_objectAtIndex:i];
+        
+        if ([str2 isEqualToString:@""]) {
+            _repeatCount++;
+        } else if ([str2 isEqualToString:str1]) {
+            _repeatCount++;
+        } else {
+            [muarray addObject:str2];
+        }
+    }
+    
+    NSString *mergeStr = [muarray componentsJoinedByString:@"\n"];
+    
+    BOOL result = [mergeStr writeToFile:outPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    if (result) {
+        NSLog(@"ok");
+    }else{
+        NSLog(@"err");
+    }
+}
+
+
 - (void)sortFrom:(NSInteger)fromIndex
         endIndex:(NSInteger)endIndex
            inDir:(NSString *)inDir
@@ -640,9 +716,41 @@
         NSString *inPath = [NSString stringWithFormat:@"%@/%ld.txt",inDir,i];
         NSString *outPath = [NSString stringWithFormat:@"%@/%ld.txt",outDir,i];
         
-        [self mergeWithPath1:@"" Path2:inPath OutPath:outPath];
+        @autoreleasepool {
+            [self sortWithPath1:@"" Path2:inPath OutPath:outPath];
+        }
         
         i++;
+    }
+}
+
+- (void)sortWithPath1:(NSString *)path1 Path2:(NSString *)path2 OutPath:(NSString *)outPath
+{
+
+    NSString *path = path2;
+    NSString *str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    NSArray *array = [str componentsSeparatedByString:@"\n"];
+    _start = [NSDate date];
+    _allCount = array.count;
+    _oldUsedTime = 0;
+    _oldCountIndex = 0;
+    _currentIndex = 0;
+    
+    
+    NSArray *arr1 = [array sortedArrayUsingComparator:^NSComparisonResult(id  _Nonnull obj1, id  _Nonnull obj2) {
+        _currentIndex++;
+        _runOverCount++;
+        return [obj1 compare:obj2];
+    }];
+    
+    NSString *mergeStr = [arr1 componentsJoinedByString:@"\n"];
+    
+    BOOL result = [mergeStr writeToFile:outPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    
+    if (result) {
+        NSLog(@"ok");
+    }else{
+        NSLog(@"err");
     }
 }
 
@@ -676,6 +784,7 @@
     _start = [NSDate date];
     _allCount = array.count;
     _oldUsedTime = 0;
+    _oldCountIndex = 0;
     
     for (int i = 0; i< array.count; i++) {
         @autoreleasepool {
