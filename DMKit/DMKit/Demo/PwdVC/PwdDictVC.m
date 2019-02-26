@@ -121,10 +121,17 @@
     ///////////////////
     
 //    [self merge];
+//    WeakObj(self);
+//    BACK(^{
+//        [selfWeak chaifen];
+//    });
+    
     WeakObj(self);
     BACK(^{
-        [selfWeak chaifen];
+        [selfWeak sortFrom:17 endIndex:193 inDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/cutResult" outDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/sortResult"];
     });
+    
+    
 }
 
 - (void)send
@@ -420,55 +427,39 @@
     
     //[self cutWithIndex:0 cutArray:cutArr inFile:allPath tmpDirPath:tmpDirPath];
     
-    [self cutWithIndex:50 cutArray:cutArr inFile:@"/Users/imac-03/Desktop/Ljl/WordList/tmp/49big_end.txt" tmpDirPath:tmpDirPath resultDirPath:cutResultDirPath];
+//    [self cutWithIndex:0 cutArray:cutArr inFile:@"/Users/imac-03/Desktop/Ljl/WordList/tmp/17.txt" tmpDirPath:tmpDirPath resultDirPath:cutResultDirPath];
     
+    [self changeFileNameIndex:18 maxIndex:125 inDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/cutResult" outDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/cutResult1"];
     
-    
-    @autoreleasepool {
-        NSString *str = [NSString stringWithContentsOfFile:allPath encoding:NSUTF8StringEncoding error:nil];
-        NSLog(@"create str over");
-        
-        NSArray *array = [str componentsSeparatedByString:@"\n"];
-        NSLog(@"create array over");
-        
-        [muarray addObjectsFromArray:array];
-    }
-    
-    _allCount = muarray.count;
-    _start = [NSDate date];
-    
-    _runOverCount = 0;
-    
-    //3. 拆分
-    NSMutableArray *resultArr = [NSMutableArray array];
-    for (int i = 0; i <= cutArr.count; i++) {
-        NSMutableArray *muarray1 = [NSMutableArray array];
-        [resultArr addObject:muarray1];
-    }
-    
-    for (NSInteger i = 0; i< muarray.count; i++) {
-        NSString *str = muarray[i];
-        int index = [self indexOfArr:cutArr str:str];
-        NSMutableArray *tmpArr = resultArr[index];
-        [tmpArr addObject:str];
-        _currentIndex++;
-    }
-    
-    for (int i = 0; i< resultArr.count; i++) {
-        NSMutableArray *tmpArr = resultArr[i];
-        NSString *path = [NSString stringWithFormat:@"%@/%d.txt",tmpDirPath,i];
-        NSString *tmpStr = [tmpArr componentsJoinedByString:@"\n"];
-        BOOL result = [tmpStr writeToFile:path atomically:YES encoding:NSUTF8StringEncoding error:nil];
-        NSLog(@"create file %d : %@ ",result,path);
-    }
+//    [self changeFileNameIndex:0 maxIndex:9 inDir:@"/Users/imac-03/Desktop/Ljl/WordList/cutResult/17" outDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/cutResult1"];
     
 }
 
-- (void)cutWithIndex:(int)index
-            cutArray:(NSArray *)cutArray
-              inFile:(NSString *)inFile
-          tmpDirPath:(NSString *)tmpDirPath
-       resultDirPath:(NSString *)resultDirPath
+- (void)changeFileNameIndex:(NSInteger)index
+                   maxIndex:(NSInteger)maxIndex
+                      inDir:(NSString *)inDir
+                     outDir:(NSString *)outDir
+{
+    NSInteger i = index;
+    while (i <= maxIndex ) {
+        NSLog(@"%ld ...",i);
+        @autoreleasepool {
+            NSString *inPath = [NSString stringWithFormat:@"%@/%ld.txt",inDir,i];
+            NSString *outPath = [NSString stringWithFormat:@"%@/%ld.txt",outDir,i+68];
+            NSData *data = [NSData dataWithContentsOfFile:inPath];
+            [data writeToFile:outPath atomically:YES];
+        }
+        i++;
+    }
+}
+
+
+// 拆分大文件
+- (void)cutWithIndex:(int)index //拆分的索引
+            cutArray:(NSArray *)cutArray    //按此文件拆分
+              inFile:(NSString *)inFile     //被拆分文件
+          tmpDirPath:(NSString *)tmpDirPath //临时文件夹
+       resultDirPath:(NSString *)resultDirPath  //输出文件夹
 {
     if (index >= cutArray.count) {
         NSLog(@"chai fen end");
@@ -566,6 +557,7 @@
 
 
 
+
 //
 //- (void)bigFilePinjie
 //{
@@ -634,7 +626,25 @@
 
 
 
+#pragma mark - 对拆分后的文件逐个排序
 
+- (void)sortFrom:(NSInteger)fromIndex
+        endIndex:(NSInteger)endIndex
+           inDir:(NSString *)inDir
+          outDir:(NSString *)outDir
+{
+    NSInteger i = fromIndex;
+    
+    while (i <= endIndex) {
+        NSLog(@"%ld ...",i);
+        NSString *inPath = [NSString stringWithFormat:@"%@/%ld.txt",inDir,i];
+        NSString *outPath = [NSString stringWithFormat:@"%@/%ld.txt",outDir,i];
+        
+        [self mergeWithPath1:@"" Path2:inPath OutPath:outPath];
+        
+        i++;
+    }
+}
 
 
 
@@ -662,10 +672,10 @@
     
     path = path2;
     str = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
-    str = [str stringByReplacingOccurrencesOfString:@"\r" withString:@""];
     NSArray *array = [str componentsSeparatedByString:@"\n"];
     _start = [NSDate date];
     _allCount = array.count;
+    _oldUsedTime = 0;
     
     for (int i = 0; i< array.count; i++) {
         @autoreleasepool {
