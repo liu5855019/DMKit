@@ -134,7 +134,7 @@
     
     //[self cutRe];
     
-    [self sendFileIndex:1 arrayIndex:3000];
+    [self sendFileIndex:2 arrayIndex:0];
 }
 
 - (void)sendFileIndex:(NSInteger)index arrayIndex:(NSInteger)arrayIndex;
@@ -187,25 +187,45 @@
         NSLog(@"%@",pwd);
     }
     
-    NSString *pwd1 = [JoDes encode:pwd key:@"21131285"];
+    //NSString *pwd1 = [JoDes encode:pwd key:@"21131285"];
     @autoreleasepool{
     NSDictionary *para = @{
-                           @"UserAccount":@"HB005",
-                           @"Password":pwd1
+                           @"userAccount":@"Administrator",
+                           @"userPassword":pwd,
+                           @"X-Requested-With":@"XMLHttpRequest"
                            };
     
-    NSString *url = @"http://113.140.67.190:8002/UserService.svc/ILogin";
-    WeakObj(self);
-    [DMTools postWithUrl:url para:para success:^(id responseObject) {
-        if ([responseObject[@"UserAccount"] isEqualToString:@"error"] ) {
+        
+        
+        WeakObj(self);
+        [DMTools postFormWithUrl:@"http://47.96.133.210:8011/zh-cn/Login/doLogin" para:para success:^(id responseObject) {
+            NSLog(@"%@",responseObject);
+            NSInteger code = DM_INTEGER(responseObject[@"code"]);
+            if (code == 200) {
+                NSLog(@"密码:%@",pwd);
+                
+            } else {
+                [selfWeak send];
+            }
+        } failure:^(NSError *error) {
+            NSLog(@"%@",error);
             [selfWeak send];
-        } else {
-            NSLog(@"密码:%@",pwd);
-        }
-    } failure:^(NSError *error) {
-        NSLog(@"%@",error);
-        [selfWeak send];
-    }];
+        }];
+        
+        
+        
+//    NSString *url = @"http://113.140.67.190:8002/UserService.svc/ILogin";
+//    WeakObj(self);
+//    [DMTools postWithUrl:url para:para success:^(id responseObject) {
+//        if ([responseObject[@"UserAccount"] isEqualToString:@"error"] ) {
+//            [selfWeak send];
+//        } else {
+//            NSLog(@"密码:%@",pwd);
+//        }
+//    } failure:^(NSError *error) {
+//        NSLog(@"%@",error);
+//        [selfWeak send];
+//    }];
     }
 }
 
