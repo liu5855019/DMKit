@@ -134,8 +134,43 @@
     
     //[self cutRe];
     
-    [self sendFileIndex:2 arrayIndex:0];
+    //[self sendFileIndex:2 arrayIndex:0];
+    
+    [self mergeAllIndex:0 index:0];
 }
+
+- (void)mergeAllIndex:(int)allIndex index:(int)index
+{
+    NSString *outPath = [NSString stringWithFormat:@"/Users/imac-03/Desktop/111111/all%d.txt",allIndex];
+    NSString *inDirPath = @"/Users/imac-03/Desktop/Ljl/WordList/cut/reResult";
+    [@"" writeToFile:outPath atomically:YES encoding:NSUTF8StringEncoding error:nil];
+    NSFileHandle *handle = [NSFileHandle fileHandleForUpdatingAtPath:outPath];
+    [handle seekToEndOfFile];
+    
+    for (int i = index; i<=193; i++) {
+        @autoreleasepool {
+            NSLog(@"%d ...",i);
+            NSString *inPath = [NSString stringWithFormat:@"%@/%d.txt",inDirPath,i];
+            NSString *str = [NSString stringWithContentsOfFile:inPath encoding:NSUTF8StringEncoding error:nil];
+            str = [str stringByAppendingString:@"\n"];
+            NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+            [handle writeData:data];
+            [handle seekToEndOfFile];
+            
+            unsigned long long size = [handle offsetInFile];
+            if (size > 100*1024*1024) {
+                [handle closeFile];
+                [self mergeAllIndex:allIndex+1 index:i+1];
+                return;
+            }
+        }
+    }
+    
+    [handle closeFile];
+}
+
+
+
 
 - (void)sendFileIndex:(NSInteger)index arrayIndex:(NSInteger)arrayIndex;
 {
