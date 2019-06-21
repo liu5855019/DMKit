@@ -16,7 +16,8 @@
 + (NSString *)getDeviceType;
 
 /** 检查版本是否需要更新 */
-+ (void)checkVersionWithAppId:(NSString *)appId;
++ (void)checkVersionWithAppId:(NSString *)appId
+                  resultBlock:(void (^)(BOOL isNeed))block;
 
 
 #pragma mark - <<Alert & Sheet & Toast>>

@@ -19,6 +19,7 @@
 - (NSMutableArray *)classifyWithKey:(NSString *)key block:(void (^)(NSMutableArray *keys , NSMutableArray *valueArrays))block;
 
 - (BOOL)hasString:(NSString *)string;
+- (BOOL)hasObject:(NSObject *)object;
 
 
 @end

@@ -66,6 +66,10 @@
  */
 - (NSString *)getStringWithDetailFormatter;
 
+/**
+ *  /Date(1477297275594+0800)/ ----> Date / nil
+ */
++ (NSDate *)dateWithTimeIntervalStr:(NSString *)dateStr;
 
 #pragma mark - NSTimeInterval
 /**
@@ -73,8 +77,8 @@
  */
 + (NSTimeInterval)timeIntervalWithString:(NSString *)dateStr;
 
-
-
+/** 返回.Net需要的时间戳字符串 */
+- (NSString *)timeIntervalForDotNet;
 
 
 @end

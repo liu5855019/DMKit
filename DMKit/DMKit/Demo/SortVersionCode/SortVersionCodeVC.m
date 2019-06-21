@@ -19,7 +19,9 @@
 
     self.mainTitleLabel.text = @"SortVersionCodeVC";
     
-    [DMTools checkVersionWithAppId:@"1210593841"];
+    [DMTools checkVersionWithAppId:@"1210593841" resultBlock:^(BOOL isNeed) {
+        NSLog(@"是否需要更新 : %d",isNeed);
+    }];
     
     
     

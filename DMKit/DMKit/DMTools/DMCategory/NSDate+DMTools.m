@@ -180,6 +180,19 @@
     return [self getStringWithFormat:yyyyMMddHHmmss];
 }
 
+/**
+ *  /Date(1477297275594+0800)/ ----> Date / nil
+ */
++ (NSDate *)dateWithTimeIntervalStr:(NSString *)dateStr
+{
+    if (dateStr.length == 0) {
+        return nil;
+    }
+    NSTimeInterval interval = [self timeIntervalWithString:dateStr];
+    return [NSDate dateWithTimeIntervalSince1970:interval];
+}
+
+
 
 #pragma mark - NSTimeInterval
 /**
@@ -196,7 +209,13 @@
     return [strArr.firstObject doubleValue]/1000.0f;
 }
 
-
+/** 返回.Net需要的时间戳字符串 */
+- (NSString *)timeIntervalForDotNet
+{
+    NSTimeInterval interval = self.timeIntervalSince1970;
+    
+    return [NSString stringWithFormat:@"/Date(%@+0000)/",[@((NSInteger)(interval * 1000)) stringValue]];
+}
 
 
 

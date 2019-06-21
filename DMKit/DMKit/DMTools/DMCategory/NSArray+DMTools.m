@@ -67,5 +67,14 @@
     return NO;
 }
 
+- (BOOL)hasObject:(NSObject *)object
+{
+    for (NSObject *obj in self) {
+        if (obj == object) {
+            return YES;
+        }
+    }
+    return NO;
+}
 
 @end

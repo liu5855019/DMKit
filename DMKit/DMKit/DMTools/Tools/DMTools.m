@@ -143,6 +143,7 @@
 
 /** 检查版本是否需要更新 */
 + (void)checkVersionWithAppId:(NSString *)appId
+                  resultBlock:(void (^)(BOOL isNeed))block
 {
     BACK((^{
         //1.获取当前项目工程版本
@@ -154,36 +155,36 @@
         //http://itunes.apple.com/lookup?id=%@          //世界地区
         NSString *urlStr = [NSString stringWithFormat:@"http://itunes.apple.com/cn/lookup?id=%@",appId];
         NSURL *url = [NSURL URLWithString:urlStr];
-        NSError *error = nil;
+        
         NSString *appInfoStr = [NSString stringWithContentsOfURL:url encoding:NSUTF8StringEncoding error:nil];
-        NSData *jsonData = [appInfoStr dataUsingEncoding:NSUTF8StringEncoding];
-        NSDictionary *appInfo = [NSJSONSerialization JSONObjectWithData:jsonData options:NSJSONReadingMutableLeaves error:&error];
-        if (!error && appInfo) {
+        
+        NSDictionary *appInfo = [DMTools getDictOrArrayFromJsonStr:appInfoStr];
+        if (appInfo && [appInfo isKindOfClass:[NSDictionary class]]) {
             NSArray *resultAry = appInfo[@"results"];
-            if (resultAry.count == 0) {
-                //获取失败
-                return;
-            }
-            NSDictionary *dic = resultAry[0];
-            //获取到appstore中版本号
-            NSString *appStoreVersion = dic[@"version"];
-            NSLog(@"appStoreVersion : %@",appStoreVersion);
-//            if ([currentVersion compare:appStoreVersion options:NSNumericSearch] == NSOrderedAscending) {
-//                NSLog(@"需要更新");
-//            }
-            
-            //3.比较大小
-            if ([DMTools version1:appStoreVersion greatThanVersion2:currentVersion])
-            {
-                MAIN((^{
-                    [DMTools showAlertWithTitle:@"版本更新" andContent:@"有新版本确定更新吗?" andSureBlock:^{
-                        //打开appstore
-                        NSString *appStr = [NSString stringWithFormat:@"itms-apps://itunes.apple.com/app/id%@",appId];
-                        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:appStr]];
-                    } andCancelBlock:nil andSureTitle:@"确定" andCancelTitle:@"取消" atVC:nil];
-                }));
+            if (resultAry && [resultAry isKindOfClass:[NSArray class]] && resultAry.count > 0) {
+                NSDictionary *dic = resultAry[0];
+                if (dic && [dic isKindOfClass:[NSDictionary class]]) {
+                    NSString *appStoreVersion = dic[@"version"];
+                    NSLog(@"appStoreVersion : %@",appStoreVersion);
+                    if (appStoreVersion && [appStoreVersion isKindOfClass:[NSString class]] && appStoreVersion.length > 0) {
+                        //3.比较大小
+                        if ([DMTools version1:appStoreVersion greatThanVersion2:currentVersion]) {
+                            MAIN(^{
+                                if (block) {
+                                    block(YES);
+                                }
+                            });
+                        }
+                        return;
+                    }
+                }
             }
         }
+        MAIN(^{
+            if (block) {
+                block(NO);
+            }
+        });
     }));
 }
 
