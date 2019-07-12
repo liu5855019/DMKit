@@ -138,9 +138,6 @@
     //decisionHandler(WKNavigationActionPolicyCancel);
 }
 
-
-
-
 /* 在收到响应后，决定是否跳转 */
 - (void)webView:(WKWebView *)webView decidePolicyForNavigationResponse:(WKNavigationResponse *)navigationResponse decisionHandler:(void (^)(WKNavigationResponsePolicy))decisionHandler
 {
@@ -163,15 +160,19 @@
     }
 }
 
-
-
-
-
 #pragma mark - action
 
 - (void)loadRequest:(NSURLRequest *)request
 {
-    [self.webView loadRequest:request];
+    if (@available(iOS 9.0, *)) {
+        if (request.URL.fileURL) {
+            [self.webView loadFileURL:request.URL allowingReadAccessToURL:request.URL];
+        } else {
+            [self.webView loadRequest:request];
+        }
+    } else {
+        [self.webView loadRequest:request];
+    }
 }
 
 - (void)dealloc

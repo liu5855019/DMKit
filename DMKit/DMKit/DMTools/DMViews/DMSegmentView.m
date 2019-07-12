@@ -107,11 +107,19 @@
         selfWeak.underLine.center = centre;
     }];
     
-    if (kGetX(sender) < _headerScroll.contentOffset.x) {
-        [_headerScroll setContentOffset:CGPointMake(kGetX(sender), 0) animated:YES];
-    }
-    if (kGetMaxX(sender) > _headerScroll.contentOffset.x + kGetW(self)) {
+    if (kGetX(sender) <= _headerScroll.contentOffset.x) {
+        UIView *preView = [_headerScroll viewWithTag:tag-1];
+        if (preView) {
+            [_headerScroll setContentOffset:CGPointMake(kGetX(preView), 0) animated:YES];
+        } else {
+            [_headerScroll setContentOffset:CGPointMake(kGetX(sender), 0) animated:YES];
+        }
+    } else if (kGetMaxX(sender) >= _headerScroll.contentOffset.x + kGetW(self)) {
         CGFloat offset = kGetMaxX(sender) - kGetW(self);
+        UIView *nextView = [_headerScroll viewWithTag:tag+1];
+        if (nextView) {
+            offset = kGetMaxX(nextView) - kGetW(self);
+        }
         [_headerScroll setContentOffset:CGPointMake(offset, 0) animated:YES];
     }
 }
