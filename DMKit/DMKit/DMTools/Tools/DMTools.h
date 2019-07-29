@@ -41,8 +41,9 @@
 +(void)showSheetWithTitle:(NSString *)title
                andContent:(NSString *)content
           andActionTitles:(NSArray <NSString*> *)titles
-                 andBlock:(void (^)(int index))clickBlock
-                     atVC:(__weak UIViewController *)vc;
+              cancelTitle:(NSString *)cancelTitle
+                     atVC:(__weak UIViewController *)vc
+                    block:(void (^)(int index))block;
 
 /** 在window上显示toast */
 + (void)showToastAtWindow:(NSString *)content;
@@ -73,7 +74,7 @@
 /** 根据起始数字 终点数字 和 持续时间 返回 每秒60次的播放数组 */
 + (NSArray *)getNumsWithFrom:(CGFloat)from To:(CGFloat)to Time:(CGFloat)time;
 
-/** 获取两个坐标的距离 */ 
+/** 获取两个坐标的距离 */
 + (double)getMeterWithCoord2D:(CLLocationCoordinate2D)coor1
                       Coord2D:(CLLocationCoordinate2D)coor2;
 
@@ -189,11 +190,11 @@
 
 
 //Ajax--post提交
-/** 重用afn的post */
+/** 重用afn的post  请将代码copy到一个新的类里使用 */
 + (void)postWithUrl:(NSString *)url
                para:(id)para
             success:(void (^)(id responseObject))success
-            failure:(void(^)(NSError *error))failure;
+            failure:(void(^)(NSError *error))failure __attribute__((availability(ios,introduced=2_0,deprecated=7_0,message="请将代码copy到一个新的类里使用")));
 
 /** 直接获取info 用于特定项目(项目中主要返回值内容全都跟在message里,并且是json型字符串) */
 + (void)postWithUrl:(NSString *)url

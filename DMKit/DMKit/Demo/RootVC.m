@@ -57,14 +57,14 @@
                @"RacVC",
                @"KunVC"];
     
-    [self testDeDes];
+    [self testDes];
     
 }
 
 - (void)testDes
 {
-    NSString *content = @"aaaaa";
-    NSString *key = @"1234567";
+    NSString *content = @"20363652";
+    NSString *key = @"05fec77b22ff41a4ba9589c7afc537ea";
     NSString *iv = @"";
     
     

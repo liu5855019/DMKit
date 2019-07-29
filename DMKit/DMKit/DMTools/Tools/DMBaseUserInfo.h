@@ -5,6 +5,8 @@
 //  Copyright © 2016年 西安旺豆电子信息有限公司. All rights reserved.
 //
 
+/** 所有东西拷贝下来
+
 #import <Foundation/Foundation.h>
 
 @interface UserInfo : NSObject
@@ -25,3 +27,5 @@
 - (CGFloat)screenScaleW;
 
 @end
+ 
+*/

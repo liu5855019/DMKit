@@ -30,7 +30,7 @@
     _contentView.clipsToBounds = YES;
     [self addSubview:_contentView];
     
-    
+    self.backgroundColor = [UIColor whiteColor];
     self.borderColor = [UIColor lightGrayColor];
     self.borderWidth = 0;
     self.shadowColor = [UIColor lightGrayColor];

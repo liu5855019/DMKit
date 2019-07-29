@@ -262,22 +262,23 @@
 +(void)showSheetWithTitle:(NSString *)title
                andContent:(NSString *)content
           andActionTitles:(NSArray <NSString*> *)titles
-                 andBlock:(void (^)(int index))clickBlock
-                     atVC:(UIViewController *__weak)vc
+              cancelTitle:(NSString *)cancelTitle
+                     atVC:(__weak UIViewController *)vc
+                    block:(void (^)(int index))block
 {
     UIAlertController *alertController = [UIAlertController alertControllerWithTitle:title message:content preferredStyle:UIAlertControllerStyleActionSheet];
     int i = 0;
     for (NSString *actionTitle in titles) {
         UIAlertAction *action = [UIAlertAction actionWithTitle:actionTitle style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action){
-            if (clickBlock) {
-                clickBlock(i);
+            if (block) {
+                block(i);
             }
         }];
         i++;
         [alertController addAction:action];
     }
     
-    UIAlertAction *action = [UIAlertAction actionWithTitle:kLocStr(@"取消") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action){
+    UIAlertAction *action = [UIAlertAction actionWithTitle:cancelTitle.length ? cancelTitle : kLocStr(@"取消") style:UIAlertActionStyleCancel handler:^(UIAlertAction * _Nonnull action){
         
     }];
     
