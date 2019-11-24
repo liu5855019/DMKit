@@ -31,7 +31,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-
+    
     [self vm];
     
     self.navigationItem.rightBarButtonItem = self.rightItem;
@@ -40,6 +40,14 @@
     _headerLab.text = [NSString stringWithFormat:@"  %lld",_vm.money];
     
     [self startTimer];
+    
+    @weakify(self);
+    [RACObserve(_vm, money) subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        self.mainTitleLabel.text = [NSString stringWithFormat:@"%lld",_vm.money];
+    }];
+    
+    
 }
 
 - (void)viewWillAppear:(BOOL)animated

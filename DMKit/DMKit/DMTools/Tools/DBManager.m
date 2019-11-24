@@ -227,14 +227,14 @@
 /** 查找所有属于当前用户的未发送location */
 - (NSMutableArray *)selectAllMyNoSendLocations
 {
-    FMResultSet *set =[self.database executeQueryWithFormat:@"select * from locationtable where isSend = 0 and userID = %ld",(long)[UserInfo shareUser].userID];
+//    FMResultSet *set =[self.database executeQueryWithFormat:@"select * from locationtable where isSend = 0 and userID = %ld",(long)[UserInfo shareUser].userID];
     
     NSMutableArray *muarray = [NSMutableArray array];
     
-    while ([set next]) {
-        NSDictionary *dict = [set resultDictionary];
-        [muarray addObject:dict];
-    }
+//    while ([set next]) {
+//        NSDictionary *dict = [set resultDictionary];
+//        [muarray addObject:dict];
+//    }
     return muarray;
 }
 

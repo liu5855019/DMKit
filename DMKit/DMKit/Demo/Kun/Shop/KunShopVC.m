@@ -24,6 +24,12 @@
     [self vm];
     
     [self.view addSubview:self.tabV];
+    
+    @weakify(self);
+    [RACObserve(_vm, money) subscribeNext:^(id  _Nullable x) {
+        @strongify(self);
+        self.mainTitleLabel.text = [NSString stringWithFormat:@"%lld",_vm.money];
+    }];
 }
 
 

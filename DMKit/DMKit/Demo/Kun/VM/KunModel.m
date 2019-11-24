@@ -44,4 +44,9 @@
              };
 }
 
+- (NSString *)description
+{
+    return [NSString stringWithFormat:@"%@",self.dictionary];
+}
+
 @end

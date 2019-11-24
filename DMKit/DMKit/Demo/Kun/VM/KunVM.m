@@ -33,15 +33,15 @@
 - (void)buy:(KunModel *)kun
 {
     if (_ownList.count >= 15) {
-        NSLog(@"渔场已经满了!");
+        [DMTools showToastAtWindow:@"渔场已经满了!"];
         return;
     }
     if (_money < kun.costMoney) {
-        NSLog(@"金币不够!");
+        [DMTools showToastAtWindow:@"金币不够!"];
         return;
     }
     
-    _money -= kun.costMoney;
+    self.money -= kun.costMoney;
     
     [_ownList addObject:[KunModel modelWithDict:kun.dictionary]];
     kun.leave++;
@@ -61,7 +61,7 @@
             return;
         }
     }
-    NSLog(@"没有可以合并的kun");
+    [DMTools showToastAtWindow:@"没有可以合并的kun!"];
 }
 
 - (void)mergeKun:(KunModel *)kun andKun:(KunModel *)kun1
@@ -124,7 +124,7 @@
             money += kun.outputMoney;
         }
     }
-    _money += money;
+    self.money += money;
 }
 
 #pragma mark - create
