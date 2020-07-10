@@ -21,5 +21,7 @@
 - (BOOL)hasString:(NSString *)string;
 - (BOOL)hasObject:(NSObject *)object;
 
+- (NSArray *)deleteRepeatString;
+- (NSArray *)deleteRepeatObject;
 
 @end

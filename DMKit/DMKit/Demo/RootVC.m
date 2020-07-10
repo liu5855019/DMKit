@@ -21,6 +21,7 @@
 #import "VisionDebugVC.h"
 #import "ImageDebugVC.h"
 #import "RacVC.h"
+#import "MillionVC.h"
 
 
 @interface RootVC () <UITableViewDelegate , UITableViewDataSource>
@@ -41,24 +42,35 @@
     [self.view addSubview:self.tabV];
     AdjustsScrollViewInsetNever(self, _tabV)
     
-    _datas = @[@"DMSegmentViewVC",
-               @"AVFoundationVC",
-               @"SocketClientVC",
-               @"SocketServerVC",
-               @"SortVersionCodeVC",
-               @"DMPickerVC",
-               @"ColliderVC",
-               @"PwdVC",
-               @"PwdDictVC",
-               @"ShowLogVC",
-               @"CrashVC",
-               @"VisionDebugVC",
-               @"ImageDebugVC",
-               @"RacVC",
-               @"KunVC"];
+    _datas = @[
+        @"DMSegmentViewVC",
+        @"AVFoundationVC",
+        @"SocketClientVC",
+        @"SocketServerVC",
+        @"SortVersionCodeVC",
+        @"MillionVC",
+        @"DMPickerVC",
+        @"ColliderVC",
+        @"PwdVC",
+        @"PwdDictVC",
+        @"ShowLogVC",
+        @"CrashVC",
+        @"VisionDebugVC",
+        @"ImageDebugVC",
+        @"RacVC",
+        @"KunVC",
+    ];
     
     [self testDes];
     
+//    [self fix];
+}
+
+- (void)fix
+{
+    [DMTools fixTextFile:@"/Users/imac-03/Downloads/txtFormatV209/烟外晓云轻/自定义正则合集功能介绍.txt" toFile:@"/Users/imac-03/Downloads/txtFormatV209/烟外晓云轻/1.txt"];
+    
+    [DMTools fixTextFile:@"/Users/imac-03/Downloads/txtFormatV209/烟外晓云轻/custreg.txt" toFile:@"/Users/imac-03/Downloads/txtFormatV209/烟外晓云轻/2.txt"];
 }
 
 - (void)testDes
@@ -140,6 +152,11 @@
     }
     if (indexPath.row == 4) {
         [self.navigationController pushViewController:[SortVersionCodeVC new] animated:YES];
+        return;
+    }
+    
+    if (indexPath.row == 5) {
+        [self.navigationController pushViewController:[[MillionVC alloc] init] animated:YES];
         return;
     }
     

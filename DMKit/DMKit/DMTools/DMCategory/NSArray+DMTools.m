@@ -77,4 +77,31 @@
     return NO;
 }
 
+- (NSArray *)deleteRepeatString
+{
+    NSMutableArray *muarr = [NSMutableArray array];
+    
+    for (NSString *str in self) {
+        if (![muarr hasString:str]) {
+            [muarr addObject:str];
+        }
+    }
+    
+    return [muarr copy];
+}
+
+
+- (NSArray *)deleteRepeatObject
+{
+    NSMutableArray *muarr = [NSMutableArray array];
+    
+    for (NSObject *obj in self) {
+        if (![muarr hasObject:obj]) {
+            [muarr addObject:obj];
+        }
+    }
+    
+    return [muarr copy];
+}
+
 @end

@@ -1,15 +1,21 @@
 //
 //  UINavigationBar+DMTools.m
-//  TinyBenefit
+//  DMKit
 //
-//  Created by 西安旺豆电子信息有限公司 on 2017/12/5.
-//  Copyright © 2017年 西安旺豆. All rights reserved.
+//  Created by iMac-03 on 2017/12/5.
+//  Copyright © 2017年 呆木. All rights reserved.
 //
 
 #import "UINavigationBar+DMTools.h"
+
+#import "NSArray+DMTools.h"
+
 #import <objc/runtime.h>
 
-#define IOS10 [[[UIDevice currentDevice]systemVersion] floatValue] >= 10.0
+#define IOS10Latter [[[UIDevice currentDevice]systemVersion] floatValue] >= 10.0
+
+#define IOS13Latter [[[UIDevice currentDevice]systemVersion] floatValue] >= 13.0
+
 
 @implementation UINavigationBar (DMTools)
 
@@ -28,12 +34,17 @@ static char *navAlphaKey = "navAlphaKey";
     CGFloat alpha = MAX(MIN(navAlpha, 1), 0);// 必须在 0~1的范围
     
     UIView *barBackground = self.subviews.dm_firstObject;
-    if (self.translucent == NO || [self backgroundImageForBarMetrics:UIBarMetricsDefault] != nil) {
+    if (self.translucent == NO ||
+        [self backgroundImageForBarMetrics:UIBarMetricsDefault] != nil) {
         barBackground.alpha = alpha;
-        
     } else {
-        
-        if (IOS10) {
+        if (IOS13Latter) {
+            UIVisualEffectView *effectView = barBackground.subviews.lastObject;
+            
+            for (UIView *aView in effectView.subviews) {
+                aView.alpha = alpha;
+            }
+        } else if (IOS10Latter) {
             UIView *effectFilterView = barBackground.subviews.lastObject;
             effectFilterView.alpha = alpha;
         } else {
@@ -41,8 +52,14 @@ static char *navAlphaKey = "navAlphaKey";
             effectFilterView.alpha = alpha;
         }
     }
+    
     /// 黑线
-    UIImageView *shadowView = [barBackground valueForKey:@"_shadowView"];
+    UIImageView *shadowView;
+    if (IOS13Latter) {
+        shadowView = barBackground.subviews.firstObject;
+    } else {
+        shadowView = [barBackground valueForKey:@"_shadowView"];
+    }
     if (alpha < 0.01) {
         shadowView.hidden = YES;
     } else {
@@ -52,6 +69,7 @@ static char *navAlphaKey = "navAlphaKey";
     
     objc_setAssociatedObject(self, navAlphaKey, @(alpha), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
+
 
 
 @end

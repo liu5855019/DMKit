@@ -7,6 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0A0948A124B83D3200E7518A /* MillionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0948A024B83D3200E7518A /* MillionModel.m */; };
+		0A0948A424B841C000E7518A /* MillionResultModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0948A324B841C000E7518A /* MillionResultModel.m */; };
+		0A0948A824B8425C00E7518A /* MillionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0948A624B8425C00E7518A /* MillionVC.m */; };
+		0A0948A924B8425C00E7518A /* MillionVC.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0948A724B8425C00E7518A /* MillionVC.xib */; };
+		0A0948AD24B8564700E7518A /* MillionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A0948AB24B8564700E7518A /* MillionCell.m */; };
+		0A0948AE24B8564700E7518A /* MillionCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 0A0948AC24B8564700E7518A /* MillionCell.xib */; };
 		0A1B6EBF22E5A01F00C730BE /* DMDatePickerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A1B6EBE22E5A01F00C730BE /* DMDatePickerView.m */; };
 		0A71F17022E6DAD20066423E /* DMBaseUserInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 0A71F16F22E6DAD20066423E /* DMBaseUserInfo.m */; };
 		4409680720D8DA9100CE0DB2 /* DMShowBigImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 4409680620D8DA9000CE0DB2 /* DMShowBigImageView.m */; };
@@ -234,6 +240,16 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0A09489F24B83D3200E7518A /* MillionModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MillionModel.h; sourceTree = "<group>"; };
+		0A0948A024B83D3200E7518A /* MillionModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MillionModel.m; sourceTree = "<group>"; };
+		0A0948A224B841C000E7518A /* MillionResultModel.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MillionResultModel.h; sourceTree = "<group>"; };
+		0A0948A324B841C000E7518A /* MillionResultModel.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MillionResultModel.m; sourceTree = "<group>"; };
+		0A0948A524B8425C00E7518A /* MillionVC.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MillionVC.h; sourceTree = "<group>"; };
+		0A0948A624B8425C00E7518A /* MillionVC.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MillionVC.m; sourceTree = "<group>"; };
+		0A0948A724B8425C00E7518A /* MillionVC.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MillionVC.xib; sourceTree = "<group>"; };
+		0A0948AA24B8564700E7518A /* MillionCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MillionCell.h; sourceTree = "<group>"; };
+		0A0948AB24B8564700E7518A /* MillionCell.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MillionCell.m; sourceTree = "<group>"; };
+		0A0948AC24B8564700E7518A /* MillionCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MillionCell.xib; sourceTree = "<group>"; };
 		0A1B6EBE22E5A01F00C730BE /* DMDatePickerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DMDatePickerView.m; sourceTree = "<group>"; };
 		0A1B6EC022E5A03700C730BE /* DMDatePickerView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DMDatePickerView.h; sourceTree = "<group>"; };
 		0A71F16E22E6DAD20066423E /* DMBaseUserInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DMBaseUserInfo.h; sourceTree = "<group>"; };
@@ -712,6 +728,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0A09489B24B83C1200E7518A /* Million */ = {
+			isa = PBXGroup;
+			children = (
+				0A0948A524B8425C00E7518A /* MillionVC.h */,
+				0A0948A624B8425C00E7518A /* MillionVC.m */,
+				0A0948A724B8425C00E7518A /* MillionVC.xib */,
+				0A09489F24B83D3200E7518A /* MillionModel.h */,
+				0A0948A024B83D3200E7518A /* MillionModel.m */,
+				0A0948A224B841C000E7518A /* MillionResultModel.h */,
+				0A0948A324B841C000E7518A /* MillionResultModel.m */,
+				0A0948AA24B8564700E7518A /* MillionCell.h */,
+				0A0948AB24B8564700E7518A /* MillionCell.m */,
+				0A0948AC24B8564700E7518A /* MillionCell.xib */,
+			);
+			path = Million;
+			sourceTree = "<group>";
+		};
 		4422304920576AE6003E2DCC /* SortVersionCode */ = {
 			isa = PBXGroup;
 			children = (
@@ -1390,6 +1423,7 @@
 		6485B9FC1FE9587F00EFB5A8 /* Demo */ = {
 			isa = PBXGroup;
 			children = (
+				0A09489B24B83C1200E7518A /* Million */,
 				4464E67F20A2990D0007AB0A /* Rac */,
 				4457719F20917BF80080C6BE /* Image */,
 				64E766BA2088C1A0008B25F8 /* Vision */,
@@ -1546,7 +1580,7 @@
 				TargetAttributes = {
 					44CC097B1F56A6B900B26FC4 = {
 						CreatedOnToolsVersion = 8.2.1;
-						DevelopmentTeam = C834GUTVBG;
+						DevelopmentTeam = VY74KE25H2;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -1556,6 +1590,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
@@ -1578,8 +1613,10 @@
 				44CC098C1F56A6B900B26FC4 /* Assets.xcassets in Resources */,
 				442E5BF91F579AB200D1D8A6 /* MJRefresh.bundle in Resources */,
 				447F500C209C5BFF003AAB32 /* 001.png in Resources */,
+				0A0948AE24B8564700E7518A /* MillionCell.xib in Resources */,
 				44C0742C20943F8400D0555D /* timg.jpg in Resources */,
 				44CC098A1F56A6B900B26FC4 /* Main.storyboard in Resources */,
+				0A0948A924B8425C00E7518A /* MillionVC.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1638,6 +1675,7 @@
 				442E5C201F579AC400D1D8A6 /* MASLayoutConstraint.m in Sources */,
 				64DD8013205CF98E0002B91E /* ShowLogVC.m in Sources */,
 				446781172011879C004E461F /* UILabel+DMTools.m in Sources */,
+				0A0948A824B8425C00E7518A /* MillionVC.m in Sources */,
 				4464E64920A298E80007AB0A /* RACEmptySignal.m in Sources */,
 				4464E63920A298E80007AB0A /* NSString+RACSupport.m in Sources */,
 				4464E65820A298E80007AB0A /* RACScopedDisposable.m in Sources */,
@@ -1665,6 +1703,7 @@
 				4464E65020A298E80007AB0A /* RACKVOProxy.m in Sources */,
 				4464E62A20A298E80007AB0A /* NSEnumerator+RACSequenceAdditions.m in Sources */,
 				644B04EA2122519D001E7D43 /* KunShopVC.m in Sources */,
+				0A0948AD24B8564700E7518A /* MillionCell.m in Sources */,
 				4464E64520A298E80007AB0A /* RACDynamicSequence.m in Sources */,
 				442E5BF31F579AB200D1D8A6 /* MJRefreshBackGifFooter.m in Sources */,
 				4464E62920A298E80007AB0A /* NSDictionary+RACSequenceAdditions.m in Sources */,
@@ -1745,8 +1784,10 @@
 				4464E68820A2990D0007AB0A /* RacCell.m in Sources */,
 				4464E66C20A298E80007AB0A /* UIActionSheet+RACSignalSupport.m in Sources */,
 				442E5BAC1F579AA900D1D8A6 /* MKAnnotationView+WebCache.m in Sources */,
+				0A0948A424B841C000E7518A /* MillionResultModel.m in Sources */,
 				4464E63620A298E80007AB0A /* NSSet+RACSequenceAdditions.m in Sources */,
 				4464E66020A298E80007AB0A /* RACStringSequence.m in Sources */,
+				0A0948A124B83D3200E7518A /* MillionModel.m in Sources */,
 				442E5BF51F579AB200D1D8A6 /* MJRefreshBackStateFooter.m in Sources */,
 				4464E66720A298E80007AB0A /* RACTuple.m in Sources */,
 				442E5BFC1F579AB200D1D8A6 /* UIScrollView+MJExtension.m in Sources */,
@@ -1937,11 +1978,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C834GUTVBG;
+				DEVELOPMENT_TEAM = VY74KE25H2;
 				INFOPLIST_FILE = DMKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DM.DMKit;
+				PRODUCT_BUNDLE_IDENTIFIER = DM.DMKit.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -1950,11 +1991,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = C834GUTVBG;
+				DEVELOPMENT_TEAM = VY74KE25H2;
 				INFOPLIST_FILE = DMKit/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = DM.DMKit;
+				PRODUCT_BUNDLE_IDENTIFIER = DM.DMKit.test;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;

@@ -593,7 +593,7 @@
 {
     NSData *data = [NSData dataWithContentsOfFile:oFile];
     
-    NSStringEncoding encoding =CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
+    NSStringEncoding encoding = CFStringConvertEncodingToNSStringEncoding(kCFStringEncodingGB_18030_2000);
     
     NSString *str = [[NSString alloc] initWithBytes:[data bytes] length:[data length] encoding:encoding];
     
